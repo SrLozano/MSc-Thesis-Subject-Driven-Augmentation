@@ -12,4 +12,20 @@ Diffusion probabilistic models are a class of latent variable models that introd
 
 GANs were introduced in 2014 by researchers at the University of Montreal in the paper \textit{Generative Adversarial Nets} \cite{goodfellow2020generative}. The idea is to create generative models through an adversarial process in which two neural networks compete against each other.  One of the networks will be generative while the other will be discriminative. Thus, the generative network will be in charge of capturing the distribution of the training dataset while the discriminative network must distinguish whether a sample comes from the generative network or the training data. The idea is that the generative network maximises the probability that the discriminative network makes errors. 
 
-Diffusion models, on the other hand, achieve high-quality image synthesis results in the paper \textit{Denoising Diffusion Probabilistic Models} \cite{ho2020denoising} by researchers from the University of California, Berkeley. These models are based on creating a Markov chain in which at each step they add Gaussian noise to an image in a diffusion process and then learn to undo it. In this way, a network is trained that is capable of reconstructing images from random noise. The differences between GANs and diffusion models are presented in Figure X.
+Diffusion models, on the other hand, achieve high-quality image synthesis results in the paper \textit{Denoising Diffusion Probabilistic Models} \cite{ho2020denoising} by researchers from the University of California, Berkeley. These models are based on creating a Markov chain in which at each step they add Gaussian noise to an image in a diffusion process and then learn to undo it. In this way, a network is trained that is capable of reconstructing images from random noise. The differences between GANs and diffusion models are presented in figure \ref{fig:GansvsDM}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Pictures/GansvsDM} 
+    \caption{Overview of GANs and diffusion models}
+    \label{fig:GansvsDM}
+\end{figure}
+
+Diving further into the workings of diffusion models, we define the \textbf{forward process} of the Markov chain. The first step is to take a sample of the target data distribution, which we will call $X_0$, and add Gaussian noise in $T$ steps. The forward process is thus defined as a Markov chain in which the state of a sample at time $n$ depends only on the state at time $n-1$. Therefore, one can denote the distribution of any sample conditioned on the initial state $X_0$.
+
+\[ q\left(x_{1:T}\middle| x_0\right)=\prod_{t=1}^{T}{q\left(x_t\middle| x_{t-1}\right)} \]
+
+In every step of the noising process Gaussian noise is added according to some variance schedule $\beta_1...\beta_t$, normally consider as hyperparameters. The restrictions applied to $\beta_t$ are $\beta_1 < \beta_2 ... < \beta_t$ and $\beta_t \epsilon (0, 1)$. $I$ stands for identity.
+
+\[q\left(x_t\middle| x_{t-1}\right)=\mathcal{N}\left(x_t;\sqrt{1-\beta_tx_{t-1}},\beta_tI\right) \]
+

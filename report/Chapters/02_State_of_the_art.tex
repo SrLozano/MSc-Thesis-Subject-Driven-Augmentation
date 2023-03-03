@@ -29,3 +29,76 @@ In every step of the noising process Gaussian noise is added according to some v
 
 \[q\left(x_t\middle| x_{t-1}\right)=\mathcal{N}\left(x_t;\sqrt{1-\beta_tx_{t-1}},\beta_tI\right) \]
 
+As $\beta_t$ grows in time and $T$ approaches the limit ($T \rightarrow\infty$, $\beta_t \rightarrow 0$), the Gaussian mean will approach zero with identity covariance. In this way, the distribution will lose all the information contained in the original image. In practice, researchers use a $T$ close to 1000 \cite{ho2020denoising}.
+
+\[q\left(x_t\middle| x_0\right)\approx\mathcal{N}\left(0,I\right)\]
+
+Figure \ref{fig:MarkovchainDP} shows the diffusion process described so far.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Pictures/MarkovchainDP} 
+    \caption{Markov chain of the diffusion process \cite{ho2020denoising}}
+    \label{fig:MarkovchainDP}
+\end{figure}
+
+In summary, it is proven that the forward process destroys the structure of a data distribution step by step. The next challenge is to learn the \textbf{reverse diffusion process} in order to generate data that resembles the training distribution from pure Gaussian noise. As with the forward process, the reverse diffusion process can be expressed as a Markov chain where the probability of a sequence of samples can be expressed as the product of conditional probabilities.
+
+\[ p_\theta\left(x_{0:T}\right) := p\left ( x_T \right ) \prod_{t=1}^{T}p_\theta\left ( x_{t-1} | x_t\right ) \]
+
+The reverse diffusion process involves a neural network to remove noise from an image in a stepwise manner. Thus, starting from pure Gaussian noise, noise is removed step by step to arrive at an image that resembles the training distribution. The reason that the process has to be done in a stepwise manner is that "\textit{the estimation is more tractable than explicitly describing the full distribution}" as expressed in the publication \textit{Deep Unsupervised Learning using Nonequilibrium Thermodynamics} \cite{sohl2015deep}.
+
+The neural network that the authors of DDPM propose aims to \textbf{predict the noise to subsequently eliminate it from the image}. This is equivalent to obtaining the mean of the distribution since the authors decide to fix the variance. The authors decide to use the \textbf{U-Net network} \cite{ronneberger2015u} for this purpose. U-Net consists of a bottleneck in the middle that ensures that the network removes irrelevant information and focuses on the important information. In addition, the network, between the encoder and the decoder, uses residual connections to improve efficiency. Finally, the authors of DDPM decide to employ self-attention at the 16 × 16 feature map resolution. Figure \ref{fig:ReverseDP} shows a schema of the learning process.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Pictures/ReverseDP.png} 
+    \caption{Reverse diffusion learning schema}
+    \label{fig:ReverseDP}
+\end{figure}
+
+Another question that arises when working with diffusion models is how conditional generations can be provided. This can be achieved through various techniques. One way is to feed a conditional variable into the training so that the model makes use of it in the generation to resemble a subset of the training distribution. However, guiding the generation process through a classifier is a more flexible technique that allows even more complex text descriptions than simple labels to be worked with. The idea is to take an already trained classifier and \textbf{guide the generation in the direction of the gradient of the classifier label}.
+
+\subsection{Improvements to diffusion probabilistic models }
+
+\section{Latent diffusion models}
+
+\section{Stable diffusion}
+
+\subsection{Training dataset}
+
+A significant challenge posed by models like Stable Diffusion is the choice of images they are trained on. This issue is not insignificant as image generation models require both textual descriptions of training images and a sufficient amount of variety to enable the model to comprehend how the world is constructed and thus be capable of reproducing it. However, the conventional datasets of the Machine Learning field (COCO, ImageNet, etc) fail to satisfy these requirements since they are not intended for this purpose. Researchers have discovered that the solution is the web, where a vast array of diverse images about the world can be found, many of which have HTML alt attribute tags.
+
+Stable Diffusion has an advantage over some of its rivals, including \textit{DALL-E 2}, in that it is an open-source project, meaning that the dataset employed for training is well-known and accessible to everyone. Specifically, the dataset used by Stable Diffusion is "\textit{\textbf{LAION-5B}, a dataset of 5.85 billion CLIP-filtered image-text pairs, 14x larger than \textbf{LAION-400M}, previously the biggest openly accessible image-text dataset in the world}" \cite{schuhmann2022laion}. In particular, Stable Diffusion presents several checkpoints on various LAION-5B assemblies. Some of these checkpoints in Stable Diffusion version 1 \cite{SDCardHF} are:
+
+\begin{itemize}
+  \item \textbf{stable-diffusion-v1-1}: 256 x 256 images from a subset of 2.3 billion English-captioned images called \textbf{LAION-2B-EN}.
+  \item \textbf{stable-diffusion-v1-2}: Resumed training on \textit{stable-diffusion-v1-1} with 512x512 images from the subset \textbf{LAION-2B-EN}, containing a selection of improved aesthetics images compared to the others.
+  \item \textbf{stable-diffusion-v1-3}: Resumed training on \textit{stable-diffusion-v1-2} with the same subset of images but a 10\% dropping of the text-conditioning.
+  \item \textbf{stable-diffusion-v1-4}: Resumed training on \textit{stable-diffusion-v1-2} with 512x512 images from the subset \textbf{LAION-Aesthetics v2 5+}, containing 600 million images from \textbf{LAION-2B-EN} with better aesthetics and low-resolution and watermarked images filtered out.
+  \item \textbf{stable-diffusion-v1-5}: \textit{stable-diffusion-v1-4} trained with more steps.
+\end{itemize}
+
+LAION-5B retrieves images from the internet that are not uniformly high in quality. Because these images are gathered automatically, they do not adhere to the same rigorous standards as other image datasets. As a result, the checkpoints for training Stable Diffusion use varying subsets of LAION-5B. Nonetheless, the fact that the images obtained are not accurately labelled as they are in standard vision supervised learning is actually an advantage. Consequently, Stable Diffusion is now included in the group of architectures, such as CLIP or DALL-E 2, that have proven the value of these vast datasets, even though they contain a significant amount of noise.
+
+LAION-5B contains 5.85 billion image-text pairs divided into three subsets. \textbf{LAION2B-EN}, which contains 2.32 billion English image-text pairs; \textbf{LAION2B-MULTI} with 2.26 billion image-text pairs from all other languages (Russian, French and German as top 3) and \textbf{LAION1B-NOLANG} of 1.27 billion samples where the language is not correctly defined. 
+
+\subsubsection{LAION-5B Description}
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|p{0.25\linewidth} | p{0.65\linewidth}|}
+\hline
+{\textbf{Attribute}} & {\textbf{Description}} \\ \hline
+\textbf{id} & Image identifier \\ \hline
+\textbf{URL} & URL from where the image was obtained \\ \hline
+\textbf{Text string} & Caption accompanying the image \\ \hline
+\textbf{Dimensions} & Height and width of the image \\ \hline
+\textbf{Similarity} & Cosine similarity between the text and image embeddings. CLIP-based   models are employed to gauge the level of accuracy with which an image is   described by a given textual description.\\ \hline
+\textbf{pwatermark} & Probability that the image presents a watermark. The value is   obtained by a custom model trained by LAION. Value between 0 and 1 \\ \hline
+\textbf{punsafe} & Probability that the image is NSFW. As some of the content   acquired from the web may not be suitable for all audiences, LAION employs a   custom model to assess its adequateness. Value between 0 and 1 \\ \hline
+\end{tabular}
+\end{table}

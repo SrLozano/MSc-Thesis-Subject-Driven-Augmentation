@@ -1,0 +1,91 @@
+Fri Mar  3 10:52:17 2023       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 525.60.13    Driver Version: 525.60.13    CUDA Version: 12.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA A100-PCI...  On   | 00000000:37:00.0 Off |                    0 |
+| N/A   26C    P0    29W / 250W |      0MiB / 40960MiB |      0%   E. Process |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+You do not have pycocotools installed, so KerasCV pycoco metrics are not available. Please run `pip install pycocotools`.
+You do not have pyococotools installed, so the `PyCOCOCallback` API is not available.
+By using this model checkpoint, you acknowledge that its usage is subject to the terms of the CreativeML Open RAIL-M license at https://raw.githubusercontent.com/CompVis/stable-diffusion/main/LICENSE
+[[TensorShape([49409, 768])], [], []]
+Beggining training
+
+Epoch 1/36
+250/250 - 2679s - loss: 0.1570 - 2679s/epoch - 11s/step
+Epoch 2/36
+250/250 - 2622s - loss: 0.1573 - 2622s/epoch - 10s/step
+Epoch 3/36
+250/250 - 2620s - loss: 0.1593 - 2620s/epoch - 10s/step
+Epoch 4/36
+250/250 - 2634s - loss: 0.1462 - 2634s/epoch - 11s/step
+Epoch 5/36
+250/250 - 2633s - loss: 0.1764 - 2633s/epoch - 11s/step
+Epoch 6/36
+250/250 - 2652s - loss: 0.1421 - 2652s/epoch - 11s/step
+Epoch 7/36
+250/250 - 2686s - loss: 0.1412 - 2686s/epoch - 11s/step
+Epoch 8/36
+250/250 - 2686s - loss: 0.1650 - 2686s/epoch - 11s/step
+Epoch 9/36
+250/250 - 2682s - loss: 0.1491 - 2682s/epoch - 11s/step
+Epoch 10/36
+250/250 - 2682s - loss: 0.1528 - 2682s/epoch - 11s/step
+Epoch 11/36
+250/250 - 2681s - loss: 0.1510 - 2681s/epoch - 11s/step
+Epoch 12/36
+250/250 - 2683s - loss: 0.1546 - 2683s/epoch - 11s/step
+Epoch 13/36
+250/250 - 2682s - loss: 0.1401 - 2682s/epoch - 11s/step
+Epoch 14/36
+250/250 - 2682s - loss: 0.1540 - 2682s/epoch - 11s/step
+Epoch 15/36
+250/250 - 2686s - loss: 0.1432 - 2686s/epoch - 11s/step
+Epoch 16/36
+250/250 - 2680s - loss: 0.1599 - 2680s/epoch - 11s/step
+Epoch 17/36
+250/250 - 2628s - loss: 0.1458 - 2628s/epoch - 11s/step
+Epoch 18/36
+250/250 - 2624s - loss: 0.1420 - 2624s/epoch - 10s/step
+Epoch 19/36
+250/250 - 2671s - loss: 0.1495 - 2671s/epoch - 11s/step
+Epoch 20/36
+250/250 - 2692s - loss: 0.1361 - 2692s/epoch - 11s/step
+Epoch 21/36
+250/250 - 2696s - loss: 0.1445 - 2696s/epoch - 11s/step
+Epoch 22/36
+250/250 - 2679s - loss: 0.1371 - 2679s/epoch - 11s/step
+Epoch 23/36
+250/250 - 2621s - loss: 0.1418 - 2621s/epoch - 10s/step
+Epoch 24/36
+250/250 - 2627s - loss: 0.1638 - 2627s/epoch - 11s/step
+Epoch 25/36
+250/250 - 2621s - loss: 0.1482 - 2621s/epoch - 10s/step
+Epoch 26/36
+250/250 - 2620s - loss: 0.1507 - 2620s/epoch - 10s/step
+Epoch 27/36
+250/250 - 2621s - loss: 0.1455 - 2621s/epoch - 10s/step
+Epoch 28/36
+250/250 - 2621s - loss: 0.1268 - 2621s/epoch - 10s/step
+Epoch 29/36
+250/250 - 2622s - loss: 0.1472 - 2622s/epoch - 10s/step
+Epoch 30/36
+250/250 - 2622s - loss: 0.1553 - 2622s/epoch - 10s/step
+Epoch 31/36
+250/250 - 2624s - loss: 0.1606 - 2624s/epoch - 10s/step
+Epoch 32/36
+250/250 - 2622s - loss: 0.1557 - 2622s/epoch - 10s/step
+Epoch 33/36

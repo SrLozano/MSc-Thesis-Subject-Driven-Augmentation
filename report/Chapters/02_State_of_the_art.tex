@@ -63,7 +63,7 @@ Another question that arises when working with diffusion models is how condition
 
 \section{Latent diffusion models}
 
-\section{Stable diffusion}
+\section{Stable diffusion} \label{SD}
 
 \subsection{Training dataset}
 
@@ -85,6 +85,8 @@ LAION-5B contains 5.85 billion image-text pairs divided into three subsets. \tex
 
 \subsubsection{LAION-5B Description}
 
+The attributes that can be found in LAION-5B are described in table \ref{table:TableLaionAttributes}.
+
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
@@ -101,4 +103,43 @@ LAION-5B contains 5.85 billion image-text pairs divided into three subsets. \tex
 \textbf{pwatermark} & Probability that the image presents a watermark. The value is   obtained by a custom model trained by LAION. Value between 0 and 1 \\ \hline
 \textbf{punsafe} & Probability that the image is NSFW. As some of the content   acquired from the web may not be suitable for all audiences, LAION employs a   custom model to assess its adequateness. Value between 0 and 1 \\ \hline
 \end{tabular}
+\caption{LAION-5B’s attributes}
+\label{table:TableLaionAttributes}
 \end{table}
+
+Some statistics of the subsets computed by the LAION team can be found in table \ref{table:TableLaionStatistics} \cite{schuhmann2022laion}.
+
+\begin{table}[ht]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Subset} & \textbf{Dimensions} & \textbf{NSFW} & \textbf{Watermark} & \textbf{Average text length} \\ \hline
+\textit{LAION2B-EN} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 2.9\% & 6.1\% & 67 \\ \hline
+\textit{LAION2B-MULTI} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1299M\\    \\ -   \textgreater{}512x512: 480M\\    \\ -   \textgreater{}1024x1024: 57M\end{tabular} & 3.3\% & 5.6\% & 52 \\ \hline
+\textit{LAION1B-NOLANG} & \begin{tabular}[c]{@{}l@{}}- \textgreater{}256x256:   1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 3\% & 4\% & 46 \\ \hline
+\end{tabular}
+\caption{Statistics summary for LAION-5B}
+\label{table:TableLaionStatistics}
+\end{table}
+
+By analysing the data presented in tables \ref{table:TableLaionAttributes} and \ref{table:TableLaionStatistics}, one can infer the rationale behind the various checkpoints employed in the Stable Diffusion model. The LAION-5B dataset, owing to its extensive diversity, can be partitioned into subsets that cater to various generation objectives. As a result, the model can be adapted to different resolutions or the quality of the generated images can be adjusted by filtering out low similarity image-to-description pairs, NSFW content, or watermarked content.
+
+It is noteworthy to mention that the primary characteristics of the entries in the dataset are produced by other pre-trained models. This highlights the significance of incorporating other models in the data collection process for large AI models, as they can assist in adding supplementary features to the dataset. A more detailed discussion of this fact can be found in section \ref{LCollection}
+
+\subsubsection{LAION-5B Collection Methodology} \label{LCollection}
+
+The pipeline followed when creating the LAION-5B dataset involves: (i) obtaining Common Crawl data, (ii) filtering some web pages, (iii) downloading the image-text pairs, (iv) and filtering the content according to various characteristics.
+
+Common Crawl is an organization dedicated to web crawling, data collection, and storage. It makes all the gathered data publicly available. In the October 2022 crawl, the total file size was 380 TBs, comprising 3.15 billion web pages. The dataset's key feature is that it contains HTML tag information about the images, including the "alt" attribute, which provides an alternative description of the images. This attribute is widely used on the web, for example, to address page rendering issues, assist visually impaired individuals, or aid web content indexing by search engines. Therefore, it is a ubiquitous attribute on the web that is encouraged to improve page usability and ranking in web search engines.
+
+After the Common Crawl data is accessible, images that have information in the "alt" attribute are chosen. Once both images and descriptions are available, a language detection model is employed on the descriptions, and the data is then divided into three subsets: LAION2B-EN, LAION2B-MULTI, and LAION1B-NOLANG, as mentioned earlier. It is noteworthy that in order to incorporate data into LAION1B-NOLANG, a confidence threshold is determined based on the prediction of the language detection model, and if it is insufficient, it is included in this subset.
+
+The next step is to clean the dataset of poor-quality images and descriptions. For this purpose, images, and descriptions with less than 5KB data, 5 words and 0.28 cosine similarity (in LAION2B-EN) are removed. \textbf{The cosine similarity is computed thanks to Open AI's CLIP model, which computes the embedding of images and text.}
+
+It is important to notice the importance of the CLIP contrastive model in understanding how the Stable Diffusion training dataset was created. As explained above, CLIP is able to associate images and text. The way in which it achieves this is very clever as it can solve the classic problem of labels in Deep Learning. Thus, CLIP is a pioneer in bringing together language models and vision models by making supervision in natural language. And therein lies the key to LAION-5B: unlike other datasets that require a specialized team to create carefully curated tags, this dataset relies on natural language descriptions provided by internet users. This allows for much faster scalability. It is worth noting that CLIP is not only essential in the creation of the dataset, but it also plays a vital role in the Stable Diffusion model, as previously explained in section \ref{SD}.
+
+The final stage of the pipeline involves incorporating additional attributes that help categorize the image in a useful way, beyond just its similarity to text. One such attribute is the probability that the image contains NSFW content, which is determined using a custom model. Another attribute is the probability that the image has a watermark, which is determined using a separate model designed for that purpose.
+
+Summing up, the creation of LAION-5B relies on multiple AI models that help gather reliable content from the internet and guarantee the accuracy of image descriptions. This marks a significant shift in the way we collect data for training models, where the emphasis is on scaling the dataset rather than carefully generating accurate labels. Instead, models like CLIP enable the use of natural language descriptions that accompany web images for data collection.
+
+\section{Subject-driven generation techniques}
+

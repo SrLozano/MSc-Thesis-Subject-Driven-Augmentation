@@ -33,10 +33,12 @@ nvidia-smi
 
 export MODEL_NAME="runwayml/stable-diffusion-v1-5"
 export DATA_DIR="/zhome/d1/6/191852/hugging-face/diffusers/examples/textual_inversion/images"
+export OUTPUT_DIR="/zhome/d1/6/191852/hugging-face/diffusers/examples/textual-inversion/saved_model"
 
 accelerate launch textual_inversion.py \
   --pretrained_model_name_or_path=$MODEL_NAME \
   --train_data_dir=$DATA_DIR \
+  --output_dir=$OUTPUT_DIR \
   --learnable_property="object" \
   --placeholder_token="<cat-toy>" --initializer_token="toy" \
   --resolution=512 \

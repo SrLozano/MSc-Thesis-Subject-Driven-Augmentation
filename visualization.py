@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 # Visualization utility to show off the generated images
 def plot_images(images, id, technique="inference"):
@@ -10,7 +11,8 @@ def plot_images(images, id, technique="inference"):
         ax = plt.subplot(1, len(images), i + 1)
         plt.imshow(images[i])
         plt.axis("off")
-    plt.savefig(f"{technique}-{id}.png")
+    current_time = datetime.now().strftime("%H:%M:%S")
+    plt.savefig(f"generated_images/{technique}-{id}-{current_time}.png")
 
 # Utility for saving the generated pictures
 def save_images(images, id, technique="inference"):
@@ -18,4 +20,5 @@ def save_images(images, id, technique="inference"):
     print(f"Saving image {id}...")
 
     for i in range(len(images)):
-        images[i].save(f"{technique}-{id}-{i}.png")
+        current_time = datetime.now().strftime("%H:%M:%S")
+        images[i].save(f"generated_images/{technique}-{id}-{i}-{current_time}.png")

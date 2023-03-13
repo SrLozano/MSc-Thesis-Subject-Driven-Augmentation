@@ -1,0 +1,5 @@
+- 001_10e_gp: 10 epochs with group photos included
+- 002_20e_gp: 20 epochs with group photos included
+- 003_40e_gp: 40 epochs with group photos included
+
+Result: The implementation of KerasCV is not efficient and takes too long to execute textual inversion. Approximately 40-45 minutes on an Nvidia A100.

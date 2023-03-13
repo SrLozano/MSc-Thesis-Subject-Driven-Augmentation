@@ -4,9 +4,10 @@ from diffusers import StableDiffusionPipeline
 from visualization import plot_images, save_images
 
 prompts = ["A mysterious golden retriever approaches the great pyramids of egypt",
-           "A cute photo of a golden retriever, golden colour, high quality, highly detailed, elegant, sharp focus"
+           "A cute photo of a golden retriever, golden colour, high quality, highly detailed, elegant, sharp focus",
+           "A realistic picture of a golden retriever on the moon, 4k, detailed, vivid colors"
           ]
-keys = ["pyramids", "golden"]
+keys = ["pyramids", "golden", "moon"]
 
 model_id = "runwayml/stable-diffusion-v1-5"  
 number_images = 3

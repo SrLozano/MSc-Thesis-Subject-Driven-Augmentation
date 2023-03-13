@@ -1,0 +1,11 @@
+- f"A cute photo of a {placeholder_token}, golden colour, high quality, highly detailed, elegant, sharp focus"
+
+- f"A realistic picture of a {placeholder_token} on the moon, 4k, detailed, vivid colors"
+
+- f"Gandalf as a {placeholder_token} fantasy art drawn by disney concept artists, golden colour, high quality, highly detailed, elegant, sharp focus, concept art, character concepts, digital painting, mystery, adventure"
+
+- f"An evil {placeholder_token}."
+
+- f"A masterpiece of a {placeholder_token} crying out to the heavens. Behind the {placeholder_token}, an dark, evil shade looms over it sucking the life right out of it"
+
+- f"A mysterious {placeholder_token} approaches the great pyramids of egypt."

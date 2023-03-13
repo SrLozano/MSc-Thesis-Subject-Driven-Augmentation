@@ -32,13 +32,12 @@
 nvidia-smi
 
 export MODEL_NAME="runwayml/stable-diffusion-v1-5"
-export DATA_DIR="/zhome/d1/6/191852/MSc-thesis/experiments/02-different_objects/golden-retrievers"
+export DATA_DIR="/zhome/d1/6/191852/MSc-thesis/experiments/02-different-subjects/golden-retrievers"
 export OUTPUT_DIR="/zhome/d1/6/191852/saved_model"
 
 accelerate launch textual_inversion.py \
   --pretrained_model_name_or_path=$MODEL_NAME \
   --train_data_dir=$DATA_DIR \
-  --output_dir=$OUTPUT_DIR \
   --learnable_property="object" \
   --placeholder_token="<funny-ret>" --initializer_token="dog" \
   --resolution=512 \
@@ -48,7 +47,6 @@ accelerate launch textual_inversion.py \
   --learning_rate=5.0e-04 --scale_lr \
   --lr_scheduler="constant" \
   --lr_warmup_steps=0 \
-  --output_dir="textual_inversion_cat"
-
+  --output_dir=$OUTPUT_DIR
 
 python inference.py

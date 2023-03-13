@@ -1,0 +1,3 @@
+Goal: This experiment tries to find out how many images are needed to get good results with textual inversion and dreambooth.
+
+Result: A minimum of 2-3 images are necessary to obtain decent results. Dreambooth obtains more faithful results with a smaller number of images. However, with 1 image there is a clear overfitting.

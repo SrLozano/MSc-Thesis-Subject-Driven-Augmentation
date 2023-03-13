@@ -3,8 +3,9 @@ import torch
 from diffusers import StableDiffusionPipeline
 from visualization import plot_images, save_images
 
-model_id = "runwayml/stable-diffusion-v1-5"  
 prompt = "A mysterious golden retriever approaches the great pyramids of egypt"
+
+model_id = "runwayml/stable-diffusion-v1-5"  
 number_images = 3
 
 pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to("cuda")

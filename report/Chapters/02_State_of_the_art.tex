@@ -4,7 +4,7 @@ Text-to-image is an emerging field of deep learning where models can generate li
 
 \section{Historical review of text-to-image models}
 
-\section{Diffusion probabilistic models}
+\section{Diffusion probabilistic models} \label{Dprobabilistic}
 
 Throughout 2022, the capabilities and popularity of text-to-image models have exploded. The general public is aware of some models, such as DALL-E 2, Midjourney, or Stable Diffusion. Nonetheless, the vast majority of people are unaware of the technical prowess required in the field of Artificial Intelligence for these models to exist. This section aims to shed some light on the internal functioning and processes of these models from an academic perspective.
 
@@ -60,6 +60,40 @@ The neural network that the authors of DDPM propose aims to \textbf{predict the 
 Another question that arises when working with diffusion models is how conditional generations can be provided. This can be achieved through various techniques. One way is to feed a conditional variable into the training so that the model makes use of it in the generation to resemble a subset of the training distribution. However, guiding the generation process through a classifier is a more flexible technique that allows even more complex text descriptions than simple labels to be worked with. The idea is to take an already trained classifier and \textbf{guide the generation in the direction of the gradient of the classifier label}.
 
 \subsection{Improvements to diffusion probabilistic models }
+
+Although the results obtained by the \textit{Denoising Diffusion Probabilistic Models} \cite{ho2020denoising} paper are excellent and represent a great leap forward compared to the images that the generative models were capable of generating until then, researchers at OpenAI suggest some improvements that increase the quality of the results in their publication \textit{Improved Denoising Diffusion Probabilistic Models} \cite{nichol2021improved}. In it, the main improvements they propose to the model are \textbf{(i) the incorporation of learned variances and (ii) an improvement of the noise schedule}. 
+
+As discussed in section \ref{Dprobabilistic}, the authors of the paper \textit{Denoising Diffusion Probabilistic Models} \cite{ho2020denoising} decided to fix the variance. However, the OpenAI researchers decide to learn the interpolation of the variance between an upper and lower bound. This allows them to maintain the quality of the samples and improve the log-likelihood. Finally, they modify the loss to depend on the variance by a scaling factor $\lambda$ set experimentally to 0.001.
+
+On the other hand, the OpenAI authors present a new noise schedule designed to be linear in the central region and have little change at the beginning and end. It is defined through $ \bar{\alpha_t}$, affecting the definition of the variances $\beta_t$ as follows.
+
+\[\beta_t = 1 - \frac{\bar{\alpha}_t}{\bar{\alpha}_{t-1}}\]
+
+The proposed cosine noise schedule can be seen in figure \ref{fig:CosineSC}. Whereas, figure \ref{fig:CosineEX} shows how each of the schedules adds noise to the image. The \textbf{linear schedule destroys the information faster and presents a sub-optimal behaviour} since the last steps are practically pure noise. Thus, the cosine schedule is superior as it allows a more controlled addition of noise.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Pictures/cosineSC.png} 
+    \caption{Cosine and linear schedules comparison}
+    \label{fig:CosineSC}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Pictures/cosineEX.png} 
+    \caption{Cosine (bottom) and linear (top) schedules comparison on an image}
+    \label{fig:CosineEX}
+\end{figure}
+
+However, the improvements do not stop there. The same OpenAI researchers in a later paper called \textit{Diffusion Models Beat GANs on Image Synthesis} \cite{dhariwal2021diffusion} demonstrate how a series of modifications to the architecture and the use of classifier guidance can produce images that are better than the state of the art at the time. The enhancement they make to the architecture are:
+
+\begin{itemize}
+    \item \textbf{Increasing the depth while decreasing the width} to keep the size of the model relatively constant.
+    \item Increased use of \textbf{attention heads and layers}
+    \item Upsampling and downsampling the activations by means of the \textbf{BigGAN residual blocks} \cite{brock2018large}.
+    \item Use of \textbf{adaptive group normalization} (AdaGN) layers, in which the concept of group normalization is expanded by adjusting the normalization parameters of each group separately according to the input data.
+    \item \textbf{Classifier guidance}. Employing an additional classifier, the diffusion model is assisted in generating a certain class.
+\end{itemize}
 
 \section{Latent diffusion models}
 

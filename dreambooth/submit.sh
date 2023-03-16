@@ -32,7 +32,7 @@
 nvidia-smi
 
 export MODEL_NAME="runwayml/stable-diffusion-v1-5"
-export DATA_DIR="/zhome/d1/6/191852/MSc-thesis/experiments/02-different-subjects/golden-retrievers"
+export DATA_DIR="/zhome/d1/6/191852/MSc-thesis/experiments/02-different-subjects/dataset"
 export OUTPUT_DIR="/zhome/d1/6/191852/saved_model"
 
 accelerate launch train_dreambooth.py \

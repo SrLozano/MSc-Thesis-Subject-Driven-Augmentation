@@ -1,0 +1,23 @@
+Description of the tests 
+
+The general idea of this set of experiments is to get to know how robust is the model to variations in the subject.
+
+- 001_textual-inversion-golden: golden_1, golden_2, golden_3. Very good results, the dog appears in all the photos with a proper representation.
+
+- 002_dreambooth-golden: golden_1, golden_2, golden_3. Poor results, the dog can be distinguish in some images but the quality drops.
+
+- 003_textual-inversion-golden-german: golden_1, golden_2, golden_3, german_1, german_2. Very good results, the dog appears in all the photos with a proper representation.
+
+- 004_dreambooth-golden-german: golden_1, golden_2, golden_3, german_1, german_2. Poor. Dogs are well represented but do not appear in all images.
+
+- 005_textual-inversion-golden-german-siberian: golden_1, golden_2, golden_3, german_1, german_2, siberian_1, siberian_2. Very good results but small deformations are visible.
+
+- 006_dreambooth-golden-german-siberian: golden_1, golden_2, golden_3, german_1, german_2, siberian_1, siberian_2. Poor. Dogs do not appear in all images.
+
+- 007_textual-inversion-all-breeds: bulldog_1, corgi_1, german_1, golden_1, siberian_1. Acceptable results. A dog can be distinguish, nevertheless, artifacts and deformations are present.
+
+- 008_dreambooth-all-breeds: bulldog_1, corgi_1, german_1, golden_1, siberian_1. Very poor results.  Dogs do not appear in all images and when they do they have a lot of artifacts.
+
+- 009_textual-inversion-breeds-low-quality: bulldog_2, corgi_2, german_2, golden_4, siberian_2.Acceptable results. A dog can be distinguish, nevertheless, artifacts and deformations are present.
+
+- 010_dreambooth-breeds-low-quality: bulldog_2, corgi_2, german_2, golden_4, siberian_2. Poor results.  Dogs do not appear in all images.

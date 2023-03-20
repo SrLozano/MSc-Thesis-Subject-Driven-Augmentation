@@ -14,7 +14,9 @@ def parse_breed(fname):
 DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
 num_classes = 37
 batch_size = 64
-files = os.listdir(DATA_DIR)
+verbose = True
+freeze_layers = True
+epochs = 20
 
 # Define transforms
 transform = transforms.Compose([
@@ -34,26 +36,33 @@ test_dataloader = DataLoader(test_data, batch_size=batch_size, shuffle=True)
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 print(f"Using {device} device")
 
-
-
-
+# Define model - ResNet34 - Feauture extraction
 class PetsModel(nn.Module):
     def __init__(self, num_classes, pretrained=True):
         super().__init__()
         # Use a pretrained model
         self.network = models.resnet34(pretrained=pretrained)
-        # Replace last layer
+        # Freeze all the layers except the last one
+        if freeze_layers == True:
+            for param in self.network.parameters():
+                param.requires_grad = False
+        # Replace last layer. Parameters of newly constructed modules have requires_grad=True by default
         self.network.fc = nn.Linear(self.network.fc.in_features, num_classes)
 
     def forward(self, xb):
         return self.network(xb)
 
+# Initialize the model for this run
 model = PetsModel(num_classes).to(device)
-print(model)
 
+# Print model if verbose
+if verbose: print(model)
+
+# Define loss function and optimizer
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
+# Training loop
 def train(dataloader, model, loss_fn, optimizer):
     size = len(dataloader.dataset)
     model.train()
@@ -71,12 +80,14 @@ def train(dataloader, model, loss_fn, optimizer):
 
         if batch % 100 == 0:
             loss, current = loss.item(), (batch + 1) * len(X)
-            print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+            print(f"loss: {loss:>7f}  [{current}/{size}]")
 
+# Test loop
 def test(dataloader, model, loss_fn):
     size = len(dataloader.dataset)
     num_batches = len(dataloader)
     model.eval()
+
     test_loss, correct = 0, 0
     with torch.no_grad():
         for X, y in dataloader:
@@ -84,14 +95,14 @@ def test(dataloader, model, loss_fn):
             pred = model(X)
             test_loss += loss_fn(pred, y).item()
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
+
     test_loss /= num_batches
     correct /= size
-    print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
+    print(f"Test Error: \n Accuracy: {(100*correct):>0.2f}%, Avg loss: {test_loss:>8f} \n")
 
-epochs = 5
+
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
     train(train_dataloader, model, loss_fn, optimizer)
     test(test_dataloader, model, loss_fn)
 print("Done!")
-

@@ -1,5 +1,5 @@
 # Dataset folder
-generated_images/
+data/
 
 # MacOs files
 .DS_Store

@@ -1,5 +1,8 @@
 # Import dependencies
 import os
+import numpy as np
+import matplotlib.pyplot as plt
+
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -11,12 +14,14 @@ def parse_breed(fname):
     parts = fname.split('_')
     return ' '.join(parts[:-1])
 
-DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
-num_classes = 37
+# Define hyperparameters
 batch_size = 64
-verbose = True
+verbose = False
 freeze_layers = True
-epochs = 20
+epochs = 55
+
+num_classes = 37
+DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
 
 # Define transforms
 transform = transforms.Compose([
@@ -80,7 +85,9 @@ def train(dataloader, model, loss_fn, optimizer):
 
         if batch % 100 == 0:
             loss, current = loss.item(), (batch + 1) * len(X)
-            print(f"loss: {loss:>7f}  [{current}/{size}]")
+            print(f"Training loss: {loss:>7f}  [{current}/{size}]")
+    
+    return loss.item()
 
 # Test loop
 def test(dataloader, model, loss_fn):
@@ -98,11 +105,68 @@ def test(dataloader, model, loss_fn):
 
     test_loss /= num_batches
     correct /= size
-    print(f"Test Error: \n Accuracy: {(100*correct):>0.2f}%, Avg loss: {test_loss:>8f} \n")
+    print(f"Test loss: {test_loss:>8f}")
+    print(f"Test accuracy: {(100*correct):>0.2f}% \n")
+    
+    return test_loss, correct
 
+def get_training_accuracy(train_dataloader):
+    correct = 0
+    total = 0
+    with torch.no_grad(): # Speed up computations. No gradients needed.
+        for data in train_dataloader:
+            images, labels = data
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
 
+    print('Training accuracy: %.2f %%' % (100 * correct / total))
+
+    return correct/total
+
+def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epochs):
+    # Accuracy plot
+    plt.plot(training_accuracy)
+    plt.plot(test_accuracy)
+    plt.title(f'Model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.xticks(np.arange(epochs, step=5))
+    plt.legend(['train', 'val'], loc='upper left')
+    plt.savefig(f'accuracy.pdf')
+    plt.close()
+
+    # Loss plot
+    plt.plot(training_loss)
+    plt.plot(test_loss)
+    plt.title(f'Model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.xticks(np.arange(epochs, step=5))
+    plt.legend(['train', 'val'], loc='upper left')
+    plt.savefig(f'loss.pdf')
+    
+
+training_loss = []
+test_loss = []
+training_accuracy = []
+test_accuracy = []
+
+# Train the model
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
-    train(train_dataloader, model, loss_fn, optimizer)
-    test(test_dataloader, model, loss_fn)
+    aux_train_loss = train(train_dataloader, model, loss_fn, optimizer)
+    aux_train_accuracy = get_training_accuracy(train_dataloader)
+    aux_test_loss, aux_test_acurracy = test(test_dataloader, model, loss_fn)
+
+    training_loss.append(aux_train_loss)
+    training_accuracy.append(aux_train_accuracy)
+    test_loss.append(aux_test_loss)
+    test_accuracy.append(aux_test_acurracy)
+
 print("Done!")
+
+# Plot the training loss and accuracy
+create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epochs)

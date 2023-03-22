@@ -181,20 +181,34 @@ if __name__ == "__main__":
     epochs = 3
     batch_size = 16
     learning_rate = 1e-3
+    data_augmentation = True
     freeze_layers = True
     verbose = False
     
     num_classes = 37
     DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
 
-    # Define transforms
+    # Define data augmentation transforms
+    data_augmentation_transform = transforms.Compose([
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.RandomVerticalFlip(p=0.5),
+        transforms.RandomRotation(15),
+        transforms.RandomResizedCrop(224),
+        transforms.Resize((224, 224)),
+        transforms.ToTensor()
+    ])
+
+    # Define normal transforms
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor()
     ])
 
     # Download training data from open datasets.
-    training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=transform)
+    if data_augmentation:
+        training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=data_augmentation_transform)
+    else:
+        training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=transform)
     test_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", split="test", download=True, transform=transform)
 
     # Create data loaders.

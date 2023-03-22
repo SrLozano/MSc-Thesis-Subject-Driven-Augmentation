@@ -1,7 +1,9 @@
 # Import dependencies
 import os
 import numpy as np
+import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, confusion_matrix
 
 import torch
 from torch import nn
@@ -15,10 +17,10 @@ def parse_breed(fname):
     return ' '.join(parts[:-1])
 
 # Define hyperparameters
-batch_size = 64
+batch_size = 128
 verbose = False
 freeze_layers = True
-epochs = 55
+epochs = 2
 
 num_classes = 37
 DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
@@ -36,6 +38,7 @@ test_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/dataset
 # Create data loaders.
 train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
 test_dataloader = DataLoader(test_data, batch_size=batch_size, shuffle=True)
+
 
 # Get cpu or gpu device for training.
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
@@ -96,18 +99,19 @@ def test(dataloader, model, loss_fn):
     model.eval()
 
     test_loss, correct = 0, 0
+    y_true, y_pred = [], []
     with torch.no_grad():
         for X, y in dataloader:
             X, y = X.to(device), y.to(device)
             pred = model(X)
             test_loss += loss_fn(pred, y).item()
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
-
+            
     test_loss /= num_batches
     correct /= size
     print(f"Test loss: {test_loss:>8f}")
     print(f"Test accuracy: {(100*correct):>0.2f}% \n")
-    
+
     return test_loss, correct
 
 def get_training_accuracy(train_dataloader):
@@ -147,7 +151,33 @@ def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epo
     plt.xticks(np.arange(epochs, step=5))
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'loss.pdf')
+
+
+def create_confusion_matrix(dataloader, dataset, model):
+
+    # Set model to evaluation mode
+    model.eval()
+
+    # Get predictions and ground truth
+    y_true, y_pred = [], []
+    with torch.no_grad():
+        for X, y in dataloader:
+            X, y = X.to(device), y.to(device)
+            pred = model(X)
+            y_true += y.cpu().detach().numpy().tolist()
+            y_pred += pred.argmax(1).cpu().detach().numpy().tolist()
     
+    # Plot statistics
+    target_names = ['Abyssinian', 'American Bulldog', 'American pitbull terr', 'Basset hound', 'Beagle', 'Bengal', 'Birman', 'Bombay', 'Boxer', 'British Shorthair', 'Chihuahua', 'Egyptian Mau', 'English cocker spaniel', 'English setter', 'German shorthaired', 'Great pyrenees', 'Havanese', 'Japanese chin', 'Keeshond', 'Leonberger', 'Maine Coon', 'Miniature pinscher', 'Newfoundland', 'Persian', 'Pomeranian', 'Pug', 'Ragdoll', 'Russian blue', 'Saint bernard', 'Samoyed', 'Scottish terrier', 'Shiba inu', 'Siamese', 'Sphynx', 'Staffordshire bull terr', 'Wheaten terrier', 'Yorkshire terrier']
+    print(classification_report(y_true, y_pred, target_names=target_names))
+
+    cf_matrix = confusion_matrix(y_true, y_pred)
+    fig, ax = plt.subplots(figsize=(15, 15))
+    heatmap = sns.heatmap(cf_matrix, annot=False, cmap='Blues', cbar=True, square=False,
+                          xticklabels=target_names, yticklabels=target_names)
+    fig = heatmap.get_figure()
+    fig.savefig('confusion_matrix.pdf')
+
 
 training_loss = []
 test_loss = []
@@ -170,3 +200,6 @@ print("Done!")
 
 # Plot the training loss and accuracy
 create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epochs)
+
+# Create confusion matrix
+create_confusion_matrix(test_dataloader, test_data, model)

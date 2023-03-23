@@ -33,6 +33,27 @@ class PetsModel(nn.Module):
     def forward(self, xb):
         return self.network(xb)
 
+class EarlyStopper:
+    """
+    This class implements early stopping
+    """
+    def __init__(self, patience=1, min_delta=0):
+        self.patience = patience
+        self.min_delta = min_delta
+        self.counter = 0
+        self.min_validation_loss = np.inf
+
+    def early_stop(self, validation_loss):
+        # Check if validation loss has decreased
+        if validation_loss < self.min_validation_loss:
+            self.min_validation_loss = validation_loss
+            self.counter = 0
+        elif validation_loss > (self.min_validation_loss + self.min_delta):
+            self.counter += 1
+            if self.counter >= self.patience:
+                return True
+        return False
+
 def train(dataloader, model, loss_fn, optimizer):
     """
     This function trains a model with the given parameters and dataset
@@ -129,7 +150,7 @@ def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epo
     plt.title(f'Model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
-    plt.xticks(np.arange(epochs, step=5))
+    plt.xticks(np.arange(epochs, step=2))
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'accuracy.pdf')
     plt.close()
@@ -140,7 +161,7 @@ def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epo
     plt.title(f'Model loss')
     plt.ylabel('loss')
     plt.xlabel('epoch')
-    plt.xticks(np.arange(epochs, step=5))
+    plt.xticks(np.arange(epochs, step=2))
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'loss.pdf')
 
@@ -178,7 +199,7 @@ def create_confusion_matrix(dataloader, model):
 if __name__ == "__main__":
     
     # Define hyperparameters
-    epochs = 55
+    epochs = 2
     batch_size = 16
     learning_rate = 1e-3
     data_augmentation = True
@@ -224,9 +245,10 @@ if __name__ == "__main__":
     # Print model if verbose
     if verbose: print(model)
 
-    # Define loss function and optimizer
+    # Define loss function, optimizer and early stopper
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+    early_stopper = EarlyStopper(patience=3)
 
     training_loss = []
     test_loss = []
@@ -244,10 +266,14 @@ if __name__ == "__main__":
         test_loss.append(aux_test_loss)
         test_accuracy.append(aux_test_acurracy)
 
+        # Check if early stop
+        if early_stopper.early_stop(aux_test_acurracy):             
+            break
+
     print("Done!")
 
     # Plot the training loss and accuracy
-    create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epochs)
+    create_plots(training_loss, test_loss, training_accuracy, test_accuracy, t+1)
 
     # Create confusion matrix
     create_confusion_matrix(test_dataloader, model)

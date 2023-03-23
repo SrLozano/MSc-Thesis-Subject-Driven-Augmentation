@@ -1,5 +1,6 @@
 # Import dependencies
 import re
+import os
 
 def get_breeds(filepath):
 
@@ -37,3 +38,12 @@ def get_breeds(filepath):
                 breed_by_id[breed] = sample[3]
 
     return samples_by_breed, class_by_id, species_by_id, breed_by_id
+
+def delete_files(dst):
+    if len(os.listdir(dst)) > 0:
+        for filename in os.listdir(dst):
+            file_path = os.path.join(dst, filename)
+            try:
+                os.remove(file_path)
+            except Exception as e:
+                print('Failed to delete %s. Reason: %s' % (file_path, e))

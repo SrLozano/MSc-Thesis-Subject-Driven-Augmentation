@@ -178,7 +178,7 @@ def create_confusion_matrix(dataloader, model):
 if __name__ == "__main__":
     
     # Define hyperparameters
-    epochs = 3
+    epochs = 55
     batch_size = 16
     learning_rate = 1e-3
     data_augmentation = True
@@ -190,11 +190,10 @@ if __name__ == "__main__":
 
     # Define data augmentation transforms
     data_augmentation_transform = transforms.Compose([
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomVerticalFlip(p=0.5),
-        transforms.RandomRotation(15),
+        transforms.RandomHorizontalFlip(p=0.25),
+        transforms.RandomVerticalFlip(p=0.25),
+        transforms.RandomRotation(5),
         transforms.RandomResizedCrop(224),
-        transforms.Resize((224, 224)),
         transforms.ToTensor()
     ])
 

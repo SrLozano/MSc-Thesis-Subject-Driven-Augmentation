@@ -21,4 +21,4 @@ def save_images(images, id, technique="inference"):
 
     for i in range(len(images)):
         current_time = datetime.now().strftime("%H:%M:%S")
-        images[i].save(f"/zhome/d1/6/191852/MSc-thesis/generated_images/{technique}-{id}-{i}-{current_time}.png")
+        images[i].save(f"/zhome/d1/6/191852/MSc-thesis/data/generated_images/{technique}-{id}-{i}-{current_time}.png")

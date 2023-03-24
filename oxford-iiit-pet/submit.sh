@@ -31,18 +31,5 @@
 
 nvidia-smi
 
-accelerate launch /zhome/d1/6/191852/MSc-thesis/textual-inversion/huggingFace/textual_inversion.py \
---pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
---train_data_dir="/zhome/d1/6/191852/MSc-thesis/experiments/03-oxford-iiit-pet/dataset" \
---learnable_property="object" \
---placeholder_token="<funny-ret>" --initializer_token="dog" \
---resolution=512 \
---train_batch_size=1 \
---gradient_accumulation_steps=4 \
---max_train_steps=3000 \
---learning_rate=5.0e-04 --scale_lr \
---lr_scheduler="constant" \
---lr_warmup_steps=0 \
---output_dir="/zhome/d1/6/191852/saved_model" \
-
-# python classifier.py
+python classifier.py
+#python main.py

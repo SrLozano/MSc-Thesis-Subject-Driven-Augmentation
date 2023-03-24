@@ -13,7 +13,7 @@ from torchvision.transforms import ToTensor, transforms
 # Define parameters
 path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
 number_of_samples = 5
-subject_driven_technique = "XD"
+subject_driven_technique = "dreambooth"
 
 # Download dataset from open datasets in case  it is not already downloaded
 datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True)
@@ -62,6 +62,20 @@ for breed in breeds_to_generate:
             --lr_warmup_steps=0 \
             --output_dir="/zhome/d1/6/191852/saved_model" \
             ') 
+    elif subject_driven_technique == "dreambooth":
+        os.system('accelerate launch /zhome/d1/6/191852/MSc-thesis/dreambooth/train_dreambooth.py \
+            --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5"  \
+            --instance_data_dir="/zhome/d1/6/191852/MSc-thesis/experiments/03-oxford-iiit-pet/dataset" \
+            --output_dir="/zhome/d1/6/191852/saved_model" \
+            --instance_prompt="<funny-ret>" \
+            --resolution=512 \
+            --train_batch_size=1 \
+            --gradient_accumulation_steps=1 \
+            --learning_rate=5e-6 \
+            --lr_scheduler="constant" \
+            --lr_warmup_steps=0 \
+            --max_train_steps=400 \
+            ')
     
     print(f"Generating images...\n")
 
@@ -86,10 +100,11 @@ for breed in breeds_to_generate:
     # Delete all files in generated_images_path
     pipeline_utils.delete_files(generated_images_path)
 
+    # Add annotations to the generated images
     with open(f'{path_to_dataset}/annotations/trainval.txt', 'a') as file:
         file.write(str_annotations)
 
-    # Add annotations to the generated images
+    # Time elapsed
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f"Elapsed time: {elapsed_time} seconds")

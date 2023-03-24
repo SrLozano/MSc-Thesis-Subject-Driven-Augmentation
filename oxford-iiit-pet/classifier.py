@@ -1,15 +1,17 @@
 # Import dependencies
 import os
+import time
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 import torch
+import torchvision
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models
-from torchvision.transforms import ToTensor, transforms
+from torchvision.transforms import ToTensor, transforms, AutoAugmentPolicy
 
 class PetsModel(nn.Module):
     """
@@ -37,18 +39,17 @@ class EarlyStopper:
     """
     This class implements early stopping
     """
-    def __init__(self, patience=1, min_delta=0):
+    def __init__(self, patience=1):
         self.patience = patience
-        self.min_delta = min_delta
         self.counter = 0
-        self.min_validation_loss = np.inf
+        self.max_validation_accuracy = 0
 
-    def early_stop(self, validation_loss):
+    def early_stop(self, validation_accuracy):
         # Check if validation loss has decreased
-        if validation_loss < self.min_validation_loss:
-            self.min_validation_loss = validation_loss
+        if validation_accuracy > self.max_validation_accuracy:
+            self.max_validation_accuracy = validation_accuracy
             self.counter = 0
-        elif validation_loss > (self.min_validation_loss + self.min_delta):
+        elif validation_accuracy <= self.max_validation_accuracy:
             self.counter += 1
             if self.counter >= self.patience:
                 return True
@@ -150,7 +151,7 @@ def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epo
     plt.title(f'Model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
-    plt.xticks(np.arange(epochs, step=2))
+    plt.xticks(np.arange(epochs, step=5))
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'accuracy.pdf')
     plt.close()
@@ -161,7 +162,7 @@ def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epo
     plt.title(f'Model loss')
     plt.ylabel('loss')
     plt.xlabel('epoch')
-    plt.xticks(np.arange(epochs, step=2))
+    plt.xticks(np.arange(epochs, step=5))
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'loss.pdf')
 
@@ -187,6 +188,7 @@ def create_confusion_matrix(dataloader, model):
     # Show statistics
     target_names = ['Abyssinian', 'American Bulldog', 'American pitbull terr', 'Basset hound', 'Beagle', 'Bengal', 'Birman', 'Bombay', 'Boxer', 'British Shorthair', 'Chihuahua', 'Egyptian Mau', 'English cocker spaniel', 'English setter', 'German shorthaired', 'Great pyrenees', 'Havanese', 'Japanese chin', 'Keeshond', 'Leonberger', 'Maine Coon', 'Miniature pinscher', 'Newfoundland', 'Persian', 'Pomeranian', 'Pug', 'Ragdoll', 'Russian blue', 'Saint bernard', 'Samoyed', 'Scottish terrier', 'Shiba inu', 'Siamese', 'Sphynx', 'Staffordshire bull terr', 'Wheaten terrier', 'Yorkshire terrier']
     print(classification_report(y_true, y_pred, target_names=target_names))
+    print(accuracy_score(y_true, y_pred))
 
     # Create and plot confusion matrix
     cf_matrix = confusion_matrix(y_true, y_pred)
@@ -199,22 +201,32 @@ def create_confusion_matrix(dataloader, model):
 if __name__ == "__main__":
     
     # Define hyperparameters
-    epochs = 2
+    epochs = 55
     batch_size = 16
     learning_rate = 1e-3
-    data_augmentation = True
+    data_augmentation = "auto" # auto - custom - null
     freeze_layers = True
     verbose = False
     
     num_classes = 37
     DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
 
+    # Time the execution
+    start_time = time.time()
+
     # Define data augmentation transforms
     data_augmentation_transform = transforms.Compose([
         transforms.RandomHorizontalFlip(p=0.25),
         transforms.RandomVerticalFlip(p=0.25),
         transforms.RandomRotation(5),
-        transforms.RandomResizedCrop(224),
+        transforms.Resize((224, 224)),
+        transforms.ToTensor()
+    ])
+
+    # Define autoaugment transforms
+    auto_augment_transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        torchvision.transforms.AutoAugment(policy=AutoAugmentPolicy.IMAGENET),
         transforms.ToTensor()
     ])
 
@@ -225,8 +237,12 @@ if __name__ == "__main__":
     ])
 
     # Download training data from open datasets.
-    if data_augmentation:
+    if data_augmentation == "custom":
         training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=data_augmentation_transform)
+        print("Using custom data augmentation")
+    elif data_augmentation == "auto":
+        training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=auto_augment_transform)
+        print("Using autoaugment for data augmentation")
     else:
         training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=transform)
     test_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", split="test", download=True, transform=transform)
@@ -267,10 +283,15 @@ if __name__ == "__main__":
         test_accuracy.append(aux_test_acurracy)
 
         # Check if early stop
-        if early_stopper.early_stop(aux_test_acurracy):             
+        if early_stopper.early_stop(aux_test_acurracy): 
+            print("Early stopping")            
             break
 
-    print("Done!")
+    # Time elapsed
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("Done!\n")
+    print(f"Elapsed time: {elapsed_time} seconds\n")
 
     # Plot the training loss and accuracy
     create_plots(training_loss, test_loss, training_accuracy, test_accuracy, t+1)

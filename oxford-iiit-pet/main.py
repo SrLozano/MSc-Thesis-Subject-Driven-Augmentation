@@ -14,6 +14,7 @@ from torchvision.transforms import ToTensor, transforms
 path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
 number_of_samples = 5
 subject_driven_technique = "dreambooth"
+images_to_generate = 10
 
 # Download dataset from open datasets in case  it is not already downloaded
 datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True)
@@ -53,7 +54,7 @@ for breed in breeds_to_generate:
             --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
             --train_data_dir="/zhome/d1/6/191852/MSc-thesis/experiments/03-oxford-iiit-pet/dataset" \
             --learnable_property="object" \
-            --placeholder_token="<funny-ret>" --initializer_token="dog" \
+            --placeholder_token="<funny-ret>" --initializer_token="animal" \
             --resolution=512 \
             --train_batch_size=1 \
             --gradient_accumulation_steps=4 \
@@ -80,11 +81,13 @@ for breed in breeds_to_generate:
     
     print(f"Generating images...\n")
 
-    # Clear memory
-    torch.cuda.empty_cache()
+    # Generate images
+    for i in range(round(images_to_generate/5)):
+        # Clear memory
+        torch.cuda.empty_cache()
 
-    # Create pictures for the selected breed
-    os.system('python3 /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet/create_pictures.py')
+        # Create pictures for the selected breed
+        os.system('python3 /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet/create_pictures.py')
 
     # Rename generated images
     generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
@@ -97,13 +100,15 @@ for breed in breeds_to_generate:
     str_annotations = ""
     for i, filename in enumerate(os.listdir(generated_images_path)):
         src = os.path.join(generated_images_path, filename)
-        shutil.copy(src, dst)
-        print(dst)
+        # Check if file is not empty - NSFW images are empty
+        if os.stat(file_h).st_size > 1000:
+            shutil.copy(src, dst)
         str_annotations = str_annotations + "\n" + filename.split('.')[0] + f" {class_by_id[breed]}" + f" {species_by_id[breed]}" + f" {breed_by_id[breed]}" 
 
     print("Deleting files...")
+
     # Delete all files in generated_images_path and saved_model
-    #pipeline_utils.delete_files(generated_images_path)
+    pipeline_utils.delete_files(generated_images_path)
     pipeline_utils.delete_files("/zhome/d1/6/191852/saved_model")
 
     # Add annotations to the generated images

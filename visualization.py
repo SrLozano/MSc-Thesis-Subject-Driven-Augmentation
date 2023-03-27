@@ -2,9 +2,10 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 # Visualization utility to show off the generated images
-def plot_images(images, id, technique="inference"):
+def plot_images(images, id, technique="inference", verbose=False):
     
-    print(f"Saving image {id} as a plot...")
+    if verbose:
+        print(f"Saving image {id} as a plot...")
 
     plt.figure(figsize=(20, 20))
     for i in range(len(images)):
@@ -15,9 +16,10 @@ def plot_images(images, id, technique="inference"):
     plt.savefig(f"/zhome/d1/6/191852/MSc-thesis/data/generated_images/{technique}-{id}-{current_time}.png")
 
 # Utility for saving the generated pictures
-def save_images(images, id, technique="inference"):
+def save_images(images, id, technique="inference", verbose=False):
 
-    print(f"Saving image {id}...")
+    if verbose:
+        print(f"Saving image {id}...")
 
     for i in range(len(images)):
         current_time = datetime.now().strftime("%H:%M:%S")

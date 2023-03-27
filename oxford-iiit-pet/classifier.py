@@ -204,7 +204,7 @@ if __name__ == "__main__":
     epochs = 55
     batch_size = 16
     learning_rate = 1e-3
-    data_augmentation = "auto" # auto - custom - null
+    data_augmentation = "no" # auto - custom - null
     freeze_layers = True
     verbose = False
     

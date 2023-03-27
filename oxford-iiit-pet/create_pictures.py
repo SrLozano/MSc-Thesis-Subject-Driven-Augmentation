@@ -16,7 +16,7 @@ keys = ["pet"]
 
 #model_id = "runwayml/stable-diffusion-v1-5"
 model_id = "/zhome/d1/6/191852/saved_model"  
-number_images = 10
+number_images = 5
 
 for i in range(len(prompts)):
     pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to("cuda")

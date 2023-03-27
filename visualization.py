@@ -12,7 +12,7 @@ def plot_images(images, id, technique="inference"):
         plt.imshow(images[i])
         plt.axis("off")
     current_time = datetime.now().strftime("%H:%M:%S")
-    plt.savefig(f"/zhome/d1/6/191852/MSc-thesis/generated_images/{technique}-{id}-{current_time}.png")
+    plt.savefig(f"/zhome/d1/6/191852/MSc-thesis/data/generated_images/{technique}-{id}-{current_time}.png")
 
 # Utility for saving the generated pictures
 def save_images(images, id, technique="inference"):

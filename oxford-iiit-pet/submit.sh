@@ -29,7 +29,8 @@
 
 # here follow the commands you want to execute with input.in as the input file
 
-nvidia-smi
+#nvidia-smi
 
-python classifier.py
-#python main.py
+python main.py
+
+#python classifier.py

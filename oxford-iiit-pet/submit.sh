@@ -33,4 +33,4 @@
 
 python main.py
 
-#python classifier.py
+python classifier.py

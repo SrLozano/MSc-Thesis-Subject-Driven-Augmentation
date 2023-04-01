@@ -13,8 +13,12 @@ from torchvision.transforms import ToTensor, transforms
 # Define parameters
 path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
 number_of_samples = 5
-subject_driven_technique = "dreambooth"
+subject_driven_technique = "textual-inversion"
 images_to_generate = 10
+
+# Create folder for saved models
+saved_models_path = f"../../../../../../work3/s226536/saved_models/{subject_driven_technique}-{number_of_samples}"
+os.makedirs(saved_models_path)
 
 # Download dataset from open datasets in case  it is not already downloaded
 datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True)
@@ -23,7 +27,7 @@ datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download
 samples_by_breed, class_by_id, species_by_id, breed_by_id = pipeline_utils.get_breeds(f'{path_to_dataset}/annotations/trainval.txt')
 
 breeds_to_generate = list(samples_by_breed.keys())
-#breeds_to_generate = ["american_bulldog"]
+breeds_to_generate = ['Siamese', 'Sphynx', 'staffordshire_bull_terrier', 'wheaten_terrier', 'yorkshire_terrier']
 
 # Data augmentation generation for the selected breeds
 for breed in breeds_to_generate:
@@ -32,7 +36,6 @@ for breed in breeds_to_generate:
     start_time = time.time()
     
     # Select a random set of samples
-    print(type(samples_by_breed[breed]))
     samples = sample(samples_by_breed[breed], number_of_samples)
 
     # Define destination for subject-driven generation algorithm
@@ -101,15 +104,18 @@ for breed in breeds_to_generate:
     for i, filename in enumerate(os.listdir(generated_images_path)):
         src = os.path.join(generated_images_path, filename)
         # Check if file is not empty - NSFW images are empty
-        if os.stat(file_h).st_size > 1000:
+        if os.stat(src).st_size > 1000:
             shutil.copy(src, dst)
-        str_annotations = str_annotations + "\n" + filename.split('.')[0] + f" {class_by_id[breed]}" + f" {species_by_id[breed]}" + f" {breed_by_id[breed]}" 
+            str_annotations = str_annotations + "\n" + filename.split('.')[0] + f" {class_by_id[breed]}" + f" {species_by_id[breed]}" + f" {breed_by_id[breed]}" 
 
     print("Deleting files...")
 
-    # Delete all files in generated_images_path and saved_model
+    # Delete all files in generated_images_path
     pipeline_utils.delete_files(generated_images_path)
-    pipeline_utils.delete_files("/zhome/d1/6/191852/saved_model")
+
+    # Move saved_model folder to scratch space and create new saved_model folder
+    shutil.move("/zhome/d1/6/191852/saved_model", saved_models_path + f"/{breed}")
+    os.mkdir("/zhome/d1/6/191852/saved_model")
 
     # Add annotations to the generated images
     with open(f'{path_to_dataset}/annotations/trainval.txt', 'a') as file:

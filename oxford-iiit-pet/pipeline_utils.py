@@ -4,8 +4,10 @@
 # Import dependencies
 import re
 import os
+import math
 import shutil
 import random
+
 
 def get_breeds(filepath):
     """
@@ -32,6 +34,7 @@ def get_breeds(filepath):
                 # If breed not in dictionary, add it. Else, append sample to list
                 if breed not in samples_by_breed:
                     samples_by_breed[breed] = []
+                    samples_by_breed[breed].append(sample[0])
                 else:
                     samples_by_breed[breed].append(sample[0])
 
@@ -67,6 +70,7 @@ def delete_files(dst, verbose=False):
                 if verbose:
                     print('Failed to delete %s. Reason: %s' % (file_path, e))
 
+
 def remove_EOL_from_file(file_name):
     """
     This function removes the last newline character from a file.
@@ -79,6 +83,7 @@ def remove_EOL_from_file(file_name):
 
     with open(file_name, "w") as f:
         f.write(string_without_last_newline)
+
 
 def create_splits(path):
     """
@@ -113,17 +118,59 @@ def create_splits(path):
         # Write the validation split to the validation file. test == validation
         for element in validation:
             with open('test.txt', 'a') as file:
-                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]}, {breed_by_id[breed]}\n')
+                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]} {breed_by_id[breed]}\n')
         
         # Write the test split to the test file. final_test == test
         for element in test:
             with open('final_test.txt', 'a') as file:
-                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]}, {breed_by_id[breed]}\n')
+                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]} {breed_by_id[breed]}\n')
 
     # Remove the last newline character from the files
     remove_EOL_from_file('test.txt')
     remove_EOL_from_file('final_test.txt')
 
+    # Save the original test.txt file
+    os.rename(f'{path}/annotations/test.txt', f'{path}/annotations/original_test.txt')
+
     # Move the files to the correct location
     shutil.move("test.txt", f'{path}/annotations/test.txt')
     shutil.move("final_test.txt", f'{path}/annotations/final_test.txt')
+
+
+def get_training_subset(path, percentage=1.0):
+    """
+    This function creates the training subset for the Oxford-IIIT Pet dataset 
+    with the desired percentage of the original samples. The shuffle is always the same.
+    :param path: The path to the Oxford-IIIT Pet dataset.
+    :param percentage: The percentage of the original samples to use in the subset.
+    """
+
+    # Location of the train file
+    train = f'{path}/annotations/trainval.txt'
+
+    # Get samples by breed, class, specie and breed id from txt file
+    samples_by_breed, class_by_id, species_by_id, breed_by_id = get_breeds(train)
+
+    # Create empty file for test 
+    with open('train_subset.txt', 'w') as file:
+        file.write('')
+
+    # Select the desired percentage of train samples
+    for breed in samples_by_breed:
+
+        # Shuffle the list and get the desired percentage
+        my_list = samples_by_breed[breed]
+        random.Random(41).shuffle(my_list)
+        half = math.floor(len(my_list)*percentage)
+        training = my_list[:half]
+        
+        # Write the training split to the training file. 
+        for element in training:
+            with open('train_subset.txt', 'a') as file:
+                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]} {breed_by_id[breed]}\n')
+
+    # Remove the last newline character from the files
+    remove_EOL_from_file('train_subset.txt')
+
+    # Move the files to the correct location
+    shutil.move("train_subset.txt", f'{path}/annotations/train_subset.txt')

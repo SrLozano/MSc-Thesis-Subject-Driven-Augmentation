@@ -31,6 +31,6 @@
 
 #nvidia-smi
 
-python main.py
+python prepare_dataset.py
 
-#python classifier.py
+python classifier.py

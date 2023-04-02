@@ -1,5 +1,6 @@
 # Dataset folder
 data/
+experiments/03-oxford-iiit-pet/dataset
 
 # MacOs files
 .DS_Store

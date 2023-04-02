@@ -13,6 +13,7 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, models
 from torchvision.transforms import ToTensor, transforms, AutoAugmentPolicy
 
+
 class PetsModel(nn.Module):
     """
     This class defines the model. In this case, ResNet34 - Feauture extraction are used
@@ -35,6 +36,7 @@ class PetsModel(nn.Module):
     def forward(self, xb):
         return self.network(xb)
 
+
 class EarlyStopper:
     """
     This class implements early stopping
@@ -54,6 +56,7 @@ class EarlyStopper:
             if self.counter >= self.patience:
                 return True
         return False
+
 
 def train(dataloader, model, loss_fn, optimizer):
     """
@@ -103,6 +106,7 @@ def train(dataloader, model, loss_fn, optimizer):
 
     return loss.item(), correct/total
 
+
 def validate(dataloader, model, loss_fn):
     """
     This function evaluates a model on the validation set
@@ -133,6 +137,7 @@ def validate(dataloader, model, loss_fn):
     print(f"Validation accuracy: {(100*correct):>0.2f}% \n")
 
     return validation_loss, correct    
+
 
 def create_plots(training_loss, validation_loss, training_accuracy, validation_accuracy, epochs):
     """
@@ -166,6 +171,7 @@ def create_plots(training_loss, validation_loss, training_accuracy, validation_a
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'loss.pdf')
 
+
 def create_confusion_matrix(dataloader, model):
     """
     This function evaluates a model. It shows classification report and confusion matrix.
@@ -198,6 +204,7 @@ def create_confusion_matrix(dataloader, model):
     fig = heatmap.get_figure()
     fig.savefig('confusion_matrix.pdf')
 
+
 if __name__ == "__main__":
     
     # Define hyperparameters
@@ -207,8 +214,8 @@ if __name__ == "__main__":
     data_augmentation = "no" # auto - custom - null
     
     verbose = False
-    freeze_layers = True
     num_classes = 37
+    freeze_layers = True
     DATA_DIR = '../../../../../../work3/s226536/datasets'
 
     # Time the execution

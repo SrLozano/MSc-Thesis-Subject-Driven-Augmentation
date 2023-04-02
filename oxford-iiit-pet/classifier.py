@@ -264,7 +264,7 @@ if __name__ == "__main__":
     # Define loss function, optimizer and early stopper
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
-    early_stopper = EarlyStopper(patience=3)
+    early_stopper = EarlyStopper(patience=5)
 
     training_loss = []
     test_loss = []

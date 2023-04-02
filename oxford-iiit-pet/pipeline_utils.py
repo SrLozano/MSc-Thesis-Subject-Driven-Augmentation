@@ -2,6 +2,7 @@
 import re
 import os
 import shutil
+import random
 
 def get_breeds(filepath):
 
@@ -53,3 +54,64 @@ def delete_files(dst, verbose=False):
             except Exception as e:
                 if verbose:
                     print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+def remove_EOL_from_file(file_name):
+    """
+    This function removes the last newline character from a file.
+    :param file_name: The file to remove the last newline character from.
+    """
+    with open(file_name, "r") as f:
+        string_with_newline = f.read()
+
+    string_without_last_newline = string_with_newline[:-1]
+
+    with open(file_name, "w") as f:
+        f.write(string_without_last_newline)
+
+def create_splits(path):
+    """
+    This function creates the validation and test splits for the Oxford-IIIT Pet dataset.
+    :param path: The path to the Oxford-IIIT Pet dataset.
+    """
+
+    # Location of the test file
+    test = f'{path}/annotations/test.txt'
+
+    # Get samples by breed, class, specie and breed id from txt file
+    samples_by_breed, class_by_id, species_by_id, breed_by_id = get_breeds(test)
+
+    # Create empty file for validation. test == validation
+    with open('test.txt', 'w') as file:
+        file.write('')
+
+    # Create empty file for test 
+    with open('final_test.txt', 'w') as file:
+        file.write('')
+
+    # Create validation and test splits. final_test == test
+    for breed in samples_by_breed:
+
+        # Shuffle the list into two splits for validation and test
+        my_list = samples_by_breed[breed]
+        random.Random(41).shuffle(my_list)
+        half = len(my_list) // 2
+        validation = my_list[:half]
+        test = my_list[half:]
+
+        # Write the validation split to the validation file. test == validation
+        for element in validation:
+            with open('test.txt', 'a') as file:
+                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]}, {breed_by_id[breed]}\n')
+        
+        # Write the test split to the test file. final_test == test
+        for element in test:
+            with open('final_test.txt', 'a') as file:
+                file.write(f'{element} {class_by_id[breed]} {species_by_id[breed]}, {breed_by_id[breed]}\n')
+
+    # Remove the last newline character from the files
+    remove_EOL_from_file('test.txt')
+    remove_EOL_from_file('final_test.txt')
+
+    # Move the files to the correct location
+    shutil.move("test.txt", f'{path}/annotations/test.txt')
+    shutil.move("final_test.txt", f'{path}/annotations/final_test.txt')

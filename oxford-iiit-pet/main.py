@@ -13,24 +13,30 @@ from torchvision.transforms import ToTensor, transforms
 # Define parameters
 path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
 number_of_samples = 5
-subject_driven_technique = "textual-inversion"
+subject_driven_technique = "dreambooth"
 images_to_generate = 10
 
 # Create folder for saved models
 saved_models_path = f"../../../../../../work3/s226536/saved_models/{subject_driven_technique}-{number_of_samples}"
-os.makedirs(saved_models_path)
+os.makedirs(saved_models_path, exist_ok=True)
 
 # Download dataset from open datasets in case  it is not already downloaded
 datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True)
+
+# Create data splits for validation and test. aka test == validation, final_test == test
+pipeline_utils.create_splits("../../../../../../work3/s226536/datasets/oxford-iiit-pet)
+
+# Remove newline character from trainval.txt
+pipeline_utils.remove_EOL_from_file(f'{path_to_dataset}/annotations/trainval.txt')
 
 # Get samples by breed, class, specie and breed id from txt file
 samples_by_breed, class_by_id, species_by_id, breed_by_id = pipeline_utils.get_breeds(f'{path_to_dataset}/annotations/trainval.txt')
 
 breeds_to_generate = list(samples_by_breed.keys())
-breeds_to_generate = ['Siamese', 'Sphynx', 'staffordshire_bull_terrier', 'wheaten_terrier', 'yorkshire_terrier']
+#breeds_to_generate = ['Siamese', 'Sphynx', 'staffordshire_bull_terrier', 'wheaten_terrier', 'yorkshire_terrier']
 
 # Data augmentation generation for the selected breeds
-for breed in breeds_to_generate:
+for breed in breeds_to_generate[0:10]:
 
     print(f"-------------------------------\n\nStarted data generation process for breed {breed}...\n")
     start_time = time.time()

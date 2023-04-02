@@ -103,11 +103,11 @@ def train(dataloader, model, loss_fn, optimizer):
 
     return loss.item(), correct/total
 
-def test(dataloader, model, loss_fn):
+def validate(dataloader, model, loss_fn):
     """
-    This function evaluates a model on the test set
-    :param dataloader: Test dataloader
-    :param model: Model to evaluate
+    This function evaluates a model on the validation set
+    :param dataloader: Validation dataloader
+    :param model: Model to validate
     :param loss_fn: Loss function
     :return: Test loss and accuracy
     """
@@ -118,36 +118,36 @@ def test(dataloader, model, loss_fn):
     model.eval()
 
     # Compute loss and accuracy
-    test_loss, correct = 0, 0
+    validation_loss, correct = 0, 0
     y_true, y_pred = [], []
     with torch.no_grad():
         for X, y in dataloader:
             X, y = X.to(device), y.to(device)
             pred = model(X)
-            test_loss += loss_fn(pred, y).item()
+            validation_loss += loss_fn(pred, y).item()
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
  
-    test_loss /= num_batches
+    validation_loss /= num_batches
     correct /= size
-    print(f"Test loss: {test_loss:>8f}")
-    print(f"Test accuracy: {(100*correct):>0.2f}% \n")
+    print(f"Validation loss: {validation_loss:>8f}")
+    print(f"Validation accuracy: {(100*correct):>0.2f}% \n")
 
-    return test_loss, correct    
+    return validation_loss, correct    
 
-def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epochs):
+def create_plots(training_loss, validation_loss, training_accuracy, validation_accuracy, epochs):
     """
     This functions creates the plots accuracy and loss evolution in training and validation
     :param training_loss: Record of training loss values
-    :param test_loss: Record of validation loss values
+    :param validation_loss: Record of validation loss values
     :param training_accuracy: Record of training accuracy values
-    :param test_accuracy: Record of validation accuracy values
+    :param validation_accuracy: Record of validation accuracy values
     :param epochs: Number of epochs
     :return: It saves the accuracy and loss plots
     """
     
     # Accuracy plot
     plt.plot(training_accuracy)
-    plt.plot(test_accuracy)
+    plt.plot(validation_accuracy)
     plt.title(f'Model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
@@ -158,7 +158,7 @@ def create_plots(training_loss, test_loss, training_accuracy, test_accuracy, epo
 
     # Loss plot
     plt.plot(training_loss)
-    plt.plot(test_loss)
+    plt.plot(validation_loss)
     plt.title(f'Model loss')
     plt.ylabel('loss')
     plt.xlabel('epoch')
@@ -188,7 +188,7 @@ def create_confusion_matrix(dataloader, model):
     # Show statistics
     target_names = ['Abyssinian', 'American Bulldog', 'American pitbull terr', 'Basset hound', 'Beagle', 'Bengal', 'Birman', 'Bombay', 'Boxer', 'British Shorthair', 'Chihuahua', 'Egyptian Mau', 'English cocker spaniel', 'English setter', 'German shorthaired', 'Great pyrenees', 'Havanese', 'Japanese chin', 'Keeshond', 'Leonberger', 'Maine Coon', 'Miniature pinscher', 'Newfoundland', 'Persian', 'Pomeranian', 'Pug', 'Ragdoll', 'Russian blue', 'Saint bernard', 'Samoyed', 'Scottish terrier', 'Shiba inu', 'Siamese', 'Sphynx', 'Staffordshire bull terr', 'Wheaten terrier', 'Yorkshire terrier']
     print(classification_report(y_true, y_pred, target_names=target_names))
-    print(accuracy_score(y_true, y_pred))
+    print(f'Test accuracy: {accuracy_score(y_true, y_pred)}')
 
     # Create and plot confusion matrix
     cf_matrix = confusion_matrix(y_true, y_pred)
@@ -205,11 +205,11 @@ if __name__ == "__main__":
     batch_size = 16
     learning_rate = 1e-3
     data_augmentation = "no" # auto - custom - null
-    freeze_layers = True
-    verbose = False
     
+    verbose = False
+    freeze_layers = True
     num_classes = 37
-    DATA_DIR = '../../../../../../work3/s226536/datasets/oxford-iiit-pet/images'
+    DATA_DIR = '../../../../../../work3/s226536/datasets'
 
     # Time the execution
     start_time = time.time()
@@ -238,18 +238,18 @@ if __name__ == "__main__":
 
     # Download training data from open datasets.
     if data_augmentation == "custom":
-        training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=data_augmentation_transform)
+        training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=data_augmentation_transform)
         print("Using custom data augmentation")
     elif data_augmentation == "auto":
-        training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=auto_augment_transform)
+        training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=auto_augment_transform)
         print("Using autoaugment for data augmentation")
     else:
-        training_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True, transform=transform)
-    test_data = datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", split="test", download=True, transform=transform)
+        training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=transform)
+    validation_data = datasets.OxfordIIITPet(root=DATA_DIR, split="test", download=True, transform=transform)
 
     # Create data loaders.
     train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
-    test_dataloader = DataLoader(test_data, batch_size=batch_size, shuffle=True)
+    validation_dataloader = DataLoader(validation_data, batch_size=batch_size, shuffle=True)
 
     # Get cpu or gpu device for training.
     device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
@@ -267,20 +267,20 @@ if __name__ == "__main__":
     early_stopper = EarlyStopper(patience=5)
 
     training_loss = []
-    test_loss = []
+    validation_loss = []
     training_accuracy = []
-    test_accuracy = []
+    validation_accuracy = []
 
     # Training loop of the model
     for t in range(epochs):
         print(f"Epoch {t+1}\n-------------------------------")
         aux_train_loss, aux_train_accuracy = train(train_dataloader, model, loss_fn, optimizer)
-        aux_test_loss, aux_test_acurracy = test(test_dataloader, model, loss_fn)
+        aux_validation_loss, aux_test_acurracy = validate(validation_dataloader, model, loss_fn)
 
         training_loss.append(aux_train_loss)
         training_accuracy.append(aux_train_accuracy)
-        test_loss.append(aux_test_loss)
-        test_accuracy.append(aux_test_acurracy)
+        validation_loss.append(aux_validation_loss)
+        validation_accuracy.append(aux_test_acurracy)
 
         # Check if early stop
         if early_stopper.early_stop(aux_test_acurracy): 
@@ -294,7 +294,13 @@ if __name__ == "__main__":
     print(f"Elapsed time: {elapsed_time} seconds\n")
 
     # Plot the training loss and accuracy
-    create_plots(training_loss, test_loss, training_accuracy, test_accuracy, t+1)
+    create_plots(training_loss, validation_loss, training_accuracy, validation_accuracy, t+1)
+    
+    # Get test data
+    os.rename(f'{DATA_DIR}/oxford-iiit-pet/annotations/test.txt', f'{DATA_DIR}/oxford-iiit-pet/annotations/validation.txt')
+    os.rename(f'{DATA_DIR}/oxford-iiit-pet/annotations/final_test.txt', f'{DATA_DIR}/oxford-iiit-pet/annotations/test.txt')
+    test_data = datasets.OxfordIIITPet(root=DATA_DIR, split="test", download=True, transform=transform)
+    test_dataloader = DataLoader(test_data, batch_size=batch_size, shuffle=True)
 
     # Create confusion matrix
     create_confusion_matrix(test_dataloader, model)

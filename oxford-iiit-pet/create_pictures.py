@@ -1,3 +1,5 @@
+# This file contains the code to create the pictures from the fined-tuned Stable Diffusion model.
+
 import sys
 # caution: path[0] is reserved for script path (or '' in REPL)
 sys.path.insert(1, '/zhome/d1/6/191852/MSc-thesis')

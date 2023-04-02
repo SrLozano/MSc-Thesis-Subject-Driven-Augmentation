@@ -1,3 +1,6 @@
+# This file contains some functions used in the main.py file.
+# The functions are utils used to manipulate the data pipeline.
+
 # Import dependencies
 import re
 import os
@@ -5,6 +8,10 @@ import shutil
 import random
 
 def get_breeds(filepath):
+    """
+    This function parses the samples, class, species and breed_id by breed from the file and it adds the information to a dictionary.
+    :param filepath: The path to the file to parse the information from.
+    """
 
     # Dictionary with breed as key and list of samples as value
     samples_by_breed = {}
@@ -43,6 +50,11 @@ def get_breeds(filepath):
     return samples_by_breed, class_by_id, species_by_id, breed_by_id
 
 def delete_files(dst, verbose=False):
+    """
+    This function deletes all files in a directory.
+    :param dst: The directory to delete all files from.
+    :param verbose: Indicates whether to print the information about the deleted files.
+    """
     if len(os.listdir(dst)) > 0:
         for filename in os.listdir(dst):
             file_path = os.path.join(dst, filename)

@@ -24,7 +24,7 @@ os.makedirs(saved_models_path, exist_ok=True)
 datasets.OxfordIIITPet(root="../../../../../../work3/s226536/datasets", download=True)
 
 # Create data splits for validation and test. aka test == validation, final_test == test
-pipeline_utils.create_splits("../../../../../../work3/s226536/datasets/oxford-iiit-pet)
+pipeline_utils.create_splits(path_to_dataset)
 
 # Remove newline character from trainval.txt
 pipeline_utils.remove_EOL_from_file(f'{path_to_dataset}/annotations/trainval.txt')

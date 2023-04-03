@@ -4,6 +4,7 @@
 import os
 import sys
 import time
+import json
 import torch
 import shutil
 import pipeline_utils 
@@ -13,14 +14,12 @@ from diffusers import StableDiffusionPipeline
 sys.path.insert(1, '/zhome/d1/6/191852/MSc-thesis') # caution: path[0] is reserved for script path (or '' in REPL)
 from visualization import save_images
 
-
-# Parameters. images_to_generate should be a multiple of 5
-images_to_generate = 20
-
-number_of_samples = 5
-subject_driven_technique = "dreambooth"
-
-path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
+# Read parameters from config file
+with open('config.json') as f: data = json.load(f)
+images_to_generate = data["images_to_generate"] # images_to_generate should be a multiple of 5
+number_of_samples = data["number_of_samples"]
+subject_driven_technique = data["subject_driven_technique"]
+path_to_dataset = data["path_to_dataset"]
 
 
 # Get samples by breed, class, specie and breed id from txt file

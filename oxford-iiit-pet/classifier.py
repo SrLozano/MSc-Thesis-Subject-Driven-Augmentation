@@ -1,6 +1,7 @@
 # Import dependencies
 import os
 import time
+import json
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -207,16 +208,21 @@ def create_confusion_matrix(dataloader, model):
 
 if __name__ == "__main__":
     
-    # Define hyperparameters
-    epochs = 55
-    batch_size = 16
-    learning_rate = 1e-3
-    data_augmentation = "no" # auto - custom - null
+    # Read parameters from config file
+    with open('config.json') as f: data = json.load(f)
     
+
+    # Define hyperparameters
+    epochs = data["epochs"]
+    batch_size = data["batch_size"]
+    learning_rate = data["learning_rate"]
+    data_augmentation = data["data_augmentation"] # auto - custom - null
+    DATA_DIR = data["DATA_DIR"]
+
     verbose = False
     num_classes = 37
     freeze_layers = True
-    DATA_DIR = '../../../../../../work3/s226536/datasets'
+    
 
     # Time the execution
     start_time = time.time()

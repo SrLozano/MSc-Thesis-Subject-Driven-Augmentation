@@ -1,16 +1,17 @@
 # Import dependencies
 import os
 import time
+import json
 import torch
 import shutil
 import pipeline_utils 
 
 
-# Define parameters
-number_of_samples = 5
-subject_driven_technique = "dreambooth"
-
-path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
+# Read parameters from config file
+with open('config.json') as f: data = json.load(f)
+number_of_samples = data["number_of_samples"]
+subject_driven_technique = data["subject_driven_technique"]
+path_to_dataset = data["path_to_dataset"]
 
 
 # Create folder for saved models
@@ -20,7 +21,7 @@ os.makedirs(saved_models_path, exist_ok=True)
 # Get samples by breed, class, specie and breed id from txt file
 samples_by_breed, class_by_id, species_by_id, breed_by_id = pipeline_utils.get_breeds(f'{path_to_dataset}/annotations/trainval.txt')
 
-breeds_to_generate = list(samples_by_breed.keys())[0:2]
+breeds_to_generate = list(samples_by_breed.keys())
 #breeds_to_generate = ['Siamese', 'Sphynx', 'staffordshire_bull_terrier', 'wheaten_terrier', 'yorkshire_terrier']
 
 # Data augmentation generation for the selected breeds

@@ -4,7 +4,6 @@ import time
 import torch
 import shutil
 import pipeline_utils 
-from random import sample
 
 
 # Define parameters
@@ -30,17 +29,14 @@ for breed in breeds_to_generate[0:10]:
     print(f"-------------------------------\n\nStarted data generation process for breed {breed}...\n")
     start_time = time.time()
     
-    # Select a random set of samples
-    samples = sample(samples_by_breed[breed], number_of_samples)
-
     # Define destination for subject-driven generation algorithm
     dst = f'/zhome/d1/6/191852/MSc-thesis/experiments/03-oxford-iiit-pet/dataset'
 
     # Delete all files in dst
     pipeline_utils.delete_files(dst)
 
-    # Copy selected samples to dst in order to use them in the subject-driven generation algorithm
-    for sample_image in samples:
+    # Copy selected random samples to dst to use them in the subject-driven generation. Samples already shuffled by prepare_dataset.py 
+    for sample_image in samples_by_breed[breed][:number_of_samples]:
         src = f'{path_to_dataset}/images/{sample_image}.jpg'
         shutil.copy(src, dst)
 

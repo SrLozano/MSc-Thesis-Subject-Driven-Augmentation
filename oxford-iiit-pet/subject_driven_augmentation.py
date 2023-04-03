@@ -7,10 +7,10 @@ import pipeline_utils
 
 
 # Define parameters
-path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
 number_of_samples = 5
 subject_driven_technique = "dreambooth"
-images_to_generate = 10
+
+path_to_dataset = "../../../../../../work3/s226536/datasets/oxford-iiit-pet"
 
 
 # Create folder for saved models
@@ -20,13 +20,13 @@ os.makedirs(saved_models_path, exist_ok=True)
 # Get samples by breed, class, specie and breed id from txt file
 samples_by_breed, class_by_id, species_by_id, breed_by_id = pipeline_utils.get_breeds(f'{path_to_dataset}/annotations/trainval.txt')
 
-breeds_to_generate = list(samples_by_breed.keys())
+breeds_to_generate = list(samples_by_breed.keys())[0:2]
 #breeds_to_generate = ['Siamese', 'Sphynx', 'staffordshire_bull_terrier', 'wheaten_terrier', 'yorkshire_terrier']
 
 # Data augmentation generation for the selected breeds
-for breed in breeds_to_generate[0:10]:
+for breed in breeds_to_generate:
 
-    print(f"-------------------------------\n\nStarted data generation process for breed {breed}...\n")
+    print(f"-------------------------------------\nStarted subject-driven fine tunning for breed {breed}...\n")
     start_time = time.time()
     
     # Define destination for subject-driven generation algorithm
@@ -73,49 +73,14 @@ for breed in breeds_to_generate[0:10]:
             --max_train_steps=400 \
             ')
     
-    print(f"Generating images...\n")
-
-    # Generate images
-    for i in range(round(images_to_generate/5)):
-        # Clear memory
-        torch.cuda.empty_cache()
-
-        # Create pictures for the selected breed
-        os.system('python3 /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet/create_pictures.py')
-
-    # Rename generated images
-    generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
-    for i, filename in enumerate(os.listdir(generated_images_path)):
-        file_path = os.path.join(generated_images_path, filename)
-        os.rename(file_path, generated_images_path + "/" + breed + "_" + subject_driven_technique + "_" + str(i) + ".jpg")
-    
-    # Move generated images to the corresponding folder and create annotations
-    dst = f'{path_to_dataset}/images'
-    str_annotations = ""
-    for i, filename in enumerate(os.listdir(generated_images_path)):
-        src = os.path.join(generated_images_path, filename)
-        # Check if file is not empty - NSFW images are empty
-        if os.stat(src).st_size > 1000:
-            shutil.copy(src, dst)
-            str_annotations = str_annotations + "\n" + filename.split('.')[0] + f" {class_by_id[breed]}" + f" {species_by_id[breed]}" + f" {breed_by_id[breed]}" 
-
-    print("Deleting files...")
-
-    # Delete all files in generated_images_path
-    pipeline_utils.delete_files(generated_images_path)
-
     # Move saved_model folder to scratch space and create new saved_model folder
     shutil.move("/zhome/d1/6/191852/saved_model", saved_models_path + f"/{breed}")
     os.mkdir("/zhome/d1/6/191852/saved_model")
 
-    # Add annotations to the generated images
-    with open(f'{path_to_dataset}/annotations/trainval.txt', 'a') as file:
-        file.write(str_annotations)
-
     # Time elapsed
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f"Elapsed time: {elapsed_time} seconds")
+    print(f"Elapsed time: {elapsed_time} seconds\n")
 
     # Clear memory
     torch.cuda.empty_cache()

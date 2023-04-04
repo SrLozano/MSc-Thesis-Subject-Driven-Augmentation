@@ -216,7 +216,7 @@ if __name__ == "__main__":
     epochs = data["epochs"]
     batch_size = data["batch_size"]
     learning_rate = data["learning_rate"]
-    data_augmentation = data["data_augmentation"] # auto - custom - null
+    data_augmentation = data["data_augmentation"] # auto - rand - custom - null
     DATA_DIR = data["DATA_DIR"]
 
     verbose = False
@@ -243,6 +243,13 @@ if __name__ == "__main__":
         transforms.ToTensor()
     ])
 
+    # Define randaugment transforms
+    rand_augment_transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        torchvision.transforms.RandAugment(),
+        transforms.ToTensor()
+    ])
+
     # Define normal transforms
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -256,6 +263,9 @@ if __name__ == "__main__":
     elif data_augmentation == "auto":
         training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=auto_augment_transform)
         print("Using autoaugment for data augmentation")
+    elif data_augmentation == "rand":
+        training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=rand_augment_transform)
+        print("Using randaugment for data augmentation")
     else:
         training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=transform)
     validation_data = datasets.OxfordIIITPet(root=DATA_DIR, split="test", download=True, transform=transform)

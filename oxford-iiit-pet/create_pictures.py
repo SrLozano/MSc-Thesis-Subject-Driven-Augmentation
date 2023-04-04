@@ -9,10 +9,12 @@ import torch
 import shutil
 import pipeline_utils 
 
+from datetime import datetime
 from diffusers import StableDiffusionPipeline
 
 sys.path.insert(1, '/zhome/d1/6/191852/MSc-thesis') # caution: path[0] is reserved for script path (or '' in REPL)
 from visualization import save_images
+
 
 # Read parameters from config file
 with open('config.json') as f: data = json.load(f)
@@ -57,9 +59,10 @@ for breed in breeds_to_generate:
 
             # Rename generated images
             generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
+            current_time = datetime.now().strftime("%H:%M:%S")
             for i, filename in enumerate(os.listdir(generated_images_path)):
                 file_path = os.path.join(generated_images_path, filename)
-                os.rename(file_path, generated_images_path + "/" + breed + "_" + subject_driven_technique + "_" + str(i) + ".jpg")
+                os.rename(file_path, generated_images_path + "/" + breed + "_" + subject_driven_technique + "_" + str(i) + "_" + str(current_time) + ".jpg")
 
             # Move generated images to the corresponding folder and create annotations
             dst = f'{path_to_dataset}/images'

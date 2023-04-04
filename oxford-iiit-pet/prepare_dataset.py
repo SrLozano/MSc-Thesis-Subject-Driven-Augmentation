@@ -22,7 +22,3 @@ os.rename(f'{DATA_DIR}/oxford-iiit-pet/annotations/train_subset.txt', f'{DATA_DI
 
 # Create data splits for validation and test. aka test == validation, final_test == test
 pipeline_utils.create_splits(f'{DATA_DIR}/oxford-iiit-pet')
-
-# Run subject-driven augmentation
-'''if subject_driven_augmentation:
-    os.system('python3 /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet/subject_driven_augmentation.py')'''

@@ -229,9 +229,10 @@ if __name__ == "__main__":
 
     # Define data augmentation transforms
     data_augmentation_transform = transforms.Compose([
-        transforms.RandomHorizontalFlip(p=0.25),
-        transforms.RandomVerticalFlip(p=0.25),
-        transforms.RandomRotation(5),
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.ColorJitter(brightness=0.3, contrast=0.1, saturation=0.2, hue=0.1),
+        transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 2.0)),
+        transforms.RandomRotation(10),
         transforms.Resize((224, 224)),
         transforms.ToTensor()
     ])
@@ -268,6 +269,7 @@ if __name__ == "__main__":
         print("Using randaugment for data augmentation")
     else:
         training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, transform=transform)
+        print("Not using data augmentation")
     validation_data = datasets.OxfordIIITPet(root=DATA_DIR, split="test", download=True, transform=transform)
 
     # Create data loaders.

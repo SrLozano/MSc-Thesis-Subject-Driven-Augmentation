@@ -32,8 +32,18 @@ breeds_to_generate = list(samples_by_breed.keys())
 # Data augmentation generation for the selected breeds
 for breed in breeds_to_generate:
 
+    # Define model path depending on the generation technique (subject-driven or not)
+    if subject_driven_technique == "stable-diffusion-prompt":
+        model_path = "runwayml/stable-diffusion-v1-5"
+        prompts = [f"A cute photo of a {breed}, high quality, highly detailed, elegant, sharp focus"]
+    else:
+        model_path = f'../../../../../../work3/s226536/saved_models/{subject_driven_technique}-{number_of_samples}/{breed}'
+        placeholder_token = "<funny-ret>"
+        prompts = [f"A cute photo of a {placeholder_token}, high quality, highly detailed, elegant, sharp focus"]
+    
+    keys = ["pet"]
+    
     # Check if model exists
-    model_path = f'../../../../../../work3/s226536/saved_models/{subject_driven_technique}-{number_of_samples}/{breed}'
     if os.path.exists(model_path):
         
         print(f"-------------------------------------\nGenerating {images_to_generate} images for breed {breed}...\n")
@@ -44,20 +54,12 @@ for breed in breeds_to_generate:
             
             torch.cuda.empty_cache() # Clear memory
 
-            placeholder_token = "<funny-ret>"
-
-            prompts = [
-                    f"A cute photo of a {placeholder_token}, golden colour, high quality, highly detailed, elegant, sharp focus"
-                    ]
-            keys = ["pet"]
-
-
             for i in range(len(prompts)):
                 pipe = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=torch.float16).to("cuda")
                 images = pipe(prompts[i], num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=5).images
                 save_images(images, keys[i], "inference")
 
-            # Rename generated images
+            '''# Rename generated images
             generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
             current_time = datetime.now().strftime("%H:%M:%S")
             for i, filename in enumerate(os.listdir(generated_images_path)):
@@ -79,7 +81,7 @@ for breed in breeds_to_generate:
 
             # Add annotations to the generated images
             with open(f'{path_to_dataset}/annotations/trainval.txt', 'a') as file:
-                file.write(str_annotations)
+                file.write(str_annotations)'''
 
         # Time elapsed
         end_time = time.time()

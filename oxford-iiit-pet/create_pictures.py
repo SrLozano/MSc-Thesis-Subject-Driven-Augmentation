@@ -6,23 +6,57 @@ import sys
 import time
 import json
 import torch
+import random
 import shutil
 import pipeline_utils 
+import torchvision.transforms as transforms
 
+from PIL import Image
 from datetime import datetime
 from diffusers import StableDiffusionPipeline
+from torchmetrics.image.fid import FrechetInceptionDistance
 
 sys.path.insert(1, '/zhome/d1/6/191852/MSc-thesis') # caution: path[0] is reserved for script path (or '' in REPL)
 from visualization import save_images
 
 
+def generate_images(prompts, model_path, keys):
+    """
+    Generates images from a list of prompts using the Stable Diffusion model.
+    :param prompts: list of prompts
+    :param model_path: path to the model
+    :param keys: list of keys
+    """
+    torch.cuda.empty_cache() # Clear memory
+
+    # Generate images using SD
+    for i in range(len(prompts)):
+        pipe = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=torch.float16).to("cuda")
+        images = pipe(prompts[i], num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=5).images
+        save_images(images, keys[i], "inference")
+
+
 # Read parameters from config file
 with open('config.json') as f: data = json.load(f)
 images_to_generate = data["images_to_generate"] # images_to_generate should be a multiple of 5
-number_of_samples = data["number_of_samples"]
-subject_driven_technique = data["subject_driven_technique"]
-path_to_dataset = data["path_to_dataset"]
+number_of_samples = data["number_of_samples"] # number of samples used to be generated
+subject_driven_technique = data["subject_driven_technique"] # stable-diffusion-prompt or stable-diffusion
+path_to_dataset = data["path_to_dataset"] # Path to the Oxford-IIIT Pet dataset
+FID_threshold = data["FID_threshold"] # FID score threshold to stop the generation process
+check_quality = data["check_quality"] # Check if generated images have a good quality
 
+# Get a sample of 37 real images from the dataset to calculate FID score as selection process
+random_images = random.Random(41).sample(os.listdir(f'{path_to_dataset}/images') , 37)
+
+# Define the FID metric with the 37 real images as reference
+if check_quality == True:
+    fid = FrechetInceptionDistance()
+    transform = transforms.Compose([transforms.ToTensor()])
+
+    for image_name in random_images:
+        image_path = os.path.join(f'{path_to_dataset}/images', image_name)
+        image_tensor = transform(Image.open(image_path)).to(torch.uint8).unsqueeze(0)
+        fid.update(image_tensor, real=True)
 
 # Get samples by breed, class, specie and breed id from txt file
 samples_by_breed, class_by_id, species_by_id, breed_by_id = pipeline_utils.get_breeds(f'{path_to_dataset}/annotations/trainval.txt')
@@ -42,25 +76,53 @@ for breed in breeds_to_generate:
         prompts = [f"A cute photo of a {placeholder_token}, high quality, highly detailed, elegant, sharp focus"]
     
     keys = ["pet"]
-    
+
     # Check if model exists
-    if os.path.exists(model_path):
-        
+    if os.path.exists(model_path) or model_path == "runwayml/stable-diffusion-v1-5":
         print(f"-------------------------------------\nGenerating {images_to_generate} images for breed {breed}...\n")
         start_time = time.time()
 
         # Images generation loop
         for i in range(round(images_to_generate/5)):
-            
-            torch.cuda.empty_cache() # Clear memory
-
-            for i in range(len(prompts)):
-                pipe = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=torch.float16).to("cuda")
-                images = pipe(prompts[i], num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=5).images
-                save_images(images, keys[i], "inference")
-
-            '''# Rename generated images
             generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
+            if check_quality == True:
+                print(check_quality)
+                FID = 1000 # Initialize FID score to a high value
+
+                # Generate images until FID score is below the threshold to secure a minimum quality
+                while FID > FID_threshold:
+                
+                    generate_images(prompts, model_path, keys)
+
+                    # Calculate FID score for the generated images
+                    
+                    for image_name in os.listdir(generated_images_path):
+                        image_path = os.path.join(generated_images_path, image_name)
+
+                        # Check if file is not empty - NSFW images are empty. Remove black images.
+                        if os.stat(image_path).st_size > 1000:
+                            image_tensor = transform(Image.open(image_path)).to(torch.uint8).unsqueeze(0)   
+                            fid.update(image_tensor, real=False)
+                        else:
+                            os.remove(image_path)
+
+                    # Get FID score
+                    FID = fid.compute().item()
+                    print(f"------------------ FID score of the generated images: {FID} ------------------")
+
+                    # Score is above threshold, delete generated images and generate new ones
+                    if FID > FID_threshold:
+                        # Delete all files in generated_images_path
+                        pipeline_utils.delete_files(generated_images_path)
+                        print(f"------------------ FID score above threshold. Generating new images... ------------------")
+                
+                # Reset FID metric
+                fid = FrechetInceptionDistance(reset_real_features=False)
+            
+            else:
+                generate_images(prompts, model_path, keys)
+
+            # Rename generated images
             current_time = datetime.now().strftime("%H:%M:%S")
             for i, filename in enumerate(os.listdir(generated_images_path)):
                 file_path = os.path.join(generated_images_path, filename)
@@ -81,7 +143,7 @@ for breed in breeds_to_generate:
 
             # Add annotations to the generated images
             with open(f'{path_to_dataset}/annotations/trainval.txt', 'a') as file:
-                file.write(str_annotations)'''
+                file.write(str_annotations)
 
         # Time elapsed
         end_time = time.time()

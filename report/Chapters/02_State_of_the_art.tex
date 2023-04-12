@@ -2,7 +2,7 @@
 
 Text-to-image is an emerging field of deep learning where models can generate lifelike and highly detailed images from textual descriptions.  The development of these models is a challenging task that requires the close integration of both computer vision and NLP approaches. The latest advancements in text-to-image models have led to the capability of producing high-quality images with rich semantic content that can now be used for tons of applications including video games and virtual reality, e-commerce, or education among others. Even though recent advancements have allowed the use for commercial applications, generative models remain a challenging and tough problem. This section aims to analyse the current state-of-the-art of text-to-image models
 
-\section{Historical review of text-to-image models}
+\section{Historical review of text-to-image models} \label{Hreview}
 
 \section{Diffusion probabilistic models} \label{Dprobabilistic}
 
@@ -95,9 +95,44 @@ However, the improvements do not stop there. The same OpenAI researchers in a la
     \item \textbf{Classifier guidance}. Employing an additional classifier, the diffusion model is assisted in generating a certain class.
 \end{itemize}
 
-\section{Latent diffusion models}
+\section{Latent diffusion models} \label{Ldiffusion}
+
+Probabilistic diffusion models have enabled the generation of high-quality images with state-of-the-art results. However, they have a fundamental weakness that the successive iterations of improvements did not resolve. The fact that they operate in pixel space, dealing with additions and deletions of noise in a tensor of the same size as the input tensor, means that training these models requires enormous computational resources. Therefore, researchers from the Ludwig Maximilian University of Munich and Runway ML propose in the publication \textit{High-Resolution Image Synthesis with Latent Diffusion Models} \cite{rombach2022high} to use \textbf{latent space instead of pixel space} to speed up the training and inference calculations of these models. The latent space is obtained from previously trained autoencoders, thus obtaining a representation of the images in a lower dimensional space that allows a balance to be reached between the quality of the details preserved and the reduction of the complexity obtained.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Pictures/LDMDiagram.png} 
+    \caption{Latent diffusion architecture}
+    \label{fig:LDMDiagram}
+\end{figure}
+
+Thus, the operation of latent diffusion models can be summarised in the diagram present in figure \ref{fig:LDMDiagram}. The first training step is to obtain a representation of the considered image in the latent space $\mathcal{Z}$ thanks to the encoder  $\mathcal{E}$. Then, Gaussian noise is added to the diffusion process until $\mathcal{Z}_t$ is reached. For the inverse process, a U-Net network is used. However, the real strength of this approach lies in the ability to condition the generation. This is achieved thanks to a dedicated encoder $\tau_\theta$ that maps the conditionings in the intermediate layers of the U-Net with cross-attention layers. Finally, the result of the latent space is returned to the pixel space thanks to the $\mathcal{D}$ decoder.
 
 \section{Stable diffusion} \label{SD}
+
+As detailed in section \ref{Hreview}, text-to-image models have exploded in popularity and capabilities throughout 2022. One of the biggest drivers of this shift in public perception has been Stable Diffusion, an \textbf{open-source} model whose weights and architecture have been publicly released. As a consequence, many researchers and enthusiasts have put much effort into optimising and extending the project's capabilities. These efforts are led by the British generative AI startup Stability AI. As a result of the open-source philosophy, this model is capable of running on consumer-available hardware. This fact allows the community to leverage its capabilities in a wide variety of cases.
+
+Stable Diffusion is a latent diffusion model that follows the architecture developed by the Computer Vision \& Learning group of the Ludwig Maximilian University of Munich in the paper \textit{High-Resolution Image Synthesis with Latent Diffusion Models} \cite{rombach2022high}, which has already been explained in section \ref{Ldiffusion}. The proposed technique can also be adapted to other tasks such as inpainting, outpainting, generating image-to-image translations or increasing the resolution of an image, all tasks that Stable Diffusion can perform. A high-level diagram of the main components of the model can be seen in figure \ref{fig:SDdiagram}:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Pictures/SDdiagram.png} 
+    \caption{Stable Diffusion main components}
+    \label{fig:SDdiagram}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Text Encoder}: It creates an encoded representation of the text data's description. Its goal is to influence the diffusion process, ensuring that the resulting image corresponds to the given description. Stable Diffusion's first version utilizes CLIP \cite{radford2021learning}, while its second version includes OpenClip \cite{cherti2022reproducible}. In both cases, the text encoder is used in conjunction with an image encoder. CLIP and OpenClip strive to maximize the similarity between the two encodings, enabling the model to associate images with their respective descriptions.
+    \item \textbf{Latent Space Diffuser}: It aims to utilize the diffusion process to eliminate noise from the image by manipulating the latent space information. As the process progresses, additional information is added to enhance the similarity between the image and the provided description. It is crucial to highlight that this operation takes place in latent space, resulting in improved efficiency and being a key advancement. Figure X provides a visual representation of the denoising process guided by the text encoder.
+    \item \textbf{Autoencoder Decoder}: The final image is produced by utilizing the compressed information stored in the latent space. This step is carried out only once to construct the ultimate pixel image.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Pictures/DProcess.png} 
+    \caption{Diffusion steps \cite{wikiStableDiffusion}}
+    \label{fig:DProcess}
+\end{figure}
 
 \subsection{Training dataset}
 
@@ -128,6 +163,7 @@ The attributes that can be found in LAION-5B are described in table \ref{table:T
 \centering
 \begin{tabular}{|p{0.25\linewidth} | p{0.65\linewidth}|}
 \hline
+\rowcolor[HTML]{9B9B9B} 
 {\textbf{Attribute}} & {\textbf{Description}} \\ \hline
 \textbf{id} & Image identifier \\ \hline
 \textbf{URL} & URL from where the image was obtained \\ \hline
@@ -146,6 +182,7 @@ Some statistics of the subsets computed by the LAION team can be found in table 
 \begin{table}[ht]
 \begin{tabular}{|l|l|l|l|l|}
 \hline
+\rowcolor[HTML]{9B9B9B} 
 \textbf{Subset} & \textbf{Dimensions} & \textbf{NSFW} & \textbf{Watermark} & \textbf{Average text length} \\ \hline
 \textit{LAION2B-EN} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 2.9\% & 6.1\% & 67 \\ \hline
 \textit{LAION2B-MULTI} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1299M\\    \\ -   \textgreater{}512x512: 480M\\    \\ -   \textgreater{}1024x1024: 57M\end{tabular} & 3.3\% & 5.6\% & 52 \\ \hline

@@ -8,12 +8,13 @@
 \pagecolor{frontbackcolor}
 \color{\frontpagetextcolour}
 
+
 { % Thesis title (to change see Setup/Settings.tex) 
 \Huge
 \begin{tabular}{p{\linewidth}}
 \TitleFont{\thesistitle}   \\ 
-\titlefont{\thesissubtitle} \bigskip \\ 
-{\huge \documenttype}
+{\huge \titlefont{\thesissubtitle}} \bigskip \\ 
+{\huge \titlefont{\documenttype}}
 \end{tabular}
 }
 
@@ -26,8 +27,8 @@
       {
         \color{\frontpagetextcolour}
         \begin{tabular}{r} 
-        \textbf{\department} \\ 
-        \departmentdescriber
+        \TitleFont{\department} \\ 
+        \titlefont{\departmentdescriber}
         \end{tabular}
       }; 
 \end{tikzpicture}

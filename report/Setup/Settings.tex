@@ -38,7 +38,6 @@ purple,         fill=purple         \\%
 % Font
 % There is no corporate serif font in the DTU design guide. The DTU design team has proposed to use Neo Sans for headings - and Arial for the body text.
 % To change heading font to NeoSans Pro please upload both NeoSansPro-Regular.otf and NeoSansPro-Medium.otf to the root directory.
-\setmainfont{Arial}
 \renewcommand\thepart{Part \Roman{part}}
 \IfFontExistsTF{NeoSansPro-Medium.otf}
 { %If True set headings to NeoSans Pro
@@ -81,10 +80,10 @@ purple,         fill=purple         \\%
 \makeatother  
 
 % Spacing of titles and captions
-\titlespacing\chapter{0pt}{0pt plus 4pt minus 2pt}{4pt plus 2pt minus 2pt}
-\titlespacing\section{0pt}{12pt plus 3pt minus 3pt}{2pt plus 1pt minus 1pt}
-\titlespacing\subsection{0pt}{8pt plus 2pt minus 2pt}{0pt plus 1pt minus 1pt}
-\titlespacing\subsubsection{0pt}{4pt plus 1pt minus 1pt}{-2pt plus 1pt minus 1pt}
+\titlespacing\chapter{0pt}{0pt plus 4pt minus 2pt}{10pt plus 2pt minus 2pt}
+\titlespacing\section{0pt}{20pt plus 5pt minus 5pt}{15pt plus 3pt minus 3pt}
+\titlespacing\subsection{0pt}{20pt plus 2pt minus 5pt}{15pt plus 2pt minus 5pt}
+\titlespacing\subsubsection{0pt}{15pt plus 1pt minus 1pt}{10pt plus 1pt minus 1pt}
 \captionsetup{belowskip=\parskip,aboveskip=4pt plus 1pt minus 1pt}
 
 % Setup header and footer
@@ -189,3 +188,10 @@ tick label style={/pgf/number format/assume math mode}, % To apply main font to 
   \clearpage
   \ifodd\value{page}\hbox{}\newpage\fi
 }
+
+% Spacing between lines
+\linespread{1.1}
+
+% Spacing between paragraphs
+\usepackage{parskip}
+\setlength{\parskip}{0.8\baselineskip}

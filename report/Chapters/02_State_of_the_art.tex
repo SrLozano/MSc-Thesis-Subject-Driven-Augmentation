@@ -1,8 +1,25 @@
 \chapter{State of the art} \label{sec:colours}
 
-Text-to-image is an emerging field of deep learning where models can generate lifelike and highly detailed images from textual descriptions.  The development of these models is a challenging task that requires the close integration of both computer vision and NLP approaches. The latest advancements in text-to-image models have led to the capability of producing high-quality images with rich semantic content that can now be used for tons of applications including video games and virtual reality, e-commerce, or education among others. Even though recent advancements have allowed the use for commercial applications, generative models remain a challenging and tough problem. This section aims to analyse the current state-of-the-art of text-to-image models
+Text-to-image is an emerging field of deep learning where models can generate lifelike and highly detailed images from textual descriptions. The development of these models is a challenging task that requires the close integration of both computer vision and NLP approaches. The latest advancements in text-to-image models have led to the capability of producing high-quality images with rich semantic content that can now be used for tons of applications including video games and virtual reality, e-commerce, or education among others. Even though recent advancements have allowed the use for commercial applications, generative models remain a challenging and tough problem. This section aims to analyse the current state-of-the-art of text-to-image models.
 
 \section{Historical review of text-to-image models} \label{Hreview}
+
+Text-to-image models have been present among researchers for a long time. One of the first successful attempts came in 2015 from researchers at the University of Toronto, who in their paper \textit{Generating Images from Captions with Attention} \cite{mansimov2015generating} describe a model that generates images from natural language descriptions. The results they obtained followed the given descriptions, but the quality of the images left much to be desired. 
+
+Since then, research on the subject has come a long way and better and better solutions have been proposed. One of the major turning points came in 2020 with the publication of \textit{Taming Transformers for High-Resolution Image Synthesis} \cite{esser2021taming}. In it, researchers at the University of Heidelberg propose combining two deep learning models, VQ-GAN + CLIP, to improve generation. VQ-GAN (Vector Quantized Generative Adversarial Network) is a type of Generative Adversarial Network (GAN) \cite{goodfellow2020generative} that generates images by transforming a random noise vector into a synthetic image. On the other hand, \textbf{CLIP (Contrastive Language-Image Pretraining)} is a model that has been trained on a large dataset of images and texts to \textbf{understand the relationships between words and images} \cite{radford2021learning}. The combination of VQ-GAN and CLIP combines the strengths of both models to produce images that are both high quality and representative of the input text. 
+
+Despite all these advances, \textbf{the real revolution} in the field of text-based image generation comes in 2021 with \textbf{two publications using diffusion models}, \textit{Palette: Image-to-Image Diffusion Models} \cite{saharia2022palette} and \textit{GLIDE: Towards Photorealistic Image Generation and Editing with Text-Guided Diffusion Models} \cite{nichol2021glide}. In the first one, a group of Google Brain researchers develop a "unified framework for image-to-image translation based on conditional diffusion" \cite{saharia2022palette}. In the second publication, they explore the use of diffusion models in text-conditional image synthesis. 
+
+All the research described above explodes and becomes popular with the general public with the release of the \textbf{DALL-E 2 and Stable Diffusion} models, described in the publications \textit{Hierarchical Text-Conditional Image Generation with CLIP Latents} \cite{ramesh2022hierarchical} and \textit{High-Resolution Image Synthesis with Latent Diffusion Models} \cite{rombach2022high}. These models achieve a level of quality that allows these tools to be used in multiple real-world use cases. Figure \ref{fig:DallE2} shows images obtained by DALL-E 2 from the given descriptions. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/DallE2.png} 
+    \caption{Sample of generated images by DALL-E 2 \cite{ramesh2022hierarchical}}
+    \label{fig:DallE2}
+\end{figure}
+
+The generated images, as shown in figure \ref{fig:DallE2}, are of high enough quality to be used in real-world projects. Hence, \textbf{research has shifted} from concentrating solely on the quality aspect \textbf{to trying to increase control} over the final result. Therefore, in late 2022 and early 2023, some of the most influential publications in the field of generative AI seek to facilitate the manipulation of generated images through subject-based generation (\textit{\textit{An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion}} \cite{gal2022image} and \textit{DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation} \cite{ruiz2022dreambooth}) or conditional guidance (Adding Conditional Control to Text-to-Image Diffusion Models \cite{zhang2023adding}).
 
 \section{Diffusion probabilistic models} \label{Dprobabilistic}
 
@@ -74,14 +91,14 @@ The proposed cosine noise schedule can be seen in figure \ref{fig:CosineSC}. Whe
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{Pictures/cosineSC.png} 
-    \caption{Cosine and linear schedules comparison}
+    \caption{Cosine and linear schedules comparison \cite{nichol2021improved}}
     \label{fig:CosineSC}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/cosineEX.png} 
-    \caption{Cosine (bottom) and linear (top) schedules comparison on an image}
+    \caption{Cosine (bottom) and linear (top) schedules comparison on an image \cite{nichol2021improved}}
     \label{fig:CosineEX}
 \end{figure}
 
@@ -102,7 +119,7 @@ Probabilistic diffusion models have enabled the generation of high-quality image
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/LDMDiagram.png} 
-    \caption{Latent diffusion architecture}
+    \caption{Latent diffusion architecture \cite{rombach2022high}}
     \label{fig:LDMDiagram}
 \end{figure}
 
@@ -123,7 +140,7 @@ Stable Diffusion is a latent diffusion model that follows the architecture devel
 
 \begin{itemize}
     \item \textbf{Text Encoder}: It creates an encoded representation of the text data's description. Its goal is to influence the diffusion process, ensuring that the resulting image corresponds to the given description. Stable Diffusion's first version utilizes CLIP \cite{radford2021learning}, while its second version includes OpenClip \cite{cherti2022reproducible}. In both cases, the text encoder is used in conjunction with an image encoder. CLIP and OpenClip strive to maximize the similarity between the two encodings, enabling the model to associate images with their respective descriptions.
-    \item \textbf{Latent Space Diffuser}: It aims to utilize the diffusion process to eliminate noise from the image by manipulating the latent space information. As the process progresses, additional information is added to enhance the similarity between the image and the provided description. It is crucial to highlight that this operation takes place in latent space, resulting in improved efficiency and being a key advancement. Figure X provides a visual representation of the denoising process guided by the text encoder.
+    \item \textbf{Latent Space Diffuser}: It aims to utilize the diffusion process to eliminate noise from the image by manipulating the latent space information. As the process progresses, additional information is added to enhance the similarity between the image and the provided description. It is crucial to highlight that this operation takes place in latent space, resulting in improved efficiency and being a key advancement. Figure \ref{fig:DProcess} provides a visual representation of the denoising process guided by the text encoder.
     \item \textbf{Autoencoder Decoder}: The final image is produced by utilizing the compressed information stored in the latent space. This step is carried out only once to construct the ultimate pixel image.
 \end{itemize}
 

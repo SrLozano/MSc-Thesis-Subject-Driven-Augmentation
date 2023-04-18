@@ -1,10 +1,10 @@
 {   
-    "training_images_percentage": 1,
+    "training_images_percentage": 0.05,
     "epochs": 55,
     "learning_rate": 1e-3,
     "batch_size": 16,
     "data_augmentation": "no",
-    "subject_driven_technique": "controlNet",
+    "subject_driven_technique": "textual-inversion",
     "number_of_samples": 5,
     "images_to_generate": 10,
     "FID_threshold": 100,

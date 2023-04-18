@@ -4,6 +4,7 @@ import time
 import json
 import numpy as np
 import seaborn as sns
+from datetime import datetime
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
@@ -317,6 +318,8 @@ if __name__ == "__main__":
     elapsed_time = end_time - start_time
     print("Done!\n")
     print(f"Elapsed time: {elapsed_time} seconds\n")
+    current_time = datetime.now().strftime("%H:%M:%S")
+    print(f"Current time: {current_time}")
 
     # Plot the training loss and accuracy
     create_plots(training_loss, validation_loss, training_accuracy, validation_accuracy, t+1)

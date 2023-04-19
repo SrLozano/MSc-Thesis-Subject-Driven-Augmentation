@@ -45,7 +45,8 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, breed, 
     
     else:
         # Get a sample of images to apply controlNet to
-        random_images = random.Random(41).sample(samples_by_breed[breed], 5)
+        random_images = random.sample(samples_by_breed[breed], 5)
+        print(random_images)
 
         # Canny edge detection parameters
         low_threshold = 100

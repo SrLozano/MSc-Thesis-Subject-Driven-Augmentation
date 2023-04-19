@@ -26,7 +26,7 @@ def save_images(images, id, technique="inference", verbose=False):
         images[i].save(f"/zhome/d1/6/191852/MSc-thesis/data/generated_images/{technique}-{id}-{i}-{current_time}.png")
 
 # Utility for plotting the results of the experiments
-def make_experiment_plot(x, dict_y, title, xlabel, ylabel, filename, rotate=False):
+def make_experiment_plot(x, dict_y, title, xlabel, ylabel, filename, rotate=False, ylim=False):
     plt.figure(figsize=(10, 10))
 
     # Plot the data iterating over the dictionary
@@ -37,6 +37,7 @@ def make_experiment_plot(x, dict_y, title, xlabel, ylabel, filename, rotate=Fals
     plt.ylabel(ylabel)
     if rotate: plt.xticks(x, rotation=45)
     else: plt.xticks(x)
+    if ylim != False: plt.ylim(ylim)
     plt.legend(dict_y.keys(), loc='lower right')
 
     # Save and close the plot
@@ -68,7 +69,8 @@ if __name__ == "__main__":
     experiment_004_results = {
         "100% - Stable diffusion prompt": [0.8573, 0.8726, 0.8764, 0.8845, 0.8829],
         "100% - Textual inversion": [0.8644, 0.8853, 0.8824, 0.8802, 0.8796],
-        "5% - Stable diffusion prompt": [0.7185, 0.6989, 0.7359, 0.7425, 0.7419]
+        "5% - Stable diffusion prompt": [0.7185, 0.6989, 0.7359, 0.7425, 0.7419],
+        "5% - Textual inversion": [0.7408, 0.7278, 0.7430, 0.7223, 0.6924]
     } 
 
-    make_experiment_plot(percentage_of_data_004, experiment_004_results, "Accuracy of augmentation techniques Vs percentage of data generated", "Percentage of generated data", "Accuracy", "experiment_004", True)
+    make_experiment_plot(percentage_of_data_004, experiment_004_results, "Accuracy of augmentation techniques Vs percentage of data generated", "Percentage of generated data", "Accuracy", "experiment_004", True, 0.65)

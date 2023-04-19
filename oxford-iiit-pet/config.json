@@ -6,7 +6,7 @@
     "data_augmentation": "no",
     "subject_driven_technique": "controlNet",
     "number_of_samples": 5,
-    "images_to_generate": 10,
+    "images_to_generate": 5,
     "FID_threshold": 100,
     "check_quality": false,
     "path_to_dataset": "../../../../../../work3/s226536/datasets/oxford-iiit-pet",

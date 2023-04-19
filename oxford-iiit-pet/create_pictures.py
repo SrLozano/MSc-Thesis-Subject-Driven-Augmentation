@@ -72,7 +72,6 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, breed, 
 
             # Generate images using the canny edge image and controlNet
             for i in range(len(prompts)):
-                print("Confirmo que estamos aqui")
                 images = pipe(prompts[i], image=canny_image, num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=1).images
                 save_images(images, keys[i], "inference")
 

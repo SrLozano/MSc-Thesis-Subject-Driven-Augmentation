@@ -1,0 +1,413 @@
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+-------------------------------------
+Generating 100 images for breed Abyssinian...
+
+Elapsed time: 338.5102117061615 seconds
+
+-------------------------------------
+Generating 100 images for breed american_bulldog...
+
+Elapsed time: 308.8626205921173 seconds
+
+-------------------------------------
+Generating 100 images for breed american_pit_bull_terrier...
+
+Elapsed time: 307.77346634864807 seconds
+
+-------------------------------------
+Generating 100 images for breed basset_hound...
+
+Elapsed time: 307.3998305797577 seconds
+
+-------------------------------------
+Generating 100 images for breed beagle...
+
+Elapsed time: 309.97934079170227 seconds
+
+-------------------------------------
+Generating 100 images for breed Bengal...
+
+Elapsed time: 309.4794342517853 seconds
+
+-------------------------------------
+Generating 100 images for breed Birman...
+
+Elapsed time: 309.6203775405884 seconds
+
+-------------------------------------
+Generating 100 images for breed Bombay...
+
+Elapsed time: 308.419495344162 seconds
+
+-------------------------------------
+Generating 100 images for breed boxer...
+
+Elapsed time: 307.8266055583954 seconds
+
+-------------------------------------
+Generating 100 images for breed British_Shorthair...
+
+Elapsed time: 307.459219455719 seconds
+
+-------------------------------------
+Generating 100 images for breed chihuahua...
+
+Elapsed time: 306.57994270324707 seconds
+
+-------------------------------------
+Generating 100 images for breed Egyptian_Mau...
+
+Elapsed time: 308.589257478714 seconds
+
+-------------------------------------
+Generating 100 images for breed english_cocker_spaniel...
+
+Elapsed time: 309.24345684051514 seconds
+
+-------------------------------------
+Generating 100 images for breed english_setter...
+
+Elapsed time: 307.8699152469635 seconds
+
+-------------------------------------
+Generating 100 images for breed german_shorthaired...
+
+Elapsed time: 305.6733410358429 seconds
+
+-------------------------------------
+Generating 100 images for breed great_pyrenees...
+
+Elapsed time: 310.74104356765747 seconds
+
+-------------------------------------
+Generating 100 images for breed havanese...
+
+Elapsed time: 308.06214475631714 seconds
+
+-------------------------------------
+Generating 100 images for breed japanese_chin...
+
+Elapsed time: 306.1708405017853 seconds
+
+-------------------------------------
+Generating 100 images for breed keeshond...
+
+Elapsed time: 306.980495929718 seconds
+
+-------------------------------------
+Generating 100 images for breed leonberger...
+
+Elapsed time: 310.1480712890625 seconds
+
+-------------------------------------
+Generating 100 images for breed Maine_Coon...
+
+Elapsed time: 308.9417293071747 seconds
+
+-------------------------------------
+Generating 100 images for breed miniature_pinscher...
+
+Elapsed time: 305.9331295490265 seconds
+
+-------------------------------------
+Generating 100 images for breed newfoundland...
+
+Elapsed time: 308.32318449020386 seconds
+
+-------------------------------------
+Generating 100 images for breed Persian...
+
+Elapsed time: 308.04072070121765 seconds
+
+-------------------------------------
+Generating 100 images for breed pomeranian...
+
+Elapsed time: 308.8574924468994 seconds
+
+-------------------------------------
+Generating 100 images for breed pug...
+
+Elapsed time: 303.94969058036804 seconds
+
+-------------------------------------
+Generating 100 images for breed Ragdoll...
+
+Elapsed time: 306.45443964004517 seconds
+
+-------------------------------------
+Generating 100 images for breed Russian_Blue...
+
+Elapsed time: 304.7916347980499 seconds
+
+-------------------------------------
+Generating 100 images for breed saint_bernard...
+
+Elapsed time: 308.0458228588104 seconds
+
+-------------------------------------
+Generating 100 images for breed samoyed...
+
+Elapsed time: 307.2302861213684 seconds
+
+-------------------------------------
+Generating 100 images for breed scottish_terrier...
+
+Elapsed time: 306.51092433929443 seconds
+
+-------------------------------------
+Generating 100 images for breed shiba_inu...
+
+Elapsed time: 308.9835641384125 seconds
+
+-------------------------------------
+Generating 100 images for breed Siamese...
+
+Elapsed time: 308.24206590652466 seconds
+
+-------------------------------------
+Generating 100 images for breed Sphynx...
+
+Elapsed time: 298.2004442214966 seconds
+
+-------------------------------------
+Generating 100 images for breed staffordshire_bull_terrier...
+
+Elapsed time: 307.9097595214844 seconds
+
+-------------------------------------
+Generating 100 images for breed wheaten_terrier...
+
+Elapsed time: 310.24615478515625 seconds
+
+-------------------------------------
+Generating 100 images for breed yorkshire_terrier...
+
+Elapsed time: 307.23262906074524 seconds
+
+Not using data augmentation
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 3.855610  [16/3708]
+Training loss: 3.257038  [1616/3708]
+Training loss: 2.889785  [3216/3708]
+Training accuracy: 35.68 %
+Validation loss: 3.164674
+Validation accuracy: 20.31% 
+
+Epoch 2
+-------------------------------
+Training loss: 2.824568  [16/3708]
+Training loss: 2.660482  [1616/3708]
+Training loss: 2.261019  [3216/3708]
+Training accuracy: 64.16 %
+Validation loss: 2.702817
+Validation accuracy: 40.01% 
+
+Epoch 3
+-------------------------------
+Training loss: 2.405195  [16/3708]
+Training loss: 1.957352  [1616/3708]
+Training loss: 2.201994  [3216/3708]
+Training accuracy: 80.07 %
+Validation loss: 2.355488
+Validation accuracy: 51.80% 
+
+Epoch 4
+-------------------------------
+Training loss: 1.838446  [16/3708]
+Training loss: 1.690406  [1616/3708]
+Training loss: 1.783925  [3216/3708]
+Training accuracy: 86.54 %
+Validation loss: 2.088034
+Validation accuracy: 59.99% 
+
+Epoch 5
+-------------------------------
+Training loss: 1.432139  [16/3708]
+Training loss: 1.646880  [1616/3708]
+Training loss: 1.161328  [3216/3708]
+Training accuracy: 88.81 %
+Validation loss: 1.876387
+Validation accuracy: 64.03% 
+
+Epoch 6
+-------------------------------
+Training loss: 1.501932  [16/3708]
+Training loss: 1.249038  [1616/3708]
+Training loss: 1.132789  [3216/3708]
+Training accuracy: 91.07 %
+Validation loss: 1.734958
+Validation accuracy: 66.32% 
+
+Epoch 7
+-------------------------------
+Training loss: 1.215715  [16/3708]
+Training loss: 1.148915  [1616/3708]
+Training loss: 0.867164  [3216/3708]
+Training accuracy: 91.67 %
+Validation loss: 1.610153
+Validation accuracy: 67.36% 
+
+Epoch 8
+-------------------------------
+Training loss: 1.109628  [16/3708]
+Training loss: 0.989384  [1616/3708]
+Training loss: 1.258343  [3216/3708]
+Training accuracy: 93.12 %
+Validation loss: 1.495952
+Validation accuracy: 69.71% 
+
+Epoch 9
+-------------------------------
+Training loss: 0.974029  [16/3708]
+Training loss: 0.877948  [1616/3708]
+Training loss: 0.609536  [3216/3708]
+Training accuracy: 93.61 %
+Validation loss: 1.423371
+Validation accuracy: 71.18% 
+
+Epoch 10
+-------------------------------
+Training loss: 0.898867  [16/3708]
+Training loss: 0.800138  [1616/3708]
+Training loss: 0.954443  [3216/3708]
+Training accuracy: 94.20 %
+Validation loss: 1.379133
+Validation accuracy: 70.58% 
+
+Epoch 11
+-------------------------------
+Training loss: 0.719305  [16/3708]
+Training loss: 0.765550  [1616/3708]
+Training loss: 1.052786  [3216/3708]
+Training accuracy: 94.39 %
+Validation loss: 1.338465
+Validation accuracy: 70.09% 
+
+Epoch 12
+-------------------------------
+Training loss: 0.630111  [16/3708]
+Training loss: 0.677680  [1616/3708]
+Training loss: 0.488914  [3216/3708]
+Training accuracy: 94.61 %
+Validation loss: 1.263787
+Validation accuracy: 71.78% 
+
+Epoch 13
+-------------------------------
+Training loss: 0.450704  [16/3708]
+Training loss: 0.441808  [1616/3708]
+Training loss: 0.532320  [3216/3708]
+Training accuracy: 94.66 %
+Validation loss: 1.230293
+Validation accuracy: 71.94% 
+
+Epoch 14
+-------------------------------
+Training loss: 0.552813  [16/3708]
+Training loss: 0.399608  [1616/3708]
+Training loss: 0.526525  [3216/3708]
+Training accuracy: 95.28 %
+Validation loss: 1.162435
+Validation accuracy: 74.07% 
+
+Epoch 15
+-------------------------------
+Training loss: 0.470048  [16/3708]
+Training loss: 0.370115  [1616/3708]
+Training loss: 0.426638  [3216/3708]
+Training accuracy: 95.20 %
+Validation loss: 1.166225
+Validation accuracy: 72.54% 
+
+Epoch 16
+-------------------------------
+Training loss: 0.508426  [16/3708]
+Training loss: 0.456495  [1616/3708]
+Training loss: 0.515863  [3216/3708]
+Training accuracy: 94.96 %
+Validation loss: 1.121671
+Validation accuracy: 73.03% 
+
+Epoch 17
+-------------------------------
+Training loss: 0.397960  [16/3708]
+Training loss: 0.307167  [1616/3708]
+Training loss: 0.360704  [3216/3708]
+Training accuracy: 95.71 %
+Validation loss: 1.098601
+Validation accuracy: 73.58% 
+
+Epoch 18
+-------------------------------
+Training loss: 0.574684  [16/3708]
+Training loss: 0.614410  [1616/3708]
+Training loss: 0.544901  [3216/3708]
+Training accuracy: 95.90 %
+Validation loss: 1.088853
+Validation accuracy: 73.36% 
+
+Epoch 19
+-------------------------------
+Training loss: 0.375787  [16/3708]
+Training loss: 0.429137  [1616/3708]
+Training loss: 0.499359  [3216/3708]
+Training accuracy: 95.69 %
+Validation loss: 1.072500
+Validation accuracy: 73.09% 
+
+Early stopping
+Done!
+
+Elapsed time: 1932.084905385971 seconds
+
+Current time: 00:27:09
+                         precision    recall  f1-score   support
+
+             Abyssinian       0.60      0.57      0.58        49
+       American Bulldog       0.71      0.54      0.61        50
+  American pitbull terr       0.55      0.54      0.55        50
+           Basset hound       0.85      0.92      0.88        50
+                 Beagle       0.86      0.72      0.78        50
+                 Bengal       0.64      0.64      0.64        50
+                 Birman       0.47      0.68      0.56        50
+                 Bombay       0.72      0.86      0.78        44
+                  Boxer       0.85      0.66      0.74        50
+      British Shorthair       0.76      0.62      0.68        50
+              Chihuahua       0.52      0.80      0.63        50
+           Egyptian Mau       0.62      0.82      0.71        49
+ English cocker spaniel       0.93      0.50      0.65        50
+         English setter       0.63      0.82      0.71        50
+     German shorthaired       0.81      0.96      0.88        50
+         Great pyrenees       0.79      0.92      0.85        50
+               Havanese       0.76      0.70      0.73        50
+          Japanese chin       1.00      0.76      0.86        50
+               Keeshond       0.92      0.98      0.95        50
+             Leonberger       0.77      0.94      0.85        50
+             Maine Coon       0.79      0.60      0.68        50
+     Miniature pinscher       0.77      0.40      0.53        50
+           Newfoundland       0.81      0.86      0.83        50
+                Persian       0.91      0.64      0.75        50
+             Pomeranian       0.92      0.66      0.77        50
+                    Pug       0.96      0.90      0.93        50
+                Ragdoll       0.75      0.30      0.43        50
+           Russian blue       0.55      0.66      0.60        50
+          Saint bernard       0.95      0.82      0.88        50
+                Samoyed       0.75      0.98      0.85        50
+       Scottish terrier       0.75      0.96      0.84        50
+              Shiba inu       0.82      0.94      0.88        50
+                Siamese       0.67      0.90      0.77        50
+                 Sphynx       0.00      0.00      0.00        50
+Staffordshire bull terr       0.37      0.80      0.51        45
+        Wheaten terrier       0.80      0.94      0.86        50
+      Yorkshire terrier       0.86      0.64      0.74        50
+
+               accuracy                           0.73      1837
+              macro avg       0.74      0.73      0.72      1837
+           weighted avg       0.74      0.73      0.72      1837
+
+Test accuracy: 0.7278170930865542

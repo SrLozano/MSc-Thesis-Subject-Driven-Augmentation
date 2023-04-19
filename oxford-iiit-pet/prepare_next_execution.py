@@ -10,7 +10,7 @@ print("The metadata of the previous execution is...")
 with open('config.json') as f: data = json.load(f)
 print(data)
 
-print("Preparing next execution...")
+print("\nPreparing next execution...")
 
 # Save results in a new folder with the current time
 current_time = datetime.now().strftime("%H:%M:%S")

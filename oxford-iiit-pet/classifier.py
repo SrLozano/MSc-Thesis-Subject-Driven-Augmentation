@@ -212,7 +212,6 @@ if __name__ == "__main__":
     # Read parameters from config file
     with open('config.json') as f: data = json.load(f)
     
-
     # Define hyperparameters
     epochs = data["epochs"]
     batch_size = data["batch_size"]

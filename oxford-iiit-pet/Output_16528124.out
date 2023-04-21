@@ -1,0 +1,189 @@
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+-------------------------------------
+Generating 400 images for breed Abyssinian...
+
+Elapsed time: 984.4307544231415 seconds
+
+-------------------------------------
+Generating 400 images for breed american_bulldog...
+
+Elapsed time: 873.0569088459015 seconds
+
+-------------------------------------
+Generating 400 images for breed american_pit_bull_terrier...
+
+Elapsed time: 874.0939948558807 seconds
+
+-------------------------------------
+Generating 400 images for breed basset_hound...
+
+Elapsed time: 872.3984289169312 seconds
+
+-------------------------------------
+Generating 400 images for breed beagle...
+
+Elapsed time: 872.8609344959259 seconds
+
+-------------------------------------
+Generating 400 images for breed Bengal...
+
+Elapsed time: 871.5822920799255 seconds
+
+-------------------------------------
+Generating 400 images for breed Birman...
+
+Elapsed time: 875.4544534683228 seconds
+
+-------------------------------------
+Generating 400 images for breed Bombay...
+
+Elapsed time: 882.615494966507 seconds
+
+-------------------------------------
+Generating 400 images for breed boxer...
+
+Elapsed time: 881.4999840259552 seconds
+
+-------------------------------------
+Generating 400 images for breed British_Shorthair...
+
+Elapsed time: 968.4876179695129 seconds
+
+-------------------------------------
+Generating 400 images for breed chihuahua...
+
+Elapsed time: 892.02352643013 seconds
+
+-------------------------------------
+Generating 400 images for breed Egyptian_Mau...
+
+Elapsed time: 891.080084323883 seconds
+
+-------------------------------------
+Generating 400 images for breed english_cocker_spaniel...
+
+Elapsed time: 896.5289759635925 seconds
+
+-------------------------------------
+Generating 400 images for breed english_setter...
+
+Elapsed time: 901.6615221500397 seconds
+
+-------------------------------------
+Generating 400 images for breed german_shorthaired...
+
+Elapsed time: 899.3111083507538 seconds
+
+-------------------------------------
+Generating 400 images for breed great_pyrenees...
+
+Elapsed time: 900.1156086921692 seconds
+
+-------------------------------------
+Generating 400 images for breed havanese...
+
+Elapsed time: 897.6304070949554 seconds
+
+-------------------------------------
+Generating 400 images for breed japanese_chin...
+
+Elapsed time: 898.9876372814178 seconds
+
+-------------------------------------
+Generating 400 images for breed keeshond...
+
+Elapsed time: 893.6593713760376 seconds
+
+-------------------------------------
+Generating 400 images for breed leonberger...
+
+Elapsed time: 881.3376913070679 seconds
+
+-------------------------------------
+Generating 400 images for breed Maine_Coon...
+
+Elapsed time: 886.8263537883759 seconds
+
+-------------------------------------
+Generating 400 images for breed miniature_pinscher...
+
+Elapsed time: 887.3974514007568 seconds
+
+-------------------------------------
+Generating 400 images for breed newfoundland...
+
+Elapsed time: 892.9174470901489 seconds
+
+-------------------------------------
+Generating 400 images for breed Persian...
+
+Elapsed time: 895.6648366451263 seconds
+
+-------------------------------------
+Generating 400 images for breed pomeranian...
+
+Elapsed time: 893.3331680297852 seconds
+
+-------------------------------------
+Generating 400 images for breed pug...
+
+Elapsed time: 896.6140234470367 seconds
+
+-------------------------------------
+Generating 400 images for breed Ragdoll...
+
+Elapsed time: 897.6445035934448 seconds
+
+-------------------------------------
+Generating 400 images for breed Russian_Blue...
+
+Elapsed time: 888.3969857692719 seconds
+
+-------------------------------------
+Generating 400 images for breed saint_bernard...
+
+Elapsed time: 897.2127821445465 seconds
+
+-------------------------------------
+Generating 400 images for breed samoyed...
+
+Elapsed time: 896.5559413433075 seconds
+
+-------------------------------------
+Generating 400 images for breed scottish_terrier...
+
+Elapsed time: 899.298948764801 seconds
+
+-------------------------------------
+Generating 400 images for breed shiba_inu...
+
+Elapsed time: 885.0057580471039 seconds
+
+-------------------------------------
+Generating 400 images for breed Siamese...
+
+Elapsed time: 893.2842366695404 seconds
+
+-------------------------------------
+Generating 400 images for breed Sphynx...
+
+Elapsed time: 866.1333796977997 seconds
+
+-------------------------------------
+Generating 400 images for breed staffordshire_bull_terrier...
+
+Elapsed time: 902.3086786270142 seconds
+
+-------------------------------------
+Generating 400 images for breed wheaten_terrier...
+
+Elapsed time: 893.6862676143646 seconds
+
+-------------------------------------
+Generating 400 images for breed yorkshire_terrier...
+
+Elapsed time: 891.5047338008881 seconds
+

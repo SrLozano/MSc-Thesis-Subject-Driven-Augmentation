@@ -18,7 +18,7 @@ from torchvision.transforms import ToTensor, transforms, AutoAugmentPolicy
 
 class PetsModel(nn.Module):
     """
-    This class defines the model. In this case, ResNet34 - Feauture extraction are used
+    This class defines the model. In this case, ResNet34 - Feauture extraction is used
     """
 
     def __init__(self, num_classes, pretrained=True):

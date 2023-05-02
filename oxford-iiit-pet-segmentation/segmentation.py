@@ -239,6 +239,15 @@ optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate) 
 loss_function = nn.CrossEntropyLoss(ignore_index=255)
 
+"""
+RESUMEN DE LO QUE ESTOY INTENTADO
+NO ME FUNCIONABA CON DEEPLAB V3 ASÍ QUE ME METO FULL EN UNET
+SIGUIENDO: https://medium.com/@mhamdaan/multi-class-semantic-segmentation-with-u-net-pytorch-ee81a66bba89
+AHORA EL PROBLEMA QUE TENGO ES QUE LA MASCARA NO MANTIENE SUS VALORES [1, 2, 3]
+DE NORMAL ESTABA A 0 Y POR TANTO ERA MUY SENCILLO PARA LA RED PUES SOLO ES PONER TODO A 0. Y ASI SE IBA A 0 LA LOSS TAMBIEN
+¿QUE TENGO QUE HACER AHORA? HACER QUE LLEGUE A LA FUNCION LOSS Y PERO SIN ALTERAR SUS VALORES (U OTRO RANGO) PARA QUE UNET PUEDA APRENDER DE VERDAD
+"""
+
 def train(data, model, optimizer, loss_fn):
     print('Entering into train function')
     loss_values = []    

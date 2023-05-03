@@ -136,7 +136,7 @@ class PetsModelSegmentation(nn.Module):
         return self.network(xb)
 
 
-''''def train(dataloader, model, loss_fn, optimizer):
+def train(dataloader, model, loss_fn, optimizer):
     """
     This function trains a model with the given parameters and dataset
     :param dataloader: Training dataloader
@@ -150,32 +150,34 @@ class PetsModelSegmentation(nn.Module):
     model.train()
     
     # Compute loss for each batch and update model parameters
-    for batch, (X, y) in enumerate(train_dataloader):
+    for index, batch in enumerate(train_dataloader):
+        X, y = batch        
         X, y = X.to(device), y.to(device)
-        pred = model(X)
+        y = torch.squeeze(y)
+
+        # Compute model predictions
+        preds = model(X)  
     
         # Set the gradients of all the parameters in the neural network to zero
         optimizer.zero_grad()
 
-        loss_record = []
 
-        # Compute the gradients of the loss function for each image in the batch 
-        for i in range(0, len(y)):
-            loss = loss_fn(pred[i], y[i])
-            loss_record.append(loss.item())
-            loss.backward(retain_graph=True)
-        loss = loss_fn(pred, y)
-        loss.backward()
+        loss = loss_fn(preds, y.long()) 
+        optimizer.zero_grad()   
+        loss.backward() 
+
         # Update the parameters of the neural network based on the computed gradients
         optimizer.step()
 
         # Print progress
-        if batch % 100 == 0:
+        if index % 100 == 0:
             size = len(dataloader.dataset)
-            current = (batch + 1) * len(X)
-            print(f"Training loss: {np.array(loss_record).mean():>7f} [{current}/{size}]")
-    
-    # Compute training accuracy
+            current = (index + 1) * len(X)
+            print(f"Training loss: {loss.item():>7f} [{current}/{size}]")
+        
+        print("One lap completed")
+
+    '''# Compute training accuracy
     correct = 0
     total = 0
     with torch.no_grad(): # Speed up computations. No gradients needed.
@@ -187,12 +189,14 @@ class PetsModelSegmentation(nn.Module):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-    print('Training accuracy: %.2f %%' % (100 * correct / total))
+    print('Training accuracy: %.2f %%' % (100 * correct / total))'''
 
-    return loss.item(), correct/total'''
+    return loss.item()
 
 
 
+# Clean memory just in case. DELETE THIS
+torch.cuda.empty_cache()
 
 DATA_DIR = "/zhome/d1/6/191852"
 batch_size = 4
@@ -201,10 +205,16 @@ epochs = 10
 learning_rate = 10e-3
 freeze_layers = True
 
+# Define the custom function
+def custom_transform(tensor):
+    return (tensor * 255) - 1
+
+
 # Define normal transforms
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
-    transforms.ToTensor()
+    transforms.ToTensor(),
+    transforms.Lambda(custom_transform)
 ])
 
 training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform)
@@ -248,47 +258,6 @@ DE NORMAL ESTABA A 0 Y POR TANTO ERA MUY SENCILLO PARA LA RED PUES SOLO ES PONER
 ¿QUE TENGO QUE HACER AHORA? HACER QUE LLEGUE A LA FUNCION LOSS Y PERO SIN ALTERAR SUS VALORES (U OTRO RANGO) PARA QUE UNET PUEDA APRENDER DE VERDAD
 """
 
-def train(data, model, optimizer, loss_fn):
-    print('Entering into train function')
-    loss_values = []    
-    for index, batch in enumerate(data):         
-        X, y = batch        
-        X, y = X.to(device), y.to(device)        
-        preds = model(X)  
-        
-        print(y[0])
-        print(np.unique(np.array(y[0].cpu())))
-        y = torch.squeeze(y)
-        print(y.shape)
-        print(np.unique(np.array(y[0].cpu())))
-
-        loss = loss_fn(preds, y)        
-        optimizer.zero_grad()        
-        loss.backward()        
-        optimizer.step()  
-        print(loss.item())
-
-        '''transform = transforms.ToPILImage()
-        img = transform(y[0]).convert("L")
-        plt.figure(figsize=(20, 20))
-        plt.imshow(img)
-        plt.savefig(f"test.png")'''
-
-    return loss.item()
-
-'''# Compute loss for each batch and update model parameters
-for batch, (X, y) in enumerate(train_dataloader):
-    X, y = X.to(device), y.to(device)
-    pred = model(X)
-    
-    # Visualize segmentation maps of pred
-    transform = transforms.ToPILImage()
-    img = transform(pred[0].softmax(dim=1)).convert("L")
-    plt.figure(figsize=(20, 20))
-    plt.imshow(img)
-    plt.savefig(f"test.png")
-
-    break'''
 
 image = Image.open(f"{DATA_DIR}/oxford-iiit-pet/annotations/trimaps/Abyssinian_1.png").convert("L")
 image_np = np.array(image)
@@ -299,12 +268,7 @@ print("---------------------")
 # Training loop of the model
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
-    train(train_dataloader, model, optimizer, loss_fn)
-    #train(train_dataloader, model, loss_fn, optimizer)
-    # validate(validation_dataloader, model, loss_fn)'''
-
-
-
+    train(train_dataloader, model, loss_fn, optimizer)
 
 
 
@@ -320,3 +284,18 @@ print(type(pred['out'][0].softmax(dim=1)))
     plt.imshow(img)
     plt.savefig(f"test.png")
 '''
+
+
+'''# Compute loss for each batch and update model parameters
+for batch, (X, y) in enumerate(train_dataloader):
+    X, y = X.to(device), y.to(device)
+    pred = model(X)
+    
+    # Visualize segmentation maps of pred
+    transform = transforms.ToPILImage()
+    img = transform(pred[0].softmax(dim=1)).convert("L")
+    plt.figure(figsize=(20, 20))
+    plt.imshow(img)
+    plt.savefig(f"test.png")
+
+    break'''

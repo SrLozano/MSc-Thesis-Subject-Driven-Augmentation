@@ -105,7 +105,7 @@ breeds_to_generate = list(samples_by_breed.keys())
 
 
 # Data augmentation generation for the selected breeds
-for breed in breeds_to_generate:
+for breed in breeds_to_generate[0:1]:
 
     # Define model path depending on the generation technique (subject-driven or not)
     if subject_driven_technique == "stable-diffusion-prompt" or subject_driven_technique == "controlNet":

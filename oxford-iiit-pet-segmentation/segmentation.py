@@ -120,6 +120,8 @@ def train(dataloader, model, loss_fn, optimizer):
 
     # Set model to training mode
     model.train()
+
+    losses = []
     
     # Compute loss for each batch and update model parameters
     for index, batch in enumerate(train_dataloader):
@@ -143,13 +145,38 @@ def train(dataloader, model, loss_fn, optimizer):
         # Update the parameters of the neural network based on the computed gradients
         optimizer.step()
 
+        losses.append(loss.item())
+
         # Print progress
         if index % 100 == 0:
             size = len(dataloader.dataset)
             current = (index + 1) * len(X)
             print(f"Training loss: {loss.item():>7f} [{current}/{size}]")
         
-    return loss.item()
+    return np.array(losses).mean()
+
+
+def validate(val_dataloader, model, loss_fn):
+
+    # Set model to evaluation mode
+    model.eval()
+    
+    losses = []
+
+    # Turn off gradient calculation during model inference
+    with torch.no_grad():
+        for index, batch in enumerate(train_dataloader):
+            X, y = batch        
+            X, y = X.to(device), y.to(device)
+            y = torch.squeeze(y)
+
+            # Compute model predictions
+            preds = model(X)  
+        
+            # Compute the loss based on the predictions and the actual targets
+            losses.append(loss_fn(preds, y.long()).item())
+
+    return np.array(losses).mean()
 
 
 
@@ -206,5 +233,7 @@ loss_fn = nn.CrossEntropyLoss(ignore_index=255)
 # Training loop of the model
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
-    train(train_dataloader, model, loss_fn, optimizer)
-    
+    training_loss = train(train_dataloader, model, loss_fn, optimizer)
+    validation_loss = validate(validation_dataloader, model, loss_fn)
+
+    print(f"Training loss: {training_loss:>3f} \nValidation loss: {validation_loss:>3f}\n")

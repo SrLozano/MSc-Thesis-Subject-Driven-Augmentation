@@ -1,7 +1,9 @@
 import os
+import time
 import torch
 import random
 import numpy as np
+from datetime import datetime
 import matplotlib.pyplot as plt
 
 from PIL import Image
@@ -107,6 +109,25 @@ class UNET(nn.Module):
         
         return x 
 
+class EarlyStopper:
+    """
+    This class implements early stopping
+    """
+    def __init__(self, patience=1):
+        self.patience = patience
+        self.counter = 0
+        self.max_validation_accuracy = 0
+
+    def early_stop(self, validation_accuracy):
+        # Check if validation loss has decreased
+        if validation_accuracy > self.max_validation_accuracy:
+            self.max_validation_accuracy = validation_accuracy
+            self.counter = 0
+        elif validation_accuracy <= self.max_validation_accuracy:
+            self.counter += 1
+            if self.counter >= self.patience:
+                return True
+        return False
 
 def train(dataloader, model, loss_fn, optimizer):
     """
@@ -187,10 +208,12 @@ torch.cuda.empty_cache()
 DATA_DIR = "/zhome/d1/6/191852"
 batch_size = 4
 verbose = False
-epochs = 10
+epochs = 5
 learning_rate = 10e-3
 freeze_layers = True
 
+# Time the execution
+start_time = time.time()
 
 # Define the custom transform function to normalize the segmentation masks [0, 1, 2]
 def custom_transform(tensor):
@@ -230,10 +253,32 @@ if verbose: print(model)
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate) 
 loss_fn = nn.CrossEntropyLoss(ignore_index=255)
 
+# Define early stopper
+early_stopper = EarlyStopper(patience=5)
+
+training_loss = []
+validation_loss = []
+
 # Training loop of the model
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
-    training_loss = train(train_dataloader, model, loss_fn, optimizer)
-    validation_loss = validate(validation_dataloader, model, loss_fn)
+    aux_training_loss = train(train_dataloader, model, loss_fn, optimizer)
+    aux_validation_loss = validate(validation_dataloader, model, loss_fn)
 
-    print(f"Training loss: {training_loss:>3f} \nValidation loss: {validation_loss:>3f}\n")
+    print(f"Training loss: {aux_training_loss:>3f} \nValidation loss: {aux_validation_loss:>3f}\n")
+
+    # Check early stop
+    if early_stopper.early_stop(aux_validation_loss): 
+        print("Early stopping")            
+        break
+
+    training_loss.append(aux_training_loss)
+    validation_loss.append(aux_validation_loss)
+
+# Time elapsed
+end_time = time.time()
+elapsed_time = end_time - start_time
+print("Done!\n")
+print(f"Elapsed time: {elapsed_time} seconds\n")
+current_time = datetime.now().strftime("%H:%M:%S")
+print(f"Current time: {current_time}")

@@ -2,3 +2,270 @@ Downloading https://thor.robots.ox.ac.uk/datasets/pets/images.tar.gz to ../../..
 Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
 Downloading https://thor.robots.ox.ac.uk/datasets/pets/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz
 Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+-------------------------------------
+Started subject-driven fine tunning for breed Abyssinian...
+
+Executing subject-driven technique...
+
+Elapsed time: 333.1490406990051 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed american_bulldog...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.06882119178772 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed american_pit_bull_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.1743450164795 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed basset_hound...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.95613193511963 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed beagle...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.18920636177063 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Bengal...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.24939036369324 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Birman...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.24110889434814 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Bombay...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.6722662448883 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed boxer...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.47621941566467 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed British_Shorthair...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.83327269554138 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed chihuahua...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.29325795173645 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Egyptian_Mau...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.87494921684265 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed english_cocker_spaniel...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.88568830490112 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed english_setter...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.85116052627563 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed german_shorthaired...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.60663080215454 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed great_pyrenees...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.88066458702087 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed havanese...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.21571493148804 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed japanese_chin...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.2341616153717 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed keeshond...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.57157349586487 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed leonberger...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.88187408447266 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Maine_Coon...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.22024750709534 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed miniature_pinscher...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.13534116744995 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed newfoundland...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.85574340820312 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Persian...
+
+Executing subject-driven technique...
+
+Elapsed time: 242.0209355354309 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed pomeranian...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.64384198188782 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed pug...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.6118893623352 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Ragdoll...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.75596022605896 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Russian_Blue...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.3651795387268 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed saint_bernard...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.60393357276917 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed samoyed...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.8785891532898 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed scottish_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.44121432304382 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed shiba_inu...
+
+Executing subject-driven technique...
+
+Elapsed time: 242.3679780960083 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Siamese...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.22857308387756 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Sphynx...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.41484022140503 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed staffordshire_bull_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.5457854270935 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed wheaten_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.71460628509521 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed yorkshire_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 242.14387702941895 seconds
+
+-------------------------------------
+Generating 50 images for breed Abyssinian...
+
+Elapsed time: 134.44024753570557 seconds
+
+-------------------------------------
+Generating 50 images for breed american_bulldog...
+

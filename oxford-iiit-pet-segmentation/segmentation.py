@@ -15,6 +15,48 @@ from torchvision.models.segmentation.deeplabv3 import DeepLabHead
 import torchvision.transforms.functional as TF 
 
 
+"""
+EL OUTPUT EMITIDO SON PROBABILIDDADES DE PERTENENCIA A CADA UNA DE LAS CATERGORIAS.
+CONSULTAR: https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/ EN DETALLE
+"""
+
+
+def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
+
+    # Open images
+    images = []
+    for image_id in images_id:
+        image = Image.open(f"{DATA_DIR}/oxford-iiit-pet/images/{image_id}.jpg")
+
+        # Apply transform to image
+        images.append(transform(image))
+
+    # Set model to evaluation mode
+    model.eval()
+
+    # Get device
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+    # Turn off gradient calculation during model inference
+    with torch.no_grad():
+        x = np.stack(images)
+        x = torch.from_numpy(x)
+        x = x.to(device)
+        pred = model(x)['out']
+        print(pred[0].shape)
+        transform = transforms.ToPILImage()
+        img = transform(pred[0][0]).convert("L")
+        plt.figure(figsize=(20, 20))
+        plt.imshow(img)
+
+        current_time = datetime.now().strftime("%H:%M:%S")
+        plt.savefig(f"test_{current_time}.png")
+
+        print(np.unique(pred[0][0].cpu()))
+        print(len(np.unique(pred[0][0].cpu())))
+
+
+
 def visualize_segmentation_maps(images_id, DATA_DIR):
     """
     This function takes a list of image ids and displays the image and the corresponding segmentation map.
@@ -53,61 +95,35 @@ def visualize_segmentation_maps(images_id, DATA_DIR):
     plt.savefig(f"segmentation_training_data.pdf")
 
 
-class UNET(nn.Module):
-    
-    def __init__(self, in_channels=3, classes=1):
-        super(UNET, self).__init__()
-        self.layers = [in_channels, 64, 128, 256, 512, 1024]
-        
-        self.double_conv_downs = nn.ModuleList(
-            [self.__double_conv(layer, layer_n) for layer, layer_n in zip(self.layers[:-1], self.layers[1:])])
-        
-        self.up_trans = nn.ModuleList(
-            [nn.ConvTranspose2d(layer, layer_n, kernel_size=2, stride=2)
-             for layer, layer_n in zip(self.layers[::-1][:-2], self.layers[::-1][1:-1])])
-            
-        self.double_conv_ups = nn.ModuleList(
-        [self.__double_conv(layer, layer//2) for layer in self.layers[::-1][:-2]])
-        
-        self.max_pool_2x2 = nn.MaxPool2d(kernel_size=2, stride=2)
-        
-        self.final_conv = nn.Conv2d(64, classes, kernel_size=1)
 
-        
-    def __double_conv(self, in_channels, out_channels):
-        conv = nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1, bias=False),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True)
-        )
-        return conv
-    
-    def forward(self, x):
-        # Down layers
-        concat_layers = []
-        
-        for down in self.double_conv_downs:
-            x = down(x)
-            if down != self.double_conv_downs[-1]:
-                concat_layers.append(x)
-                x = self.max_pool_2x2(x)
-        
-        concat_layers = concat_layers[::-1]
-        
-        # Up layers
-        for up_trans, double_conv_up, concat_layer  in zip(self.up_trans, self.double_conv_ups, concat_layers):
-            x = up_trans(x)
-            if x.shape != concat_layer.shape:
-                x = TF.resize(x, concat_layer.shape[2:])
-            
-            concatenated = torch.cat((concat_layer, x), dim=1)
-            x = double_conv_up(concatenated)
-            
-        x = self.final_conv(x)
-        
-        return x 
+
+class PetsModelSegmentation(nn.Module):
+    """
+    This class defines the model. In this case, DeepLabv3 - Feauture extraction is used
+    """
+
+    def __init__(self, num_classes=3, pretrained=True):
+        """
+        DeepLabv3 class with custom head. DeepLabv3 model with the ResNet101 backbone
+        :param num_classes: The number of output channels in the dataset masks. Defaults to 3
+        """
+        super().__init__()
+
+        self.network = models.segmentation.deeplabv3_resnet101(pretrained=pretrained)
+
+        # Freeze all the layers except the last one
+        if freeze_layers == True:
+            for param in self.network.parameters():
+                param.requires_grad = False
+
+        # Replace last layer. Parameters of newly constructed modules have requires_grad=True by default
+        self.network.classifier = DeepLabHead(2048, num_classes)
+
+    def forward(self, xb):
+        return self.network(xb)
+
+
+
 
 class EarlyStopper:
     """
@@ -151,13 +167,17 @@ def train(dataloader, model, loss_fn, optimizer):
         y = torch.squeeze(y)
 
         # Compute model predictions
-        preds = model(X)  
+        preds = model(X)['out']  
     
         # Set the gradients of all the parameters in the neural network to zero
         optimizer.zero_grad()
 
         # Compute the loss based on the predictions and the actual targets
         loss = loss_fn(preds, y.long()) 
+
+        '''print("ESTO ES TRAINING")
+        print(np.unique(preds[0].cpu().detach().numpy()))
+        print(np.unique(y[0].cpu().detach().numpy()))'''
 
         # Compute the gradients for the parameters in the neural network
         optimizer.zero_grad()   
@@ -192,7 +212,7 @@ def validate(val_dataloader, model, loss_fn):
             y = torch.squeeze(y)
 
             # Compute model predictions
-            preds = model(X)  
+            preds = model(X)['out']  
         
             # Compute the loss based on the predictions and the actual targets
             losses.append(loss_fn(preds, y.long()).item())
@@ -244,7 +264,10 @@ images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with 
 visualize_segmentation_maps(images_id, DATA_DIR)
 
 # Initialize the model for this run
-model = UNET(in_channels=3, classes=3).to(device)
+#model = UNET(in_channels=3, classes=3).to(device)
+#model = UNet(n_channels=3, n_classes=3).to(device)
+model = PetsModelSegmentation(num_classes=3).to(device)
+
 
 # Print model if verbose
 if verbose: print(model)
@@ -258,6 +281,12 @@ early_stopper = EarlyStopper(patience=5)
 
 training_loss = []
 validation_loss = []
+
+print("Starting to get segmentation maps...\n")
+get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+
+
+
 
 # Training loop of the model
 for t in range(epochs):
@@ -274,6 +303,8 @@ for t in range(epochs):
 
     training_loss.append(aux_training_loss)
     validation_loss.append(aux_validation_loss)
+
+    get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
 
 # Time elapsed
 end_time = time.time()

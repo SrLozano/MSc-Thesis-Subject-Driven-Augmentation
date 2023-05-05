@@ -36,14 +36,23 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, breed, 
     """
     torch.cuda.empty_cache() # Clear memory
 
-    # Generate images using SD for textual inversion, dreamboth and stable diffusion prompt
-    if subject_driven_technique != "controlNet":
+    # Generate images using SD for dreamboth and stable diffusion prompt
+    if subject_driven_technique == "dreambooth" or subject_driven_technique == "stable-diffusion-prompt":
         for i in range(len(prompts)):
             pipe = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=torch.float16).to("cuda")
             images = pipe(prompts[i], num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=5).images
             save_images(images, keys[i], "inference")
-    
-    else:
+
+    # Generate images using textual inversion
+    elif subject_driven_technique == "textual-inversion":
+        for i in range(len(prompts)):
+            pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16).to("cuda")
+            pipe.load_textual_inversion(model_path)
+            images = pipe(prompts[i], num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=5).images
+            save_images(images, keys[i], "inference")
+
+    # Generate images using controlNet
+    elif subject_driven_technique == "controlNet":
         # Get a sample of images to apply controlNet to
         random_images = random.sample(samples_by_breed[breed], 5)
 
@@ -105,7 +114,7 @@ breeds_to_generate = list(samples_by_breed.keys())
 
 
 # Data augmentation generation for the selected breeds
-for breed in breeds_to_generate[0:1]:
+for breed in breeds_to_generate:
 
     # Define model path depending on the generation technique (subject-driven or not)
     if subject_driven_technique == "stable-diffusion-prompt" or subject_driven_technique == "controlNet":

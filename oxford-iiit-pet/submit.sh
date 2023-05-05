@@ -31,7 +31,7 @@
 
 #nvidia-smi
 
-#python prepare_dataset.py
+python prepare_dataset.py
 
 
 python subject_driven_augmentation.py
@@ -40,7 +40,7 @@ python subject_driven_augmentation.py
 python create_pictures.py
 
 
-#python classifier.py
+python classifier.py
 
 
-#python prepare_next_execution.py
+python prepare_next_execution.py

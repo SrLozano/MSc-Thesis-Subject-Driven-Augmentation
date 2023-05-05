@@ -83,7 +83,7 @@ class UNET(nn.Module):
         return conv
     
     def forward(self, x):
-        # down layers
+        # Down layers
         concat_layers = []
         
         for down in self.double_conv_downs:
@@ -94,7 +94,7 @@ class UNET(nn.Module):
         
         concat_layers = concat_layers[::-1]
         
-        # up layers
+        # Up layers
         for up_trans, double_conv_up, concat_layer  in zip(self.up_trans, self.double_conv_ups, concat_layers):
             x = up_trans(x)
             if x.shape != concat_layer.shape:
@@ -106,34 +106,6 @@ class UNET(nn.Module):
         x = self.final_conv(x)
         
         return x 
-
-
-class PetsModelSegmentation(nn.Module):
-    """
-    This class defines the model. In this case, DeepLabv3 - Feauture extraction is used
-    """
-
-    def __init__(self, num_classes=3, pretrained=True):
-        """
-        DeepLabv3 class with custom head. DeepLabv3 model with the ResNet101 backbone
-        :param outputchannels: The number of output channels in the dataset masks. Defaults to 1
-        """
-        super().__init__()
-
-        self.network = models.segmentation.deeplabv3_resnet101(pretrained=pretrained)
-
-        # Freeze all the layers except the last one
-        if freeze_layers == True:
-            for param in self.network.parameters():
-                param.requires_grad = False
-
-        # Replace last layer. Parameters of newly constructed modules have requires_grad=True by default
-        self.network.classifier = DeepLabHead(2048, num_classes)
-
-
-
-    def forward(self, xb):
-        return self.network(xb)
 
 
 def train(dataloader, model, loss_fn, optimizer):
@@ -161,8 +133,10 @@ def train(dataloader, model, loss_fn, optimizer):
         # Set the gradients of all the parameters in the neural network to zero
         optimizer.zero_grad()
 
-
+        # Compute the loss based on the predictions and the actual targets
         loss = loss_fn(preds, y.long()) 
+
+        # Compute the gradients for the parameters in the neural network
         optimizer.zero_grad()   
         loss.backward() 
 
@@ -175,22 +149,6 @@ def train(dataloader, model, loss_fn, optimizer):
             current = (index + 1) * len(X)
             print(f"Training loss: {loss.item():>7f} [{current}/{size}]")
         
-        print("One lap completed")
-
-    '''# Compute training accuracy
-    correct = 0
-    total = 0
-    with torch.no_grad(): # Speed up computations. No gradients needed.
-        for data in dataloader:
-            images, labels = data
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)['out']
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
-
-    print('Training accuracy: %.2f %%' % (100 * correct / total))'''
-
     return loss.item()
 
 
@@ -198,6 +156,7 @@ def train(dataloader, model, loss_fn, optimizer):
 # Clean memory just in case. DELETE THIS
 torch.cuda.empty_cache()
 
+# Hyperparameters definition
 DATA_DIR = "/zhome/d1/6/191852"
 batch_size = 4
 verbose = False
@@ -205,10 +164,10 @@ epochs = 10
 learning_rate = 10e-3
 freeze_layers = True
 
-# Define the custom function
+
+# Define the custom transform function to normalize the segmentation masks [0, 1, 2]
 def custom_transform(tensor):
     return (tensor * 255) - 1
-
 
 # Define normal transforms
 transform = transforms.Compose([
@@ -217,10 +176,11 @@ transform = transforms.Compose([
     transforms.Lambda(custom_transform)
 ])
 
+# Load training and validation data
 training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform)
 validation_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform, split="test")
 
-# Create data loaders.
+# Create data loaders
 train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
 validation_dataloader = DataLoader(validation_data, batch_size=batch_size, shuffle=True)
 
@@ -234,68 +194,17 @@ images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with 
 visualize_segmentation_maps(images_id, DATA_DIR)
 
 # Initialize the model for this run
-#model = PetsModelSegmentation(num_classes=1).to(device)
 model = UNET(in_channels=3, classes=3).to(device)
-
 
 # Print model if verbose
 if verbose: print(model)
 
-# Define loss function, optimizer and early stopper
-loss_fn = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
-
-
+# Define loss function and optimizer 
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate) 
-loss_function = nn.CrossEntropyLoss(ignore_index=255)
-
-"""
-RESUMEN DE LO QUE ESTOY INTENTADO
-NO ME FUNCIONABA CON DEEPLAB V3 ASÍ QUE ME METO FULL EN UNET
-SIGUIENDO: https://medium.com/@mhamdaan/multi-class-semantic-segmentation-with-u-net-pytorch-ee81a66bba89
-AHORA EL PROBLEMA QUE TENGO ES QUE LA MASCARA NO MANTIENE SUS VALORES [1, 2, 3]
-DE NORMAL ESTABA A 0 Y POR TANTO ERA MUY SENCILLO PARA LA RED PUES SOLO ES PONER TODO A 0. Y ASI SE IBA A 0 LA LOSS TAMBIEN
-¿QUE TENGO QUE HACER AHORA? HACER QUE LLEGUE A LA FUNCION LOSS Y PERO SIN ALTERAR SUS VALORES (U OTRO RANGO) PARA QUE UNET PUEDA APRENDER DE VERDAD
-"""
-
-
-image = Image.open(f"{DATA_DIR}/oxford-iiit-pet/annotations/trimaps/Abyssinian_1.png").convert("L")
-image_np = np.array(image)
-print(np.unique(image_np))
-
-print("---------------------")
+loss_fn = nn.CrossEntropyLoss(ignore_index=255)
 
 # Training loop of the model
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
     train(train_dataloader, model, loss_fn, optimizer)
-
-
-
-
-
-'''
-Visualize segmentation maps of pred
-print(type(pred['out'][0].softmax(dim=1)))
-    print(pred['out'][0].softmax(dim=1))
-    transform = transforms.ToPILImage()
-    img = transform(pred['out'][0].softmax(dim=1)).convert("L")
-    plt.figure(figsize=(20, 20))
-    plt.imshow(img)
-    plt.savefig(f"test.png")
-'''
-
-
-'''# Compute loss for each batch and update model parameters
-for batch, (X, y) in enumerate(train_dataloader):
-    X, y = X.to(device), y.to(device)
-    pred = model(X)
     
-    # Visualize segmentation maps of pred
-    transform = transforms.ToPILImage()
-    img = transform(pred[0].softmax(dim=1)).convert("L")
-    plt.figure(figsize=(20, 20))
-    plt.imshow(img)
-    plt.savefig(f"test.png")
-
-    break'''

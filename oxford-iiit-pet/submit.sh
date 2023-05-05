@@ -43,4 +43,4 @@ python create_pictures.py
 python classifier.py
 
 
-python prepare_next_execution.py
+#python prepare_next_execution.py

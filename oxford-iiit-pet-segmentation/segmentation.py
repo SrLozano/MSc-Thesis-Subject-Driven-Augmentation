@@ -15,45 +15,6 @@ from torchvision.models.segmentation.deeplabv3 import DeepLabHead
 import torchvision.transforms.functional as TF 
 
 
-"""
-EL OUTPUT EMITIDO SON PROBABILIDDADES DE PERTENENCIA A CADA UNA DE LAS CATERGORIAS.
-CONSULTAR: https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/ EN DETALLE
-"""
-
-
-def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
-
-    # Open images
-    images = []
-    for image_id in images_id:
-        image = Image.open(f"{DATA_DIR}/oxford-iiit-pet/images/{image_id}.jpg")
-
-        # Apply transform to image
-        images.append(transform(image))
-
-    # Set model to evaluation mode
-    model.eval()
-
-    # Get device
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-    # Turn off gradient calculation during model inference
-    with torch.no_grad():
-        x = np.stack(images)
-        x = torch.from_numpy(x)
-        x = x.to(device)
-        pred = model(x)['out']
-        print(pred[0].shape)
-        transform = transforms.ToPILImage()
-        img = transform(pred[0][0]).convert("L")
-        plt.figure(figsize=(20, 20))
-        plt.imshow(img)
-
-        current_time = datetime.now().strftime("%H:%M:%S")
-        plt.savefig(f"test_{current_time}.png")
-
-        print(np.unique(pred[0][0].cpu()))
-        print(len(np.unique(pred[0][0].cpu())))
 
 
 
@@ -93,8 +54,6 @@ def visualize_segmentation_maps(images_id, DATA_DIR):
 
     # Save figure
     plt.savefig(f"segmentation_training_data.pdf")
-
-
 
 
 class PetsModelSegmentation(nn.Module):
@@ -175,10 +134,6 @@ def train(dataloader, model, loss_fn, optimizer):
         # Compute the loss based on the predictions and the actual targets
         loss = loss_fn(preds, y.long()) 
 
-        '''print("ESTO ES TRAINING")
-        print(np.unique(preds[0].cpu().detach().numpy()))
-        print(np.unique(y[0].cpu().detach().numpy()))'''
-
         # Compute the gradients for the parameters in the neural network
         optimizer.zero_grad()   
         loss.backward() 
@@ -228,7 +183,7 @@ torch.cuda.empty_cache()
 DATA_DIR = "/zhome/d1/6/191852"
 batch_size = 4
 verbose = False
-epochs = 5
+epochs = 10
 learning_rate = 10e-3
 freeze_layers = True
 
@@ -264,10 +219,7 @@ images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with 
 visualize_segmentation_maps(images_id, DATA_DIR)
 
 # Initialize the model for this run
-#model = UNET(in_channels=3, classes=3).to(device)
-#model = UNet(n_channels=3, n_classes=3).to(device)
 model = PetsModelSegmentation(num_classes=3).to(device)
-
 
 # Print model if verbose
 if verbose: print(model)
@@ -283,9 +235,7 @@ training_loss = []
 validation_loss = []
 
 print("Starting to get segmentation maps...\n")
-get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
-
-
+#get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
 
 
 # Training loop of the model
@@ -304,7 +254,7 @@ for t in range(epochs):
     training_loss.append(aux_training_loss)
     validation_loss.append(aux_validation_loss)
 
-    get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+    #get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
 
 # Time elapsed
 end_time = time.time()

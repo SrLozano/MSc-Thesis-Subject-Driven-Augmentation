@@ -15,7 +15,93 @@ from torchvision.models.segmentation.deeplabv3 import DeepLabHead
 import torchvision.transforms.functional as TF 
 
 
+def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
+    """
+    This function takes a list of image ids and displays the image and the corresponding predicted segmentation map and ground truth.
+    :param model: The model to use for prediction.
+    :param images_id: A list of image ids.
+    :param DATA_DIR: The path to the dataset.
+    :param transform: The transform to apply to the images.
+    """
 
+    original_images = []
+    transfored_original_images = []
+    ground_truth_segmentations_maps = []
+    predicted_segmentations_maps = []
+
+    # Open original and ground truth images
+    for image_id in images_id:
+        original_image = Image.open(f"{DATA_DIR}/oxford-iiit-pet/images/{image_id}.jpg")
+        segmentation_map = Image.open(f"{DATA_DIR}/oxford-iiit-pet/annotations/trimaps/{image_id}.png").convert("L")
+
+        # Apply transform to the original image
+        transfored_original_images.append(transform(original_image))
+
+        original_images.append(original_image)
+        ground_truth_segmentations_maps.append(segmentation_map)
+
+    # Set model to evaluation mode
+    model.eval()
+
+    # Get device
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+    # Turn off gradient calculation during model inference
+    with torch.no_grad():
+        # Prepare images for model prediction
+        x = np.stack(transfored_original_images)
+        x = torch.from_numpy(x)
+        x = x.to(device)
+
+        # Make predictions
+        predictions = model(x)['out']
+
+        # Loop through the predictions and show the image and the corresponding segmentation map
+        for i in range(0, len(predictions)):
+
+            # Convert the output to a probability map and convert to numpy array
+            output_probs = torch.softmax(predictions[i], dim=0).cpu().numpy() 
+
+            # Get the predicted class for each pixel
+            predicted_classes = output_probs.argmax(axis=0)
+
+            # Convert the predicted classes to an image
+            predicted_segmentations_maps.append(Image.fromarray(np.uint8(predicted_classes)).convert("L"))
+
+
+        # Plot the images and their corresponding predicted and ground truth segmentation maps
+        images_to_plot = []
+        for i in range(0, len(original_images)):
+            images_to_plot.append(original_images[i].resize((224, 224)))
+            images_to_plot.append(ground_truth_segmentations_maps[i].resize((224, 224)))
+            images_to_plot.append(predicted_segmentations_maps[i])
+
+        # Calculate the number of rows and columns for the subplots
+        num_rows = len(images_to_plot) // 3
+        num_cols = 3
+
+        # Create a figure with n/3 rows and 3 columns of subplots
+        fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 5*num_rows))
+
+        # Loop through the image paths and display each image in a separate subplot
+        for i in range(len(images_to_plot)):
+            # Calculate the row and column indices for the current subplot
+            row_index = i // 3
+            col_index = i % 3
+            
+            # Display the image in the corresponding subplot
+            axes[row_index, col_index].imshow(images_to_plot[i])
+            
+            if col_index == 0:
+                axes[row_index, col_index].set_title("Original image")
+            elif col_index == 1:
+                axes[row_index, col_index].set_title("Segmentation mask")
+            else:
+                axes[row_index, col_index].set_title("Predicted segmentation mask")
+
+        # Save figure
+        current_time = datetime.now().strftime("%H:%M:%S")
+        plt.savefig(f"predicted_segmentation_maps_{current_time}.pdf")
 
 
 def visualize_segmentation_maps(images_id, DATA_DIR):
@@ -235,7 +321,7 @@ training_loss = []
 validation_loss = []
 
 print("Starting to get segmentation maps...\n")
-#get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
 
 
 # Training loop of the model
@@ -254,7 +340,7 @@ for t in range(epochs):
     training_loss.append(aux_training_loss)
     validation_loss.append(aux_validation_loss)
 
-    #get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+    get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
 
 # Time elapsed
 end_time = time.time()

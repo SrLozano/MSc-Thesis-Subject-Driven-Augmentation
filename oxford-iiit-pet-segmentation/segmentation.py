@@ -6,6 +6,7 @@ import random
 import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
+from sklearn.metrics import jaccard_score
 
 from PIL import Image
 from torch import nn
@@ -46,6 +47,7 @@ class EarlyStopper:
     """
     This class implements early stopping
     """
+
     def __init__(self, patience=1):
         self.patience = patience
         self.counter = 0
@@ -112,6 +114,13 @@ def train(dataloader, model, loss_fn, optimizer):
 
 
 def validate(val_dataloader, model, loss_fn):
+    """
+    This function validates a model with the given loss function and dataset
+    :param val_dataloader: Validation dataloader
+    :param model: Model to validate
+    :param loss_fn: Loss function
+    :return: Validation loss
+    """
 
     # Set model to evaluation mode
     model.eval()
@@ -120,7 +129,7 @@ def validate(val_dataloader, model, loss_fn):
 
     # Turn off gradient calculation during model inference
     with torch.no_grad():
-        for index, batch in enumerate(train_dataloader):
+        for index, batch in enumerate(val_dataloader):
             X, y = batch        
             X, y = X.to(device), y.to(device)
             y = torch.squeeze(y)
@@ -129,9 +138,54 @@ def validate(val_dataloader, model, loss_fn):
             preds = model(X)['out']  
         
             # Compute the loss based on the predictions and the actual targets
-            losses.append(loss_fn(preds, y.long()).item())
+            try:
+                losses.append(loss_fn(preds, y.long()).item())
+            except:
+                pass
 
     return np.array(losses).mean()
+
+
+def test(test_dataloader, model):
+    """
+    This function tests a model with the given dataset.
+    :param test_dataloader: Test dataloader
+    :param model: Model to test
+    :return: Average jaccard score
+    """
+
+    # Set model to evaluation mode
+    model.eval()
+    
+    jaccard_scores = [] 
+
+    # Turn off gradient calculation during model inference
+    with torch.no_grad():
+        for index, batch in enumerate(test_dataloader):
+            X, y = batch        
+            X, y = X.to(device), y.to(device)
+            y = torch.squeeze(y)
+
+            # Compute model predictions
+            predictions = model(X)['out']
+
+            # Loop through the predictions and show the image and the corresponding segmentation map
+            for i in range(0, len(predictions)):
+
+                # Convert the output to a probability map and convert to numpy array
+                output_probs = torch.softmax(predictions[i], dim=0).cpu().numpy() 
+
+                # Get the predicted class for each pixel
+                predicted_classes = output_probs.argmax(axis=0)
+                
+                # Compute the jaccard score 'weighted' to account for class imbalance
+                try:
+                    jc = jaccard_score(np.array(predicted_classes).flatten().astype(int), np.array(y[i].to('cpu')).flatten().astype(int), average='weighted')
+                    jaccard_scores.append(jc)
+                except:
+                    pass
+    
+    return np.array(jaccard_scores).mean()
 
 
 def create_plots(training_loss, validation_loss, epochs):
@@ -283,96 +337,102 @@ def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
         plt.savefig(f"predicted_segmentation_maps_{current_time}.pdf")
         plt.close() 
 
-# Hyperparameters definition
-DATA_DIR = "/zhome/d1/6/191852"
-batch_size = 4
-verbose = False
-epochs = 10
-learning_rate = 10e-3
-freeze_layers = True
 
-# Clean memory. DELETE THIS
-torch.cuda.empty_cache()
+if __name__ == "__main__":
 
-# Time the execution
-start_time = time.time()
+    # Hyperparameters definition
+    DATA_DIR = "/zhome/d1/6/191852"
+    batch_size = 4
+    verbose = False
+    epochs = 10
+    learning_rate = 10e-3
+    freeze_layers = True
 
-# Define the custom transform function to normalize the segmentation masks [0, 1, 2]
-def custom_transform(tensor):
-    return (tensor * 255) - 1
+    # Clean memory. DELETE THIS
+    torch.cuda.empty_cache()
 
-# Define normal transforms
-transform = transforms.Compose([
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
-    transforms.Lambda(custom_transform)
-])
+    # Time the execution
+    start_time = time.time()
 
-# Load training and validation data
-training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform)
-validation_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform, split="test")
+    # Define the custom transform function to normalize the segmentation masks [0, 1, 2]
+    def custom_transform(tensor):
+        return (tensor * 255) - 1
 
-# Create data loaders
-train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
-validation_dataloader = DataLoader(validation_data, batch_size=batch_size, shuffle=True)
+    # Define normal transforms
+    transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Lambda(custom_transform)
+    ])
 
-# Get cpu or gpu device for training.
-device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
-print(f"Using {device} device")
+    # Load training and validation data
+    training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform)
+    validation_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform, split="test")
 
-# Visualize segmentation maps of random samples
-images_id = random.Random(5).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/images") , 3)
-images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
-visualize_segmentation_maps(images_id, DATA_DIR)
+    # Create data loaders
+    train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
+    validation_dataloader = DataLoader(validation_data, batch_size=batch_size, shuffle=True)
 
+    # Get cpu or gpu device for training.
+    device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    print(f"Using {device} device")
 
-# Initialize the model for this run
-model = DeepLabV3PetsSegmentation(num_classes=3).to(device)
-
-# Print model if verbose
-if verbose: print(model)
-
-# Define loss function and optimizer 
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate) 
-loss_fn = nn.CrossEntropyLoss(ignore_index=255)
-
-# Define early stopper
-early_stopper = EarlyStopper(patience=5)
-
-training_loss = []
-validation_loss = []
-
-# Get random images_id for visualization
-images_id = random.Random(2).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/images") , 3)
-images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
+    # Visualize segmentation maps of random samples
+    images_id = random.Random(5).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/images") , 3)
+    images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
+    visualize_segmentation_maps(images_id, DATA_DIR)
 
 
-# Training loop of the model
-for t in range(epochs):
-    print(f"Epoch {t+1}\n-------------------------------")
-    aux_training_loss = train(train_dataloader, model, loss_fn, optimizer)
-    aux_validation_loss = validate(validation_dataloader, model, loss_fn)
+    # Initialize the model for this run
+    model = DeepLabV3PetsSegmentation(num_classes=3).to(device)
 
-    print(f"Training loss: {aux_training_loss:>3f} \nValidation loss: {aux_validation_loss:>3f}\n")
+    # Print model if verbose
+    if verbose: print(model)
 
-    # Check early stop
-    if early_stopper.early_stop(aux_validation_loss): 
-        print("Early stopping")            
-        break
+    # Define loss function and optimizer 
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate) 
+    loss_fn = nn.CrossEntropyLoss(ignore_index=255)
 
-    training_loss.append(aux_training_loss)
-    validation_loss.append(aux_validation_loss)
+    # Define early stopper
+    early_stopper = EarlyStopper(patience=5)
 
-    get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+    training_loss = []
+    validation_loss = []
 
-# Plot training and validation loss
-create_plots(training_loss, validation_loss, epochs)
+    # Get random images_id for visualization
+    images_id = random.Random(2).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/images") , 3)
+    images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
 
 
-# Time elapsed
-end_time = time.time()
-elapsed_time = end_time - start_time
-print("Done!\n")
-print(f"Elapsed time: {elapsed_time} seconds\n")
-current_time = datetime.now().strftime("%H:%M:%S")
-print(f"Current time: {current_time}")
+    # Training loop of the model
+    for t in range(epochs):
+        print(f"Epoch {t+1}\n-------------------------------")
+        aux_training_loss = train(train_dataloader, model, loss_fn, optimizer)
+        aux_validation_loss = validate(validation_dataloader, model, loss_fn)
+
+        print(f"Training loss: {aux_training_loss:>3f} \nValidation loss: {aux_validation_loss:>3f}\n")
+
+        # Check early stop
+        if early_stopper.early_stop(aux_validation_loss): 
+            print("Early stopping")            
+            break
+
+        training_loss.append(aux_training_loss)
+        validation_loss.append(aux_validation_loss)
+
+        jaccard_score = test(validation_dataloader, model)
+        print(f"Jaccard score: {jaccard_score}")
+
+        get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+
+    # Plot training and validation loss
+    create_plots(training_loss, validation_loss, epochs)
+
+
+    # Time elapsed
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("Done!\n")
+    print(f"Elapsed time: {elapsed_time} seconds\n")
+    current_time = datetime.now().strftime("%H:%M:%S")
+    print(f"Current time: {current_time}")

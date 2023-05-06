@@ -1,3 +1,4 @@
+# Import dependencies
 import os
 import time
 import torch
@@ -14,6 +15,184 @@ from torchvision.transforms import ToTensor, transforms
 from torchvision.models.segmentation.deeplabv3 import DeepLabHead
 import torchvision.transforms.functional as TF 
 
+
+class DeepLabV3PetsSegmentation(nn.Module):
+    """
+    This class defines the model. In this case, DeepLabv3 - Feauture extraction is used
+    """
+
+    def __init__(self, num_classes=3, pretrained=True):
+        """
+        DeepLabv3 class with custom head. DeepLabv3 model with the ResNet101 backbone
+        :param num_classes: The number of output channels in the dataset masks. Defaults to 3
+        """
+        super().__init__()
+
+        self.network = models.segmentation.deeplabv3_resnet101(pretrained=pretrained)
+
+        # Freeze all the layers except the last one
+        if freeze_layers == True:
+            for param in self.network.parameters():
+                param.requires_grad = False
+
+        # Replace last layer. Parameters of newly constructed modules have requires_grad=True by default
+        self.network.classifier = DeepLabHead(2048, num_classes)
+
+    def forward(self, xb):
+        return self.network(xb)
+
+
+class EarlyStopper:
+    """
+    This class implements early stopping
+    """
+    def __init__(self, patience=1):
+        self.patience = patience
+        self.counter = 0
+        self.max_validation_accuracy = 0
+
+    def early_stop(self, validation_accuracy):
+        # Check if validation loss has decreased
+        if validation_accuracy > self.max_validation_accuracy:
+            self.max_validation_accuracy = validation_accuracy
+            self.counter = 0
+        elif validation_accuracy <= self.max_validation_accuracy:
+            self.counter += 1
+            if self.counter >= self.patience:
+                return True
+        return False
+
+
+def train(dataloader, model, loss_fn, optimizer):
+    """
+    This function trains a model with the given parameters and dataset
+    :param dataloader: Training dataloader
+    :param model: Model to train
+    :param loss_fn: Loss function
+    :param optimizer: Optimizer
+    :return: Training loss
+    """
+
+    # Set model to training mode
+    model.train()
+
+    losses = []
+    
+    # Compute loss for each batch and update model parameters
+    for index, batch in enumerate(train_dataloader):
+        X, y = batch        
+        X, y = X.to(device), y.to(device)
+        y = torch.squeeze(y)
+
+        # Compute model predictions
+        preds = model(X)['out']  
+    
+        # Set the gradients of all the parameters in the neural network to zero
+        optimizer.zero_grad()
+
+        # Compute the loss based on the predictions and the actual targets
+        loss = loss_fn(preds, y.long()) 
+
+        # Compute the gradients for the parameters in the neural network
+        optimizer.zero_grad()   
+        loss.backward() 
+
+        # Update the parameters of the neural network based on the computed gradients
+        optimizer.step()
+
+        losses.append(loss.item())
+
+        # Print progress
+        if index % 1000 == 0:
+            size = len(dataloader.dataset)
+            current = (index + 1) * len(X)
+            print(f"Training loss: {loss.item():>7f} [{current}/{size}]")
+        
+    return np.array(losses).mean()
+
+
+def validate(val_dataloader, model, loss_fn):
+
+    # Set model to evaluation mode
+    model.eval()
+    
+    losses = []
+
+    # Turn off gradient calculation during model inference
+    with torch.no_grad():
+        for index, batch in enumerate(train_dataloader):
+            X, y = batch        
+            X, y = X.to(device), y.to(device)
+            y = torch.squeeze(y)
+
+            # Compute model predictions
+            preds = model(X)['out']  
+        
+            # Compute the loss based on the predictions and the actual targets
+            losses.append(loss_fn(preds, y.long()).item())
+
+    return np.array(losses).mean()
+
+
+def create_plots(training_loss, validation_loss, epochs):
+    """
+    This functions creates the plot for the loss evolution in training and validation
+    :param training_loss: Record of training loss values
+    :param validation_loss: Record of validation loss values
+    :param epochs: Number of epochs
+    :return: It saves the accuracy and loss plots
+    """
+    
+    # Loss plot
+    plt.subplots(figsize=(15, 15))
+    plt.plot(training_loss)
+    plt.plot(validation_loss)
+    plt.title(f'Model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.xticks(np.arange(epochs, step=2))
+    plt.legend(['train', 'val'], loc='upper left')
+    plt.savefig(f'loss.pdf')
+    plt.close() 
+
+
+def visualize_segmentation_maps(images_id, DATA_DIR):
+    """
+    This function takes a list of image ids and displays the image and the corresponding segmentation map.
+    :param images_id: A list of image ids.
+    :param DATA_DIR: The path to the dataset.
+    """
+
+    # Open images
+    images = []
+    for image_id in images_id:
+        images.append(Image.open(f"{DATA_DIR}/oxford-iiit-pet/images/{image_id}.jpg"))
+        images.append(Image.open(f"{DATA_DIR}/oxford-iiit-pet/annotations/trimaps/{image_id}.png").convert("L"))
+
+    # Calculate the number of rows and columns for the subplots
+    num_rows = len(images) // 2
+    num_cols = 2
+
+    # Create a figure with n/2 rows and 2 columns of subplots
+    fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 5*num_rows))
+
+    # Loop through the image paths and display each image in a separate subplot
+    for i in range(len(images)):
+        # Calculate the row and column indices for the current subplot
+        row_index = i // 2
+        col_index = i % 2
+        
+        # Display the image in the corresponding subplot
+        axes[row_index, col_index].imshow(images[i])
+        
+        if col_index == 0:
+            axes[row_index, col_index].set_title("Original image")
+        else:
+            axes[row_index, col_index].set_title("Segmentation mask")
+
+    # Save figure
+    plt.savefig(f"segmentation_training_data.pdf")
+    plt.close() 
 
 def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
     """
@@ -102,168 +281,7 @@ def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
         # Save figure
         current_time = datetime.now().strftime("%H:%M:%S")
         plt.savefig(f"predicted_segmentation_maps_{current_time}.pdf")
-
-
-def visualize_segmentation_maps(images_id, DATA_DIR):
-    """
-    This function takes a list of image ids and displays the image and the corresponding segmentation map.
-    :param images_id: A list of image ids.
-    :param DATA_DIR: The path to the dataset.
-    """
-
-    # Open images
-    images = []
-    for image_id in images_id:
-        images.append(Image.open(f"{DATA_DIR}/oxford-iiit-pet/images/{image_id}.jpg"))
-        images.append(Image.open(f"{DATA_DIR}/oxford-iiit-pet/annotations/trimaps/{image_id}.png").convert("L"))
-
-    # Calculate the number of rows and columns for the subplots
-    num_rows = len(images) // 2
-    num_cols = 2
-
-    # Create a figure with n/2 rows and 2 columns of subplots
-    fig, axes = plt.subplots(num_rows, num_cols, figsize=(10, 5*num_rows))
-
-    # Loop through the image paths and display each image in a separate subplot
-    for i in range(len(images)):
-        # Calculate the row and column indices for the current subplot
-        row_index = i // 2
-        col_index = i % 2
-        
-        # Display the image in the corresponding subplot
-        axes[row_index, col_index].imshow(images[i])
-        
-        if col_index == 0:
-            axes[row_index, col_index].set_title("Original image")
-        else:
-            axes[row_index, col_index].set_title("Segmentation mask")
-
-    # Save figure
-    plt.savefig(f"segmentation_training_data.pdf")
-
-
-class PetsModelSegmentation(nn.Module):
-    """
-    This class defines the model. In this case, DeepLabv3 - Feauture extraction is used
-    """
-
-    def __init__(self, num_classes=3, pretrained=True):
-        """
-        DeepLabv3 class with custom head. DeepLabv3 model with the ResNet101 backbone
-        :param num_classes: The number of output channels in the dataset masks. Defaults to 3
-        """
-        super().__init__()
-
-        self.network = models.segmentation.deeplabv3_resnet101(pretrained=pretrained)
-
-        # Freeze all the layers except the last one
-        if freeze_layers == True:
-            for param in self.network.parameters():
-                param.requires_grad = False
-
-        # Replace last layer. Parameters of newly constructed modules have requires_grad=True by default
-        self.network.classifier = DeepLabHead(2048, num_classes)
-
-    def forward(self, xb):
-        return self.network(xb)
-
-
-
-
-class EarlyStopper:
-    """
-    This class implements early stopping
-    """
-    def __init__(self, patience=1):
-        self.patience = patience
-        self.counter = 0
-        self.max_validation_accuracy = 0
-
-    def early_stop(self, validation_accuracy):
-        # Check if validation loss has decreased
-        if validation_accuracy > self.max_validation_accuracy:
-            self.max_validation_accuracy = validation_accuracy
-            self.counter = 0
-        elif validation_accuracy <= self.max_validation_accuracy:
-            self.counter += 1
-            if self.counter >= self.patience:
-                return True
-        return False
-
-def train(dataloader, model, loss_fn, optimizer):
-    """
-    This function trains a model with the given parameters and dataset
-    :param dataloader: Training dataloader
-    :param model: Model to train
-    :param loss_fn: Loss function
-    :param optimizer: Optimizer
-    :return: Training loss
-    """
-
-    # Set model to training mode
-    model.train()
-
-    losses = []
-    
-    # Compute loss for each batch and update model parameters
-    for index, batch in enumerate(train_dataloader):
-        X, y = batch        
-        X, y = X.to(device), y.to(device)
-        y = torch.squeeze(y)
-
-        # Compute model predictions
-        preds = model(X)['out']  
-    
-        # Set the gradients of all the parameters in the neural network to zero
-        optimizer.zero_grad()
-
-        # Compute the loss based on the predictions and the actual targets
-        loss = loss_fn(preds, y.long()) 
-
-        # Compute the gradients for the parameters in the neural network
-        optimizer.zero_grad()   
-        loss.backward() 
-
-        # Update the parameters of the neural network based on the computed gradients
-        optimizer.step()
-
-        losses.append(loss.item())
-
-        # Print progress
-        if index % 100 == 0:
-            size = len(dataloader.dataset)
-            current = (index + 1) * len(X)
-            print(f"Training loss: {loss.item():>7f} [{current}/{size}]")
-        
-    return np.array(losses).mean()
-
-
-def validate(val_dataloader, model, loss_fn):
-
-    # Set model to evaluation mode
-    model.eval()
-    
-    losses = []
-
-    # Turn off gradient calculation during model inference
-    with torch.no_grad():
-        for index, batch in enumerate(train_dataloader):
-            X, y = batch        
-            X, y = X.to(device), y.to(device)
-            y = torch.squeeze(y)
-
-            # Compute model predictions
-            preds = model(X)['out']  
-        
-            # Compute the loss based on the predictions and the actual targets
-            losses.append(loss_fn(preds, y.long()).item())
-
-    return np.array(losses).mean()
-
-
-
-# Clean memory just in case. DELETE THIS
-torch.cuda.empty_cache()
+        plt.close() 
 
 # Hyperparameters definition
 DATA_DIR = "/zhome/d1/6/191852"
@@ -272,6 +290,9 @@ verbose = False
 epochs = 10
 learning_rate = 10e-3
 freeze_layers = True
+
+# Clean memory. DELETE THIS
+torch.cuda.empty_cache()
 
 # Time the execution
 start_time = time.time()
@@ -304,8 +325,9 @@ images_id = random.Random(5).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/imag
 images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
 visualize_segmentation_maps(images_id, DATA_DIR)
 
+
 # Initialize the model for this run
-model = PetsModelSegmentation(num_classes=3).to(device)
+model = DeepLabV3PetsSegmentation(num_classes=3).to(device)
 
 # Print model if verbose
 if verbose: print(model)
@@ -320,8 +342,9 @@ early_stopper = EarlyStopper(patience=5)
 training_loss = []
 validation_loss = []
 
-print("Starting to get segmentation maps...\n")
-get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+# Get random images_id for visualization
+images_id = random.Random(2).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/images") , 3)
+images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
 
 
 # Training loop of the model
@@ -341,6 +364,10 @@ for t in range(epochs):
     validation_loss.append(aux_validation_loss)
 
     get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
+
+# Plot training and validation loss
+create_plots(training_loss, validation_loss, epochs)
+
 
 # Time elapsed
 end_time = time.time()

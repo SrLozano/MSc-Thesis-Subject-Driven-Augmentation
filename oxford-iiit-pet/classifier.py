@@ -172,6 +172,7 @@ def create_plots(training_loss, validation_loss, training_accuracy, validation_a
     plt.xticks(np.arange(epochs, step=5))
     plt.legend(['train', 'val'], loc='upper left')
     plt.savefig(f'loss.pdf')
+    plt.close()
 
 
 def create_confusion_matrix(dataloader, model):
@@ -205,6 +206,7 @@ def create_confusion_matrix(dataloader, model):
                           xticklabels=target_names, yticklabels=target_names)
     fig = heatmap.get_figure()
     fig.savefig('confusion_matrix.pdf')
+    plt.close() 
 
 
 if __name__ == "__main__":

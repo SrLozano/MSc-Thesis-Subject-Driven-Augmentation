@@ -1,0 +1,730 @@
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+-------------------------------------
+Started subject-driven fine tunning for breed Abyssinian...
+
+Executing subject-driven technique...
+
+Elapsed time: 386.55585408210754 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed american_bulldog...
+
+Executing subject-driven technique...
+
+Elapsed time: 237.74617290496826 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed american_pit_bull_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 233.07477355003357 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed basset_hound...
+
+Executing subject-driven technique...
+
+Elapsed time: 236.75940465927124 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed beagle...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.19169116020203 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Bengal...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.78233885765076 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Birman...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.2607879638672 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Bombay...
+
+Executing subject-driven technique...
+
+Elapsed time: 232.70250153541565 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed boxer...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.74211430549622 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed British_Shorthair...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.528804063797 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed chihuahua...
+
+Executing subject-driven technique...
+
+Elapsed time: 243.86380243301392 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Egyptian_Mau...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.2543876171112 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed english_cocker_spaniel...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.1875925064087 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed english_setter...
+
+Executing subject-driven technique...
+
+Elapsed time: 237.65591287612915 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed german_shorthaired...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.69958305358887 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed great_pyrenees...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.82245326042175 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed havanese...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.12561058998108 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed japanese_chin...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.3174467086792 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed keeshond...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.66542887687683 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed leonberger...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.7387592792511 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Maine_Coon...
+
+Executing subject-driven technique...
+
+Elapsed time: 241.31525206565857 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed miniature_pinscher...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.63087821006775 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed newfoundland...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.45633387565613 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Persian...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.4065945148468 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed pomeranian...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.74181032180786 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed pug...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.7636821269989 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Ragdoll...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.14661526679993 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Russian_Blue...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.13142704963684 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed saint_bernard...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.21192717552185 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed samoyed...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.79669761657715 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed scottish_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.29122805595398 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed shiba_inu...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.47197103500366 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Siamese...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.84847617149353 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed Sphynx...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.8406572341919 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed staffordshire_bull_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 239.9586684703827 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed wheaten_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 238.3170382976532 seconds
+
+-------------------------------------
+Started subject-driven fine tunning for breed yorkshire_terrier...
+
+Executing subject-driven technique...
+
+Elapsed time: 240.02099442481995 seconds
+
+-------------------------------------
+Generating 50 images for breed Abyssinian...
+
+Elapsed time: 149.95027112960815 seconds
+
+-------------------------------------
+Generating 50 images for breed american_bulldog...
+
+Elapsed time: 146.22393989562988 seconds
+
+-------------------------------------
+Generating 50 images for breed american_pit_bull_terrier...
+
+Elapsed time: 146.8170132637024 seconds
+
+-------------------------------------
+Generating 50 images for breed basset_hound...
+
+Elapsed time: 147.69016551971436 seconds
+
+-------------------------------------
+Generating 50 images for breed beagle...
+
+Elapsed time: 146.26159954071045 seconds
+
+-------------------------------------
+Generating 50 images for breed Bengal...
+
+Elapsed time: 145.6445827484131 seconds
+
+-------------------------------------
+Generating 50 images for breed Birman...
+
+Elapsed time: 147.26835322380066 seconds
+
+-------------------------------------
+Generating 50 images for breed Bombay...
+
+Elapsed time: 145.91046953201294 seconds
+
+-------------------------------------
+Generating 50 images for breed boxer...
+
+Elapsed time: 146.6303427219391 seconds
+
+-------------------------------------
+Generating 50 images for breed British_Shorthair...
+
+Elapsed time: 145.52035856246948 seconds
+
+-------------------------------------
+Generating 50 images for breed chihuahua...
+
+Elapsed time: 145.71527194976807 seconds
+
+-------------------------------------
+Generating 50 images for breed Egyptian_Mau...
+
+Elapsed time: 145.90757822990417 seconds
+
+-------------------------------------
+Generating 50 images for breed english_cocker_spaniel...
+
+Elapsed time: 147.4604070186615 seconds
+
+-------------------------------------
+Generating 50 images for breed english_setter...
+
+Elapsed time: 147.03943276405334 seconds
+
+-------------------------------------
+Generating 50 images for breed german_shorthaired...
+
+Elapsed time: 145.06463360786438 seconds
+
+-------------------------------------
+Generating 50 images for breed great_pyrenees...
+
+Elapsed time: 147.00875520706177 seconds
+
+-------------------------------------
+Generating 50 images for breed havanese...
+
+Elapsed time: 146.57280659675598 seconds
+
+-------------------------------------
+Generating 50 images for breed japanese_chin...
+
+Elapsed time: 146.46963906288147 seconds
+
+-------------------------------------
+Generating 50 images for breed keeshond...
+
+Elapsed time: 147.13421726226807 seconds
+
+-------------------------------------
+Generating 50 images for breed leonberger...
+
+Elapsed time: 147.5148148536682 seconds
+
+-------------------------------------
+Generating 50 images for breed Maine_Coon...
+
+Elapsed time: 146.26622104644775 seconds
+
+-------------------------------------
+Generating 50 images for breed miniature_pinscher...
+
+Elapsed time: 146.28391075134277 seconds
+
+-------------------------------------
+Generating 50 images for breed newfoundland...
+
+Elapsed time: 146.9818732738495 seconds
+
+-------------------------------------
+Generating 50 images for breed Persian...
+
+Elapsed time: 146.78448176383972 seconds
+
+-------------------------------------
+Generating 50 images for breed pomeranian...
+
+Elapsed time: 148.12345957756042 seconds
+
+-------------------------------------
+Generating 50 images for breed pug...
+
+Elapsed time: 147.3617124557495 seconds
+
+-------------------------------------
+Generating 50 images for breed Ragdoll...
+
+Elapsed time: 146.0666582584381 seconds
+
+-------------------------------------
+Generating 50 images for breed Russian_Blue...
+
+Elapsed time: 147.48176836967468 seconds
+
+-------------------------------------
+Generating 50 images for breed saint_bernard...
+
+Elapsed time: 147.52815413475037 seconds
+
+-------------------------------------
+Generating 50 images for breed samoyed...
+
+Elapsed time: 148.14115858078003 seconds
+
+-------------------------------------
+Generating 50 images for breed scottish_terrier...
+
+Elapsed time: 146.72996020317078 seconds
+
+-------------------------------------
+Generating 50 images for breed shiba_inu...
+
+Elapsed time: 147.70838689804077 seconds
+
+-------------------------------------
+Generating 50 images for breed Siamese...
+
+Elapsed time: 147.26847958564758 seconds
+
+-------------------------------------
+Generating 50 images for breed Sphynx...
+
+Elapsed time: 143.8438687324524 seconds
+
+-------------------------------------
+Generating 50 images for breed staffordshire_bull_terrier...
+
+Elapsed time: 146.91567730903625 seconds
+
+-------------------------------------
+Generating 50 images for breed wheaten_terrier...
+
+Elapsed time: 145.595556974411 seconds
+
+-------------------------------------
+Generating 50 images for breed yorkshire_terrier...
+
+Elapsed time: 147.71817135810852 seconds
+
+Not using data augmentation
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 3.853781  [16/2683]
+Training loss: 3.402235  [1616/2683]
+Training accuracy: 16.92 %
+Validation loss: 3.235089
+Validation accuracy: 17.63% 
+
+Epoch 2
+-------------------------------
+Training loss: 3.299647  [16/2683]
+Training loss: 3.055105  [1616/2683]
+Training accuracy: 39.66 %
+Validation loss: 2.863773
+Validation accuracy: 34.39% 
+
+Epoch 3
+-------------------------------
+Training loss: 2.818870  [16/2683]
+Training loss: 2.437960  [1616/2683]
+Training accuracy: 57.03 %
+Validation loss: 2.516739
+Validation accuracy: 49.07% 
+
+Epoch 4
+-------------------------------
+Training loss: 2.442567  [16/2683]
+Training loss: 2.411124  [1616/2683]
+Training accuracy: 69.06 %
+Validation loss: 2.241448
+Validation accuracy: 59.44% 
+
+Epoch 5
+-------------------------------
+Training loss: 2.396374  [16/2683]
+Training loss: 1.946194  [1616/2683]
+Training accuracy: 76.89 %
+Validation loss: 2.021830
+Validation accuracy: 65.34% 
+
+Epoch 6
+-------------------------------
+Training loss: 2.030380  [16/2683]
+Training loss: 1.859828  [1616/2683]
+Training accuracy: 79.72 %
+Validation loss: 1.830020
+Validation accuracy: 68.23% 
+
+Epoch 7
+-------------------------------
+Training loss: 1.529305  [16/2683]
+Training loss: 1.880048  [1616/2683]
+Training accuracy: 81.89 %
+Validation loss: 1.662591
+Validation accuracy: 71.34% 
+
+Epoch 8
+-------------------------------
+Training loss: 1.442992  [16/2683]
+Training loss: 1.597855  [1616/2683]
+Training accuracy: 84.20 %
+Validation loss: 1.540680
+Validation accuracy: 73.20% 
+
+Epoch 9
+-------------------------------
+Training loss: 0.874566  [16/2683]
+Training loss: 1.352524  [1616/2683]
+Training accuracy: 85.35 %
+Validation loss: 1.439223
+Validation accuracy: 73.42% 
+
+Epoch 10
+-------------------------------
+Training loss: 1.131821  [16/2683]
+Training loss: 1.122905  [1616/2683]
+Training accuracy: 85.46 %
+Validation loss: 1.347793
+Validation accuracy: 74.73% 
+
+Epoch 11
+-------------------------------
+Training loss: 1.784326  [16/2683]
+Training loss: 1.118857  [1616/2683]
+Training accuracy: 86.95 %
+Validation loss: 1.273420
+Validation accuracy: 75.22% 
+
+Epoch 12
+-------------------------------
+Training loss: 1.272350  [16/2683]
+Training loss: 0.951313  [1616/2683]
+Training accuracy: 86.99 %
+Validation loss: 1.208349
+Validation accuracy: 75.98% 
+
+Epoch 13
+-------------------------------
+Training loss: 1.170930  [16/2683]
+Training loss: 0.943378  [1616/2683]
+Training accuracy: 88.04 %
+Validation loss: 1.136752
+Validation accuracy: 77.07% 
+
+Epoch 14
+-------------------------------
+Training loss: 0.929777  [16/2683]
+Training loss: 1.155658  [1616/2683]
+Training accuracy: 88.18 %
+Validation loss: 1.109052
+Validation accuracy: 76.58% 
+
+Epoch 15
+-------------------------------
+Training loss: 0.791689  [16/2683]
+Training loss: 1.034955  [1616/2683]
+Training accuracy: 88.07 %
+Validation loss: 1.067019
+Validation accuracy: 77.07% 
+
+Epoch 16
+-------------------------------
+Training loss: 0.898217  [16/2683]
+Training loss: 0.952095  [1616/2683]
+Training accuracy: 89.34 %
+Validation loss: 1.016209
+Validation accuracy: 78.66% 
+
+Epoch 17
+-------------------------------
+Training loss: 1.017753  [16/2683]
+Training loss: 0.989526  [1616/2683]
+Training accuracy: 89.82 %
+Validation loss: 0.994549
+Validation accuracy: 78.11% 
+
+Epoch 18
+-------------------------------
+Training loss: 0.691248  [16/2683]
+Training loss: 0.727550  [1616/2683]
+Training accuracy: 89.68 %
+Validation loss: 0.960993
+Validation accuracy: 78.38% 
+
+Epoch 19
+-------------------------------
+Training loss: 0.834679  [16/2683]
+Training loss: 0.811961  [1616/2683]
+Training accuracy: 89.60 %
+Validation loss: 0.947849
+Validation accuracy: 78.11% 
+
+Epoch 20
+-------------------------------
+Training loss: 0.913859  [16/2683]
+Training loss: 0.524139  [1616/2683]
+Training accuracy: 90.23 %
+Validation loss: 0.909831
+Validation accuracy: 79.26% 
+
+Epoch 21
+-------------------------------
+Training loss: 0.703900  [16/2683]
+Training loss: 0.473331  [1616/2683]
+Training accuracy: 90.83 %
+Validation loss: 0.907503
+Validation accuracy: 78.88% 
+
+Epoch 22
+-------------------------------
+Training loss: 0.806650  [16/2683]
+Training loss: 0.638303  [1616/2683]
+Training accuracy: 90.61 %
+Validation loss: 0.879014
+Validation accuracy: 79.42% 
+
+Epoch 23
+-------------------------------
+Training loss: 0.707299  [16/2683]
+Training loss: 0.525319  [1616/2683]
+Training accuracy: 90.98 %
+Validation loss: 0.868544
+Validation accuracy: 80.08% 
+
+Epoch 24
+-------------------------------
+Training loss: 0.744802  [16/2683]
+Training loss: 0.873098  [1616/2683]
+Training accuracy: 90.01 %
+Validation loss: 0.854738
+Validation accuracy: 79.53% 
+
+Epoch 25
+-------------------------------
+Training loss: 0.690192  [16/2683]
+Training loss: 0.614076  [1616/2683]
+Training accuracy: 91.09 %
+Validation loss: 0.837347
+Validation accuracy: 79.53% 
+
+Epoch 26
+-------------------------------
+Training loss: 0.623443  [16/2683]
+Training loss: 0.585103  [1616/2683]
+Training accuracy: 91.61 %
+Validation loss: 0.820157
+Validation accuracy: 79.48% 
+
+Epoch 27
+-------------------------------
+Training loss: 0.517956  [16/2683]
+Training loss: 0.311524  [1616/2683]
+Training accuracy: 91.28 %
+Validation loss: 0.817655
+Validation accuracy: 79.97% 
+
+Epoch 28
+-------------------------------
+Training loss: 0.647585  [16/2683]
+Training loss: 0.361190  [1616/2683]
+Training accuracy: 91.87 %
+Validation loss: 0.795246
+Validation accuracy: 79.75% 
+
+Early stopping
+Done!
+
+Elapsed time: 1870.0621469020844 seconds
+
+Current time: 04:58:18
+                         precision    recall  f1-score   support
+
+             Abyssinian       0.77      0.61      0.68        49
+       American Bulldog       0.83      0.76      0.79        50
+  American pitbull terr       0.81      0.44      0.57        50
+           Basset hound       0.77      0.96      0.86        50
+                 Beagle       0.84      0.62      0.71        50
+                 Bengal       0.64      0.78      0.70        50
+                 Birman       0.74      0.68      0.71        50
+                 Bombay       0.69      0.86      0.77        44
+                  Boxer       0.61      0.82      0.70        50
+      British Shorthair       0.83      0.58      0.68        50
+              Chihuahua       0.73      0.86      0.79        50
+           Egyptian Mau       0.78      0.73      0.76        49
+ English cocker spaniel       0.96      0.86      0.91        50
+         English setter       0.80      0.78      0.79        50
+     German shorthaired       0.75      1.00      0.85        50
+         Great pyrenees       0.87      0.94      0.90        50
+               Havanese       0.83      0.90      0.87        50
+          Japanese chin       1.00      0.90      0.95        50
+               Keeshond       0.96      1.00      0.98        50
+             Leonberger       0.94      0.98      0.96        50
+             Maine Coon       0.80      0.56      0.66        50
+     Miniature pinscher       0.90      0.86      0.88        50
+           Newfoundland       0.96      1.00      0.98        50
+                Persian       0.91      0.80      0.85        50
+             Pomeranian       0.95      0.84      0.89        50
+                    Pug       0.96      0.88      0.92        50
+                Ragdoll       0.66      0.66      0.66        50
+           Russian blue       0.58      0.74      0.65        50
+          Saint bernard       0.89      0.98      0.93        50
+                Samoyed       0.80      0.98      0.88        50
+       Scottish terrier       0.83      0.96      0.89        50
+              Shiba inu       0.96      0.96      0.96        50
+                Siamese       0.73      0.72      0.73        50
+                 Sphynx       0.87      0.66      0.75        50
+Staffordshire bull terr       0.56      0.69      0.62        45
+        Wheaten terrier       0.87      0.82      0.85        50
+      Yorkshire terrier       0.93      0.80      0.86        50
+
+               accuracy                           0.81      1837
+              macro avg       0.82      0.81      0.81      1837
+           weighted avg       0.82      0.81      0.81      1837
+
+Test accuracy: 0.8105606967882417
+The metadata of the previous execution is...
+{'training_images_percentage': 0.25, 'epochs': 55, 'learning_rate': 0.001, 'batch_size': 16, 'data_augmentation': 'no', 'subject_driven_technique': 'dreambooth', 'number_of_samples': 5, 'images_to_generate': 50, 'FID_threshold': 100, 'check_quality': False, 'path_to_dataset': '../../../../../../work3/s226536/datasets/oxford-iiit-pet', 'DATA_DIR': '../../../../../../work3/s226536/datasets'}
+
+Preparing next execution...
+Finished preparing next execution...

@@ -341,7 +341,8 @@ def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
 if __name__ == "__main__":
 
     # Hyperparameters definition
-    DATA_DIR = "/zhome/d1/6/191852"
+    #DATA_DIR = "/zhome/d1/6/191852"
+    DATA_DIR = "../../../../../../work3/s226536/datasets"
     batch_size = 4
     verbose = False
     epochs = 10
@@ -420,14 +421,20 @@ if __name__ == "__main__":
         training_loss.append(aux_training_loss)
         validation_loss.append(aux_validation_loss)
 
-        jaccard_score = test(validation_dataloader, model)
-        print(f"Jaccard score: {jaccard_score}")
-
         get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
 
     # Plot training and validation loss
     create_plots(training_loss, validation_loss, epochs)
 
+    # Get test data
+    os.rename(f'{DATA_DIR}/oxford-iiit-pet/annotations/test.txt', f'{DATA_DIR}/oxford-iiit-pet/annotations/validation.txt')
+    os.rename(f'{DATA_DIR}/oxford-iiit-pet/annotations/final_test.txt', f'{DATA_DIR}/oxford-iiit-pet/annotations/test.txt')
+    test_data = datasets.OxfordIIITPet(root=DATA_DIR, split="test", download=True, transform=transform, target_types="segmentation", target_transform=transform)
+    test_dataloader = DataLoader(test_data, batch_size=batch_size, shuffle=True)
+
+    # Create jaccard score for the test set
+    jaccard_score = test(test_dataloader, model)
+    print(f"Jaccard score: {jaccard_score}")
 
     # Time elapsed
     end_time = time.time()

@@ -1,0 +1,72 @@
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+-------------------------------------
+Generating 200 images for breed Abyssinian...
+
+Elapsed time: 3361.6242225170135 seconds
+
+-------------------------------------
+Generating 200 images for breed american_bulldog...
+
+Elapsed time: 3380.926491498947 seconds
+
+-------------------------------------
+Generating 200 images for breed american_pit_bull_terrier...
+
+Elapsed time: 3196.377385854721 seconds
+
+-------------------------------------
+Generating 200 images for breed basset_hound...
+
+Elapsed time: 3253.159972667694 seconds
+
+-------------------------------------
+Generating 200 images for breed beagle...
+
+Elapsed time: 3274.6615064144135 seconds
+
+-------------------------------------
+Generating 200 images for breed Bengal...
+
+Elapsed time: 3176.0296709537506 seconds
+
+-------------------------------------
+Generating 200 images for breed Birman...
+
+Elapsed time: 3688.5325241088867 seconds
+
+-------------------------------------
+Generating 200 images for breed Bombay...
+
+Elapsed time: 3137.5669054985046 seconds
+
+-------------------------------------
+Generating 200 images for breed boxer...
+
+Elapsed time: 3094.008576631546 seconds
+
+-------------------------------------
+Generating 200 images for breed British_Shorthair...
+
+Elapsed time: 3244.067359685898 seconds
+
+-------------------------------------
+Generating 200 images for breed chihuahua...
+
+Elapsed time: 3177.961165189743 seconds
+
+-------------------------------------
+Generating 200 images for breed Egyptian_Mau...
+
+Elapsed time: 3011.2427682876587 seconds
+
+-------------------------------------
+Generating 200 images for breed english_cocker_spaniel...
+
+Elapsed time: 3045.681572675705 seconds
+
+-------------------------------------
+Generating 200 images for breed english_setter...
+

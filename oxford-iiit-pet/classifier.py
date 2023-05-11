@@ -1,3 +1,5 @@
+# This file contains the code to train and evaluate a classifier for the Oxford-IIIT Pet Dataset
+
 # Import dependencies
 import os
 import time

@@ -1,3 +1,6 @@
+# This file contains utilities relating visualization and plotting of the experimental results.
+
+# Import dependencies
 import matplotlib.pyplot as plt
 from datetime import datetime
 
@@ -81,13 +84,15 @@ if __name__ == "__main__":
 
 
     # Define data for the experiment 04-generation-percentage-oxford-iiit-pet
-    percentage_of_data_004 = [0.05, 0.1, 0.5, 1, 2, 10, 20, 40]
+    percentage_of_data_004 = [0.05, 0.1, 0.5, 1, 2, 10, 20, 40, 80]
 
     experiment_004_results = {
         "100% - Stable diffusion prompt": [[0.8829, 0.8845, 0.8764, 0.8726, 0.8573], [0.05, 0.1, 0.5, 1, 2]],
         "100% - Textual inversion": [[0.8796, 0.8802, 0.8824, 0.8853, 0.8644], [0.05, 0.1, 0.5, 1, 2]],
-        "5% - Stable diffusion prompt": [[0.7419, 0.7425, 0.7359, 0.6989, 0.7185], [1, 2, 10, 20, 40]],
-        "5% - Textual inversion": [[0.6924, 0.7223, 0.743, 0.7278, 0.7408], [1, 2, 10, 20, 40]]
+        "100% - Dreambooth": [[0.8807, 0.8709, 0.8568, 0.8535, 0.8454], [0.05, 0.1, 0.5, 1, 2]],
+        "5% - Stable diffusion prompt": [[0.7419, 0.7425, 0.7359, 0.6989, 0.7185, 0.7191], [1, 2, 10, 20, 40, 80]],
+        "5% - Textual inversion": [[0.6924, 0.7223, 0.7430, 0.7278, 0.7408, 0.7240], [1, 2, 10, 20, 40, 80]],
+        "5% - Dreambooth": [[0.6712, 0.7082, 0.7240, 0.7065, 0.7169], [1, 2, 10, 20, 40]]
     } 
 
     make_experiment_004_plot(percentage_of_data_004, experiment_004_results, "Accuracy of augmentation techniques Vs percentage of data generated", "Percentage of generated data - (log scale)", "Accuracy", "experiment_004", 0.65)

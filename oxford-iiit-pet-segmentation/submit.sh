@@ -31,13 +31,13 @@
 
 #nvidia-smi
 
-#python prepare_dataset.py
+python prepare_dataset.py
 
 
-#python create_pictures.py
+python create_pictures.py
 
 
 python segmentation.py
 
 
-#python prepare_next_execution.py
+python prepare_next_execution.py

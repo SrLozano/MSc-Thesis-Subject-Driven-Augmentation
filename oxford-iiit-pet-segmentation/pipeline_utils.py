@@ -1,4 +1,4 @@
-# This file contains some functions used in the main.py file.
+# This file contains some functions used in the prepare_dataset.py file.
 # The functions are utils used to manipulate the data pipeline.
 
 # Import dependencies

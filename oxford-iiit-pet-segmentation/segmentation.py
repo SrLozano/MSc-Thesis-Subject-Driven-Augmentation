@@ -1,3 +1,5 @@
+# This file contains the functions for training, validating and testing the segmentation model.
+
 # Import dependencies
 import os
 import time
@@ -249,13 +251,14 @@ def visualize_segmentation_maps(images_id, DATA_DIR):
     plt.savefig(f"segmentation_training_data.pdf")
     plt.close() 
 
-def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
+def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform, key_name):
     """
     This function takes a list of image ids and displays the image and the corresponding predicted segmentation map and ground truth.
     :param model: The model to use for prediction.
     :param images_id: A list of image ids.
     :param DATA_DIR: The path to the dataset.
     :param transform: The transform to apply to the images.
+    :param key_name: The key name for the generated pdf
     """
 
     original_images = []
@@ -334,8 +337,7 @@ def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
                 axes[row_index, col_index].set_title("Predicted segmentation mask")
 
         # Save figure
-        current_time = datetime.now().strftime("%H:%M:%S")
-        plt.savefig(f"predicted_segmentation_maps_{current_time}.pdf")
+        plt.savefig(f"predicted_segmentation_maps_{key_name}.pdf")
         plt.close() 
 
 
@@ -356,9 +358,6 @@ if __name__ == "__main__":
     verbose = False
 
 
-    # Clean memory. DELETE THIS
-    #torch.cuda.empty_cache()
-
     # Time the execution
     start_time = time.time()
 
@@ -376,10 +375,6 @@ if __name__ == "__main__":
     # Load training and validation data
     training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform)
     validation_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform, split="test")
-    
-
-    # DELETE THIS 
-    print(f"Training data size: {len(training_data)}")
 
 
     # Create data loaders
@@ -416,6 +411,8 @@ if __name__ == "__main__":
     images_id = random.Random(2).sample(os.listdir(f"{DATA_DIR}/oxford-iiit-pet/images") , 3)
     images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
 
+    # Get predicted segmentation maps in the beggining
+    get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform, "initial")
 
     # Training loop of the model
     for t in range(epochs):
@@ -433,8 +430,7 @@ if __name__ == "__main__":
         training_loss.append(aux_training_loss)
         validation_loss.append(aux_validation_loss)
 
-        get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform)
-
+        
     # Plot training and validation loss
     create_plots(training_loss, validation_loss, epochs)
 
@@ -447,6 +443,9 @@ if __name__ == "__main__":
     # Create jaccard score for the test set
     jaccard_score = test(test_dataloader, model)
     print(f"Jaccard score: {jaccard_score}")
+
+    # Get predicted segmentation maps
+    get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform, "final")
 
     # Time elapsed
     end_time = time.time()

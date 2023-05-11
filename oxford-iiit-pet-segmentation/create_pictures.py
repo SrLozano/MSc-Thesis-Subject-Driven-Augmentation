@@ -1,4 +1,4 @@
-# This file contains the code to create the pictures from the fined-tuned Stable Diffusion model.
+# This file contains the code to create the pictures from the Stable Diffusion model using controlNet. Target task: Segmentation
 
 # Import dependencies
 import os
@@ -11,13 +11,11 @@ import random
 import shutil
 import numpy as np
 import pipeline_utils 
-import torchvision.transforms as transforms
 
 from PIL import Image
 from datetime import datetime
 from diffusers.utils import load_image
-from diffusers import StableDiffusionPipeline, UniPCMultistepScheduler, StableDiffusionControlNetPipeline, ControlNetModel
-from torchmetrics.image.fid import FrechetInceptionDistance
+from diffusers import UniPCMultistepScheduler, StableDiffusionControlNetPipeline, ControlNetModel
 
 sys.path.insert(1, '/zhome/d1/6/191852/MSc-thesis') # caution: path[0] is reserved for script path (or '' in REPL)
 from visualization import save_images
@@ -58,29 +56,11 @@ def generate_image(model_path, prompts, keys, path_to_dataset, image_name):
         images = pipe(prompts[i], image=canny_image, num_inference_steps=50, guidance_scale=7.5, num_images_per_prompt=1).images
         save_images(images, keys[i], "inference")
 
-
-    
+ 
 # Read parameters from config file
 with open('config.json') as f: data = json.load(f)
 images_to_generate = data["images_to_generate"] # images_to_generate should be a multiple of 5
-number_of_samples = data["number_of_samples"] # number of samples used to be generated
 path_to_dataset = data["path_to_dataset"] # Path to the Oxford-IIIT Pet dataset
-FID_threshold = data["FID_threshold"] # FID score threshold to stop the generation process
-check_quality = data["check_quality"] # Check if generated images have a good quality
-
-
-# Get a sample of 37 real images from the dataset to calculate FID score as selection process
-random_images = random.Random(41).sample(os.listdir(f'{path_to_dataset}/images') , 37)
-
-# Define the FID metric with the 37 real images as reference
-if check_quality == True:
-    fid = FrechetInceptionDistance()
-    transform = transforms.Compose([transforms.ToTensor()])
-
-    for image_name in random_images:
-        image_path = os.path.join(f'{path_to_dataset}/images', image_name)
-        image_tensor = transform(Image.open(image_path)).to(torch.uint8).unsqueeze(0)
-        fid.update(image_tensor, real=True)
 
 
 # Get samples by breed, class, specie and breed id from txt file
@@ -89,7 +69,7 @@ breeds_to_generate = list(samples_by_breed.keys())
 
 
 # Data augmentation generation for the selected breeds
-for breed in breeds_to_generate[0:1]:
+for breed in breeds_to_generate:
 
     # Get a sample of images to apply controlNet to
     controlNet_sample_images = random.sample(samples_by_breed[breed], images_to_generate)
@@ -104,80 +84,50 @@ for breed in breeds_to_generate[0:1]:
 
     # Images generation loop
     for image_name in controlNet_sample_images:
-        generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
         
-        torch.cuda.empty_cache() # Clear memory
-        
-        if check_quality == True:
-            FID = 1000 # Initialize FID score to a high value
+        # Clear memory
+        torch.cuda.empty_cache() 
 
-            # Generate images until FID score is below the threshold to secure a minimum quality
-            while FID > FID_threshold:
-            
-                generate_image(model_path, prompts, keys, path_to_dataset, image_name)
+        # Generate images using the Stable Diffusion model conditioned on controlNet
+        generate_image(model_path, prompts, keys, path_to_dataset, image_name)
 
-                # Calculate FID score for the generated images
-                for image_name in os.listdir(generated_images_path):
-                    image_path = os.path.join(generated_images_path, image_name)
-
-                    # Check if file is not empty - NSFW images are empty. Remove black images.
-                    if os.stat(image_path).st_size > 1000:
-                        image_tensor = transform(Image.open(image_path)).to(torch.uint8).unsqueeze(0)   
-                        fid.update(image_tensor, real=False)
-                    else:
-                        os.remove(image_path)
-
-                # Get FID score
-                FID = fid.compute().item()
-                print(f"------------------ FID score of the generated images: {FID} ------------------")
-
-                # Score is above threshold, delete generated images and generate new ones
-                if FID > FID_threshold:
-                    # Delete all files in generated_images_path
-                    pipeline_utils.delete_files(generated_images_path)
-                    print(f"------------------ FID score above threshold. Generating new images... ------------------")
-            
-            # Reset FID metric
-            fid = FrechetInceptionDistance(reset_real_features=False)
-        
-        else:
-            generate_image(model_path, prompts, keys, path_to_dataset, image_name)
-
-
-        # Rename generated image
-        current_time = datetime.now().strftime("%H:%M:%S")
-        for i, filename in enumerate(os.listdir(generated_images_path)):
-            file_path = os.path.join(generated_images_path, filename)
-            file_name = generated_images_path + "/" + breed + "_controlNet" + "_" + str(i) + "_" + str(current_time) + ".jpg"
-            os.rename(file_path, file_name)
-
-            # Create a copy of the original xml file
-            original_file = f'{path_to_dataset}/annotations/xmls/{image_name}.xml'
-            copy_file = f'{path_to_dataset}/annotations/xmls/{breed}_controlNet_{i}_{current_time}.xml'
-            shutil.copyfile(original_file, copy_file)
-
-            # Create a copy of the trimap file 1
-            original_file = f'{path_to_dataset}/annotations/trimaps/._{image_name}.png'
-            copy_file = f'{path_to_dataset}/annotations/trimaps/._{breed}_controlNet_{i}_{current_time}.png'
-            shutil.copyfile(original_file, copy_file)
-
-            # Create a copy of the trimap file 2
-            original_file = f'{path_to_dataset}/annotations/trimaps/{image_name}.png'
-            copy_file = f'{path_to_dataset}/annotations/trimaps/{breed}_controlNet_{i}_{current_time}.png'
-            shutil.copyfile(original_file, copy_file)
-            
-        
         # Move generated images to the corresponding folder and create annotations
-        dst = f'{path_to_dataset}/images'
         str_annotations = ""
+        dst = f'{path_to_dataset}/images'
+        current_time = datetime.now().strftime("%H:%M:%S")
+        generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
+
         for i, filename in enumerate(os.listdir(generated_images_path)):
-            src = os.path.join(generated_images_path, filename)
+            
             # Check if file is not empty - NSFW images are empty
-            if os.stat(src).st_size > 1000:
-                shutil.copy(src, dst)
+            if os.stat(os.path.join(generated_images_path, filename)).st_size > 1000:
+
+                # Rename generated image
+                file_path = os.path.join(generated_images_path, filename)
+                file_name = generated_images_path + "/" + breed + "_controlNet" + "_" + str(i) + "_" + str(current_time) + ".jpg"
+                os.rename(file_path, file_name)
+
+                # Create a copy of the original xml file
+                original_file = f'{path_to_dataset}/annotations/xmls/{image_name}.xml'
+                copy_file = f'{path_to_dataset}/annotations/xmls/{breed}_controlNet_{i}_{current_time}.xml'
+                shutil.copyfile(original_file, copy_file)
+
+                # Create a copy of the trimap file 1
+                original_file = f'{path_to_dataset}/annotations/trimaps/._{image_name}.png'
+                copy_file = f'{path_to_dataset}/annotations/trimaps/._{breed}_controlNet_{i}_{current_time}.png'
+                shutil.copyfile(original_file, copy_file)
+
+                # Create a copy of the trimap file 2
+                original_file = f'{path_to_dataset}/annotations/trimaps/{image_name}.png'
+                copy_file = f'{path_to_dataset}/annotations/trimaps/{breed}_controlNet_{i}_{current_time}.png'
+                shutil.copyfile(original_file, copy_file)
+
+                # Move generated image to the corresponding folder
+                shutil.copy(file_name, dst)
+
+                # Create annotations
                 str_annotations = str_annotations + "\n" + filename.split('.')[0] + f" {class_by_id[breed]}" + f" {species_by_id[breed]}" + f" {breed_by_id[breed]}" 
 
-        
         # Delete all files in generated_images_path
         pipeline_utils.delete_files(generated_images_path)
 

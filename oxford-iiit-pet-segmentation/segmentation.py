@@ -1,6 +1,7 @@
 # Import dependencies
 import os
 import time
+import json
 import torch
 import random
 import numpy as np
@@ -22,7 +23,7 @@ class DeepLabV3PetsSegmentation(nn.Module):
     This class defines the model. In this case, DeepLabv3 - Feauture extraction is used
     """
 
-    def __init__(self, num_classes=3, pretrained=True):
+    def __init__(self, num_classes=3, pretrained=True, freeze_layers=True):
         """
         DeepLabv3 class with custom head. DeepLabv3 model with the ResNet101 backbone
         :param num_classes: The number of output channels in the dataset masks. Defaults to 3
@@ -340,17 +341,23 @@ def get_predicted_segmentations_maps(model, images_id, DATA_DIR, transform):
 
 if __name__ == "__main__":
 
-    # Hyperparameters definition
-    #DATA_DIR = "/zhome/d1/6/191852"
-    DATA_DIR = "../../../../../../work3/s226536/datasets"
+    # Read parameters from config file
+    with open('config.json') as f: data = json.load(f)
+    
+    # Define hyperparameters
+    #epochs = data["epochs"]
+    #batch_size = data["batch_size"]
+    #learning_rate = data["learning_rate"]
+    DATA_DIR = data["DATA_DIR"]
+
     batch_size = 4
-    verbose = False
     epochs = 10
     learning_rate = 10e-3
-    freeze_layers = True
+    verbose = False
+
 
     # Clean memory. DELETE THIS
-    torch.cuda.empty_cache()
+    #torch.cuda.empty_cache()
 
     # Time the execution
     start_time = time.time()
@@ -369,6 +376,11 @@ if __name__ == "__main__":
     # Load training and validation data
     training_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform)
     validation_data = datasets.OxfordIIITPet(root=DATA_DIR, download=True, target_types="segmentation", transform=transform, target_transform=transform, split="test")
+    
+
+    # DELETE THIS 
+    print(f"Training data size: {len(training_data)}")
+
 
     # Create data loaders
     train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)

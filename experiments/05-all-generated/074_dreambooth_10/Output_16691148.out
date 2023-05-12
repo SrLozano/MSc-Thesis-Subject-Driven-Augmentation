@@ -1,0 +1,442 @@
+Not using data augmentation
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 4.038126  [16/346]
+Training accuracy: 2.89 %
+Validation loss: 3.707672
+Validation accuracy: 2.78% 
+
+Epoch 2
+-------------------------------
+Training loss: 3.606428  [16/346]
+Training accuracy: 6.07 %
+Validation loss: 3.613994
+Validation accuracy: 4.48% 
+
+Epoch 3
+-------------------------------
+Training loss: 3.659022  [16/346]
+Training accuracy: 7.80 %
+Validation loss: 3.542008
+Validation accuracy: 6.60% 
+
+Epoch 4
+-------------------------------
+Training loss: 3.584714  [16/346]
+Training accuracy: 13.01 %
+Validation loss: 3.476985
+Validation accuracy: 7.86% 
+
+Epoch 5
+-------------------------------
+Training loss: 3.359965  [16/346]
+Training accuracy: 17.05 %
+Validation loss: 3.411817
+Validation accuracy: 10.81% 
+
+Epoch 6
+-------------------------------
+Training loss: 3.145257  [16/346]
+Training accuracy: 21.39 %
+Validation loss: 3.359621
+Validation accuracy: 12.17% 
+
+Epoch 7
+-------------------------------
+Training loss: 3.129183  [16/346]
+Training accuracy: 27.46 %
+Validation loss: 3.305717
+Validation accuracy: 14.90% 
+
+Epoch 8
+-------------------------------
+Training loss: 2.881997  [16/346]
+Training accuracy: 34.68 %
+Validation loss: 3.251496
+Validation accuracy: 17.47% 
+
+Epoch 9
+-------------------------------
+Training loss: 3.095567  [16/346]
+Training accuracy: 41.04 %
+Validation loss: 3.201549
+Validation accuracy: 19.92% 
+
+Epoch 10
+-------------------------------
+Training loss: 2.895848  [16/346]
+Training accuracy: 43.35 %
+Validation loss: 3.147381
+Validation accuracy: 22.54% 
+
+Epoch 11
+-------------------------------
+Training loss: 2.752404  [16/346]
+Training accuracy: 49.71 %
+Validation loss: 3.098453
+Validation accuracy: 24.78% 
+
+Epoch 12
+-------------------------------
+Training loss: 2.618428  [16/346]
+Training accuracy: 52.60 %
+Validation loss: 3.046546
+Validation accuracy: 27.13% 
+
+Epoch 13
+-------------------------------
+Training loss: 2.914472  [16/346]
+Training accuracy: 55.49 %
+Validation loss: 3.012233
+Validation accuracy: 28.93% 
+
+Epoch 14
+-------------------------------
+Training loss: 2.623255  [16/346]
+Training accuracy: 60.40 %
+Validation loss: 2.956359
+Validation accuracy: 30.46% 
+
+Epoch 15
+-------------------------------
+Training loss: 2.401868  [16/346]
+Training accuracy: 62.43 %
+Validation loss: 2.912492
+Validation accuracy: 32.15% 
+
+Epoch 16
+-------------------------------
+Training loss: 2.606899  [16/346]
+Training accuracy: 67.34 %
+Validation loss: 2.869826
+Validation accuracy: 33.90% 
+
+Epoch 17
+-------------------------------
+Training loss: 2.378752  [16/346]
+Training accuracy: 66.47 %
+Validation loss: 2.826820
+Validation accuracy: 36.03% 
+
+Epoch 18
+-------------------------------
+Training loss: 2.424686  [16/346]
+Training accuracy: 71.39 %
+Validation loss: 2.788961
+Validation accuracy: 37.55% 
+
+Epoch 19
+-------------------------------
+Training loss: 2.168940  [16/346]
+Training accuracy: 73.99 %
+Validation loss: 2.741487
+Validation accuracy: 39.25% 
+
+Epoch 20
+-------------------------------
+Training loss: 2.134294  [16/346]
+Training accuracy: 71.97 %
+Validation loss: 2.711528
+Validation accuracy: 40.12% 
+
+Epoch 21
+-------------------------------
+Training loss: 1.947578  [16/346]
+Training accuracy: 76.88 %
+Validation loss: 2.668876
+Validation accuracy: 41.27% 
+
+Epoch 22
+-------------------------------
+Training loss: 2.128845  [16/346]
+Training accuracy: 79.48 %
+Validation loss: 2.639462
+Validation accuracy: 42.03% 
+
+Epoch 23
+-------------------------------
+Training loss: 1.845419  [16/346]
+Training accuracy: 79.19 %
+Validation loss: 2.595539
+Validation accuracy: 44.10% 
+
+Epoch 24
+-------------------------------
+Training loss: 1.764047  [16/346]
+Training accuracy: 77.46 %
+Validation loss: 2.567658
+Validation accuracy: 45.41% 
+
+Epoch 25
+-------------------------------
+Training loss: 2.079195  [16/346]
+Training accuracy: 82.66 %
+Validation loss: 2.526651
+Validation accuracy: 45.52% 
+
+Epoch 26
+-------------------------------
+Training loss: 1.894239  [16/346]
+Training accuracy: 81.50 %
+Validation loss: 2.500173
+Validation accuracy: 47.76% 
+
+Epoch 27
+-------------------------------
+Training loss: 1.829993  [16/346]
+Training accuracy: 84.10 %
+Validation loss: 2.459626
+Validation accuracy: 48.69% 
+
+Epoch 28
+-------------------------------
+Training loss: 1.824956  [16/346]
+Training accuracy: 85.26 %
+Validation loss: 2.420498
+Validation accuracy: 50.11% 
+
+Epoch 29
+-------------------------------
+Training loss: 2.051369  [16/346]
+Training accuracy: 87.57 %
+Validation loss: 2.399621
+Validation accuracy: 50.60% 
+
+Epoch 30
+-------------------------------
+Training loss: 1.667698  [16/346]
+Training accuracy: 85.84 %
+Validation loss: 2.373759
+Validation accuracy: 50.87% 
+
+Epoch 31
+-------------------------------
+Training loss: 1.639612  [16/346]
+Training accuracy: 88.73 %
+Validation loss: 2.342212
+Validation accuracy: 51.80% 
+
+Epoch 32
+-------------------------------
+Training loss: 1.480360  [16/346]
+Training accuracy: 88.15 %
+Validation loss: 2.316368
+Validation accuracy: 52.13% 
+
+Epoch 33
+-------------------------------
+Training loss: 1.748703  [16/346]
+Training accuracy: 88.15 %
+Validation loss: 2.292042
+Validation accuracy: 53.17% 
+
+Epoch 34
+-------------------------------
+Training loss: 1.434172  [16/346]
+Training accuracy: 88.73 %
+Validation loss: 2.266188
+Validation accuracy: 53.28% 
+
+Epoch 35
+-------------------------------
+Training loss: 1.783548  [16/346]
+Training accuracy: 90.46 %
+Validation loss: 2.231089
+Validation accuracy: 54.04% 
+
+Epoch 36
+-------------------------------
+Training loss: 1.682434  [16/346]
+Training accuracy: 90.17 %
+Validation loss: 2.228789
+Validation accuracy: 54.37% 
+
+Epoch 37
+-------------------------------
+Training loss: 1.373796  [16/346]
+Training accuracy: 89.88 %
+Validation loss: 2.186406
+Validation accuracy: 55.35% 
+
+Epoch 38
+-------------------------------
+Training loss: 1.395117  [16/346]
+Training accuracy: 91.04 %
+Validation loss: 2.172683
+Validation accuracy: 55.51% 
+
+Epoch 39
+-------------------------------
+Training loss: 1.837928  [16/346]
+Training accuracy: 92.77 %
+Validation loss: 2.157428
+Validation accuracy: 55.57% 
+
+Epoch 40
+-------------------------------
+Training loss: 1.641010  [16/346]
+Training accuracy: 91.33 %
+Validation loss: 2.131890
+Validation accuracy: 56.17% 
+
+Epoch 41
+-------------------------------
+Training loss: 1.570220  [16/346]
+Training accuracy: 91.33 %
+Validation loss: 2.119245
+Validation accuracy: 56.06% 
+
+Epoch 42
+-------------------------------
+Training loss: 1.318962  [16/346]
+Training accuracy: 92.49 %
+Validation loss: 2.086999
+Validation accuracy: 56.77% 
+
+Epoch 43
+-------------------------------
+Training loss: 1.055385  [16/346]
+Training accuracy: 94.51 %
+Validation loss: 2.086895
+Validation accuracy: 56.55% 
+
+Epoch 44
+-------------------------------
+Training loss: 1.169240  [16/346]
+Training accuracy: 93.06 %
+Validation loss: 2.049862
+Validation accuracy: 58.24% 
+
+Epoch 45
+-------------------------------
+Training loss: 1.289070  [16/346]
+Training accuracy: 93.35 %
+Validation loss: 2.046017
+Validation accuracy: 57.42% 
+
+Epoch 46
+-------------------------------
+Training loss: 1.194457  [16/346]
+Training accuracy: 92.20 %
+Validation loss: 2.037202
+Validation accuracy: 57.59% 
+
+Epoch 47
+-------------------------------
+Training loss: 1.241971  [16/346]
+Training accuracy: 94.80 %
+Validation loss: 2.000104
+Validation accuracy: 58.08% 
+
+Epoch 48
+-------------------------------
+Training loss: 1.031753  [16/346]
+Training accuracy: 92.77 %
+Validation loss: 1.993069
+Validation accuracy: 58.19% 
+
+Epoch 49
+-------------------------------
+Training loss: 1.336053  [16/346]
+Training accuracy: 95.38 %
+Validation loss: 1.982486
+Validation accuracy: 58.30% 
+
+Epoch 50
+-------------------------------
+Training loss: 1.367239  [16/346]
+Training accuracy: 94.51 %
+Validation loss: 1.981666
+Validation accuracy: 58.02% 
+
+Epoch 51
+-------------------------------
+Training loss: 1.266152  [16/346]
+Training accuracy: 94.80 %
+Validation loss: 1.941208
+Validation accuracy: 59.33% 
+
+Epoch 52
+-------------------------------
+Training loss: 1.139351  [16/346]
+Training accuracy: 93.35 %
+Validation loss: 1.923481
+Validation accuracy: 59.22% 
+
+Epoch 53
+-------------------------------
+Training loss: 0.944356  [16/346]
+Training accuracy: 94.22 %
+Validation loss: 1.907123
+Validation accuracy: 60.04% 
+
+Epoch 54
+-------------------------------
+Training loss: 1.322454  [16/346]
+Training accuracy: 95.38 %
+Validation loss: 1.894535
+Validation accuracy: 59.77% 
+
+Epoch 55
+-------------------------------
+Training loss: 1.005536  [16/346]
+Training accuracy: 95.09 %
+Validation loss: 1.870021
+Validation accuracy: 60.21% 
+
+Done!
+
+Elapsed time: 1118.6190202236176 seconds
+
+Current time: 15:30:36
+                         precision    recall  f1-score   support
+
+             Abyssinian       0.43      0.41      0.42        49
+       American Bulldog       0.40      0.38      0.39        50
+  American pitbull terr       0.26      0.18      0.21        50
+           Basset hound       0.71      0.88      0.79        50
+                 Beagle       0.37      0.34      0.35        50
+                 Bengal       0.56      0.18      0.27        50
+                 Birman       0.86      0.12      0.21        50
+                 Bombay       0.24      0.45      0.31        44
+                  Boxer       0.32      0.76      0.45        50
+      British Shorthair       0.74      0.34      0.47        50
+              Chihuahua       0.55      0.62      0.58        50
+           Egyptian Mau       0.52      0.71      0.60        49
+ English cocker spaniel       0.79      0.38      0.51        50
+         English setter       0.54      0.74      0.63        50
+     German shorthaired       0.53      0.80      0.63        50
+         Great pyrenees       0.59      0.86      0.70        50
+               Havanese       0.86      0.64      0.74        50
+          Japanese chin       1.00      0.74      0.85        50
+               Keeshond       0.87      0.90      0.88        50
+             Leonberger       0.81      0.58      0.67        50
+             Maine Coon       0.43      0.12      0.19        50
+     Miniature pinscher       0.62      0.76      0.68        50
+           Newfoundland       0.60      0.94      0.73        50
+                Persian       0.74      0.80      0.77        50
+             Pomeranian       0.78      0.70      0.74        50
+                    Pug       0.96      0.52      0.68        50
+                Ragdoll       0.49      0.34      0.40        50
+           Russian blue       0.45      0.60      0.52        50
+          Saint bernard       0.82      0.90      0.86        50
+                Samoyed       0.65      0.98      0.78        50
+       Scottish terrier       0.52      0.92      0.67        50
+              Shiba inu       0.75      0.66      0.70        50
+                Siamese       0.59      0.68      0.63        50
+                 Sphynx       0.00      0.00      0.00        50
+Staffordshire bull terr       0.14      0.09      0.11        45
+        Wheaten terrier       0.62      0.86      0.72        50
+      Yorkshire terrier       0.90      0.54      0.68        50
+
+               accuracy                           0.58      1837
+              macro avg       0.60      0.58      0.55      1837
+           weighted avg       0.60      0.58      0.56      1837
+
+Test accuracy: 0.5808383233532934
+The metadata of the previous execution is...
+{'training_images_percentage': 0.05, 'epochs': 55, 'learning_rate': 0.001, 'batch_size': 16, 'data_augmentation': 'no', 'subject_driven_technique': 'dreambooth', 'number_of_samples': 5, 'images_to_generate': 10, 'FID_threshold': 100, 'check_quality': False, 'path_to_dataset': '../../../../../../work3/s226536/datasets/oxford-iiit-pet', 'DATA_DIR': '../../../../../../work3/s226536/datasets'}
+
+Preparing next execution...
+Finished preparing next execution...

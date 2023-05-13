@@ -1,0 +1,110 @@
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/images.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+Downloading https://thor.robots.ox.ac.uk/datasets/pets/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz
+Extracting ../../../../../../work3/s226536/datasets/oxford-iiit-pet/annotations.tar.gz to ../../../../../../work3/s226536/datasets/oxford-iiit-pet
+-------------------------------------
+Generating 5 images for breed Abyssinian...
+
+Elapsed time: 80.02263498306274 seconds
+
+-------------------------------------
+Generating 5 images for breed american_bulldog...
+
+Elapsed time: 43.36205983161926 seconds
+
+-------------------------------------
+Generating 5 images for breed american_pit_bull_terrier...
+
+Elapsed time: 42.79602241516113 seconds
+
+-------------------------------------
+Generating 5 images for breed basset_hound...
+
+Elapsed time: 43.43495202064514 seconds
+
+-------------------------------------
+Generating 5 images for breed beagle...
+
+Elapsed time: 43.6917839050293 seconds
+
+-------------------------------------
+Generating 5 images for breed Bengal...
+
+Elapsed time: 45.99596881866455 seconds
+
+-------------------------------------
+Generating 5 images for breed Birman...
+
+Elapsed time: 43.89070701599121 seconds
+
+-------------------------------------
+Generating 5 images for breed Bombay...
+
+Elapsed time: 59.97012519836426 seconds
+
+-------------------------------------
+Generating 5 images for breed boxer...
+
+Elapsed time: 43.784184217453 seconds
+
+-------------------------------------
+Generating 5 images for breed British_Shorthair...
+
+Elapsed time: 43.60858464241028 seconds
+
+-------------------------------------
+Generating 5 images for breed chihuahua...
+
+Elapsed time: 43.190244913101196 seconds
+
+-------------------------------------
+Generating 5 images for breed Egyptian_Mau...
+
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 1.182473 [16/3728]
+Training loss: 0.297127 
+Validation loss: 0.246168
+
+Epoch 2
+-------------------------------
+Training loss: 0.220624 [16/3728]
+Training loss: 0.249415 
+Validation loss: 0.237404
+
+Epoch 3
+-------------------------------
+Training loss: 0.202804 [16/3728]
+Training loss: 0.242360 
+Validation loss: 0.239202
+
+Epoch 4
+-------------------------------
+Training loss: 0.239546 [16/3728]
+Training loss: 0.230038 
+Validation loss: 0.235173
+
+Epoch 5
+-------------------------------
+Training loss: 0.211678 [16/3728]
+Training loss: 0.222125 
+Validation loss: 0.223145
+
+Epoch 6
+-------------------------------
+Training loss: 0.238678 [16/3728]
+Training loss: 0.217080 
+Validation loss: 0.234284
+
+Early stopping
+Jaccard score: 0.852082953373718
+Done!
+
+Elapsed time: 473.4886953830719 seconds
+
+Current time: 22:36:16
+The metadata of the previous execution is...
+{'training_images_percentage': 1, 'epochs': 55, 'learning_rate': 0.001, 'batch_size': 16, 'images_to_generate': 5, 'path_to_dataset': '../../../../../../work3/s226536/datasets/oxford-iiit-pet', 'DATA_DIR': '../../../../../../work3/s226536/datasets'}
+
+Preparing next execution...

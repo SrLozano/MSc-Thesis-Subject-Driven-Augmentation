@@ -347,14 +347,10 @@ if __name__ == "__main__":
     with open('config.json') as f: data = json.load(f)
     
     # Define hyperparameters
-    #epochs = data["epochs"]
-    #batch_size = data["batch_size"]
-    #learning_rate = data["learning_rate"]
+    epochs = data["epochs"]
+    batch_size = data["batch_size"]
+    learning_rate = data["learning_rate"]
     DATA_DIR = data["DATA_DIR"]
-
-    batch_size = 4
-    epochs = 10
-    learning_rate = 10e-3
     verbose = False
 
 
@@ -432,7 +428,7 @@ if __name__ == "__main__":
 
         
     # Plot training and validation loss
-    create_plots(training_loss, validation_loss, epochs)
+    create_plots(training_loss, validation_loss, t+1)
 
     # Get test data
     os.rename(f'{DATA_DIR}/oxford-iiit-pet/annotations/test.txt', f'{DATA_DIR}/oxford-iiit-pet/annotations/validation.txt')

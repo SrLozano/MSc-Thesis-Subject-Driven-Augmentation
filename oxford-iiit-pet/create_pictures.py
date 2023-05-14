@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
 
     # Data augmentation generation for the selected breeds
-    for breed in breeds_to_generate[0:2]:
+    for breed in breeds_to_generate:
 
         # Define model path depending on the generation technique (subject-driven or not)
         if subject_driven_technique == "stable-diffusion-prompt" or subject_driven_technique == "controlNet":

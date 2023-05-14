@@ -31,13 +31,13 @@ if __name__ == "__main__":
     shutil.copy(src, name_folder)
     os.system('rm -rf /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/segmentation_training_data.pdf')
 
-    src = '/zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_initial.pdf.pdf'
+    src = '/zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_initial.pdf'
     shutil.copy(src, name_folder)
-    os.system('rm -rf /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_initial.pdf.pdf')
+    os.system('rm -rf /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_initial.pdf')
 
-    src = '/zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_final.pdf.pdf'
+    src = '/zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_final.pdf'
     shutil.copy(src, name_folder)
-    os.system('rm -rf /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_final.pdf.pdf')
+    os.system('rm -rf /zhome/d1/6/191852/MSc-thesis/oxford-iiit-pet-segmentation/predicted_segmentation_maps_final.pdf')
 
     # Delete dataset foldet
     os.system('rm -rf /work3/s226536/datasets/oxford-iiit-pet')

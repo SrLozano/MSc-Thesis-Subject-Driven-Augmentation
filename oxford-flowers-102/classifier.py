@@ -86,3 +86,6 @@ if __name__ == "__main__":
     # Create data loaders.
     train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
     validation_dataloader = DataLoader(validation_data, batch_size=batch_size, shuffle=True)
+
+
+    #https://github.com/osemars/102-Flower-Classification-by-Transfer-Learning/blob/master/Image%20Classifier%20Project.py

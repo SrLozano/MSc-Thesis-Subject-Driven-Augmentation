@@ -35,11 +35,17 @@ def generate_image(model_path, prompts, keys, path_to_dataset, image_name):
     # Canny edge detection parameters
     low_threshold = 100
     high_threshold = 200
+
+    # Clear memory
+    torch.cuda.empty_cache() 
     
     # Load controlNet model. It is neccesary to load it every time 
     controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-canny", torch_dtype=torch.float16)
     pipe = StableDiffusionControlNetPipeline.from_pretrained(model_path, controlnet=controlnet, torch_dtype=torch.float16)
+
+    # Memory efficient attention
     pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
+    pipe.enable_xformers_memory_efficient_attention()
     
     # Apply canny edge detection to the image
     image = np.array(load_image(f"{path_to_dataset}/images/{image_name}.jpg"))
@@ -71,7 +77,7 @@ if __name__ == "__main__":
 
 
     # Data augmentation generation for the selected breeds
-    for breed in breeds_to_generate:
+    for breed in breeds_to_generate[1:]:
 
         # Get a sample of images to apply controlNet to
         controlNet_sample_images = random.sample(samples_by_breed[breed], images_to_generate)

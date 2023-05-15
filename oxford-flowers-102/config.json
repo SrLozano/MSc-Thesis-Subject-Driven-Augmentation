@@ -1,6 +1,6 @@
 {   
     "training_images_percentage": 1,
-    "epochs": 55,
+    "epochs": 2,
     "learning_rate": 1e-3,
     "batch_size": 16,
     "data_augmentation": "no",

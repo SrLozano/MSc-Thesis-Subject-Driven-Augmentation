@@ -7,8 +7,6 @@
     "subject_driven_technique": "dreambooth",
     "number_of_samples": 5,
     "images_to_generate": 5,
-    "FID_threshold": 100,
-    "check_quality": false,
     "path_to_dataset": "../../../../../../work3/s226536/datasets/flowers-102",
     "DATA_DIR": "../../../../../../work3/s226536/datasets"
 }

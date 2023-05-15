@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
 
     # Data augmentation generation for the selected breeds
-    for breed in breeds_to_generate[1:]:
+    for breed in breeds_to_generate[5:37]:
 
         # Get a sample of images to apply controlNet to
         controlNet_sample_images = random.sample(samples_by_breed[breed], images_to_generate)
@@ -116,20 +116,23 @@ if __name__ == "__main__":
                     file_name = generated_images_path + "/" + image_code + ".jpg"
                     os.rename(file_path, file_name)
 
-                    # Create a copy of the original xml file
-                    original_file = f'{path_to_dataset}/annotations/xmls/{image_name}.xml'
-                    copy_file = f'{path_to_dataset}/annotations/xmls/{breed}_controlNet_{i}_{current_time}.xml'
-                    shutil.copyfile(original_file, copy_file)
+                    try:
+                        # Create a copy of the original xml file
+                        original_file = f'{path_to_dataset}/annotations/xmls/{image_name}.xml'
+                        copy_file = f'{path_to_dataset}/annotations/xmls/{breed}_controlNet_{i}_{current_time}.xml'
+                        shutil.copyfile(original_file, copy_file)
 
-                    # Create a copy of the trimap file 1
-                    original_file = f'{path_to_dataset}/annotations/trimaps/._{image_name}.png'
-                    copy_file = f'{path_to_dataset}/annotations/trimaps/._{breed}_controlNet_{i}_{current_time}.png'
-                    shutil.copyfile(original_file, copy_file)
+                        # Create a copy of the trimap file 1
+                        original_file = f'{path_to_dataset}/annotations/trimaps/._{image_name}.png'
+                        copy_file = f'{path_to_dataset}/annotations/trimaps/._{breed}_controlNet_{i}_{current_time}.png'
+                        shutil.copyfile(original_file, copy_file)
 
-                    # Create a copy of the trimap file 2
-                    original_file = f'{path_to_dataset}/annotations/trimaps/{image_name}.png'
-                    copy_file = f'{path_to_dataset}/annotations/trimaps/{breed}_controlNet_{i}_{current_time}.png'
-                    shutil.copyfile(original_file, copy_file)
+                        # Create a copy of the trimap file 2
+                        original_file = f'{path_to_dataset}/annotations/trimaps/{image_name}.png'
+                        copy_file = f'{path_to_dataset}/annotations/trimaps/{breed}_controlNet_{i}_{current_time}.png'
+                        shutil.copyfile(original_file, copy_file)
+                    except: 
+                        pass
 
                     # Move generated image to the corresponding folder
                     shutil.copy(file_name, dst)

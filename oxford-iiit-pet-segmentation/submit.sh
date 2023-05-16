@@ -34,10 +34,10 @@
 #python prepare_dataset.py
 
 
-python create_pictures.py
+#python create_pictures.py
 
 
-#python segmentation.py
+python segmentation.py
 
 
 #python prepare_next_execution.py

@@ -77,10 +77,13 @@ if __name__ == "__main__":
 
 
     # Data augmentation generation for the selected breeds
-    for breed in breeds_to_generate[5:37]:
+    for breed in breeds_to_generate:
 
         # Get a sample of images to apply controlNet to
-        controlNet_sample_images = random.sample(samples_by_breed[breed], images_to_generate)
+        try:
+            controlNet_sample_images = random.sample(samples_by_breed[breed], images_to_generate)
+        except:
+            controlNet_sample_images = random.sample(samples_by_breed[breed], 90)
 
         # Define model path depending for controlNet
         model_path = "runwayml/stable-diffusion-v1-5"

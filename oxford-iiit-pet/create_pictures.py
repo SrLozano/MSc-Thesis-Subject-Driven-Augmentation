@@ -69,8 +69,11 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, breed_s
             # Load controlNet model. It is neccesary to load it every time 
             controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-canny", torch_dtype=torch.float16)
             pipe = StableDiffusionControlNetPipeline.from_pretrained(model_path, controlnet=controlnet, torch_dtype=torch.float16)
+
+            # Memory efficient attention
             pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
-            
+            pipe.enable_xformers_memory_efficient_attention()
+
             # Apply canny edge detection to the image
             image = np.array(load_image(f"{path_to_dataset}/images/{image_name}.jpg"))
             image = cv2.Canny(image, low_threshold, high_threshold)

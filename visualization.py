@@ -96,3 +96,14 @@ if __name__ == "__main__":
     } 
 
     make_experiment_004_plot(percentage_of_data_004, experiment_004_results, "Accuracy of augmentation techniques Vs percentage of data generated", "Percentage of generated data - (log scale)", "Accuracy", "experiment_004", 0.65)
+
+
+    # Define data for the experiment 03-oxford-iiit-pet
+    generated_images = [200, 100, 10, 5]
+
+    experiment_005_results = {
+        "Stable diffusion prompt": [0.6908, 0.6548, 0.5868, 0.4589],
+        "Dreambooth": [0.6837, 0.6799, 0.5808, 0.4725]
+    } 
+
+    make_experiment_003_plot(generated_images, experiment_005_results, "Accuracy of subject-driven techniques Vs number of images generated", "Images generated", "Accuracy", "experiment_005")

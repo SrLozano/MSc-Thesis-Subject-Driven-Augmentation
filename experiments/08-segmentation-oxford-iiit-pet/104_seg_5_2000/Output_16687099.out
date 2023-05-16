@@ -1,0 +1,43 @@
+Epoch 1
+-------------------------------
+Training loss: 1.154488 [16/3455]
+Training loss: 0.431515 
+Validation loss: 0.313809
+
+Epoch 2
+-------------------------------
+Training loss: 0.486627 [16/3455]
+Training loss: 0.392107 
+Validation loss: 0.294283
+
+Epoch 3
+-------------------------------
+Training loss: 0.322818 [16/3455]
+Training loss: 0.379819 
+Validation loss: 0.291268
+
+Epoch 4
+-------------------------------
+Training loss: 0.349503 [16/3455]
+Training loss: 0.370164 
+Validation loss: 0.277495
+
+Epoch 5
+-------------------------------
+Training loss: 0.341727 [16/3455]
+Training loss: 0.362902 
+Validation loss: 0.285294
+
+Epoch 6
+-------------------------------
+Training loss: 0.374764 [16/3455]
+Training loss: 0.353747 
+Validation loss: 0.281466
+
+Early stopping
+Jaccard score: 0.8320601654175646
+Done!
+
+Elapsed time: 1026.3258023262024 seconds
+
+Current time: 16:43:48

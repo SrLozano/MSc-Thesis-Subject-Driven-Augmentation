@@ -22,15 +22,15 @@ sys.path.insert(1, '/zhome/d1/6/191852/MSc-thesis') # caution: path[0] is reserv
 from visualization import save_images
 
 
-def generate_images(model_path, prompts, keys, subject_driven_technique, flower_samples, flower_class, path_to_dataset):
+def generate_images(model_path, prompts, keys, subject_driven_technique, food_samples, food_class, path_to_dataset):
     """
     Generates images from a list of prompts using the Stable Diffusion model.
     :param model_path: path to the model
     :param prompts: list of prompts
     :param keys: list of keys
     :param subject_driven_technique: textual inversion, dreamboth, stable diffusion prompt or controlNet
-    :param flower_samples: list with the samples of the flower that can be selected
-    :param flower_class: class of the flower
+    :param food_samples: list with the samples of the food that can be selected
+    :param food_class: class of the food
     :param path_to_dataset: path to the dataset
     """
     torch.cuda.empty_cache() # Clear memory
@@ -54,10 +54,10 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, flower_
     elif subject_driven_technique == "controlNet":
 
         # Get a sample of images to apply controlNet to
-        if len(flower_samples) < 5:
-            random_images = random.sample(flower_samples, len(flower_samples))
+        if len(food_samples) < 5:
+            random_images = random.sample(food_samples, len(food_samples))
         else:
-            random_images = random.sample(flower_samples, 5)
+            random_images = random.sample(food_samples, 5)
 
         # Canny edge detection parameters
         low_threshold = 100
@@ -72,7 +72,7 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, flower_
             pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
             
             # Apply canny edge detection to the image
-            image = np.array(load_image(f"{path_to_dataset}/train/{flower_class}/{image_name}.jpg"))
+            image = np.array(load_image(f"{path_to_dataset}/train/{food_class}/{image_name}.jpg"))
             image = cv2.Canny(image, low_threshold, high_threshold)
             image = image[:, :, None]
             image = np.concatenate([image, image, image], axis=2)
@@ -96,47 +96,52 @@ if __name__ == "__main__":
     subject_driven_technique = data["subject_driven_technique"] # stable-diffusion-prompt or stable-diffusion
     path_to_dataset = data["path_to_dataset"] # Path to the Oxford-IIIT Pet dataset
 
-    flowers_to_generate = [str(i) for i in range(1, 103)]
+    # Get the list of classes
+    classes_file_path = f"{path_to_dataset}/classes.txt"
+    with open(classes_file_path, "r") as file:
+        classes = file.readlines()
 
-    # Data augmentation generation for the selected flowers
-    for flower in flowers_to_generate:
+    foods_to_generate = [i.strip() for i in classes]
+
+    # Data augmentation generation for the selected foods
+    for food in foods_to_generate:
 
         # Define model path depending on the generation technique (subject-driven or not)
         if subject_driven_technique == "stable-diffusion-prompt" or subject_driven_technique == "controlNet":
             model_path = "runwayml/stable-diffusion-v1-5"
-            prompts = [f"A cute photo of a {flower}, high quality, highly detailed, elegant, sharp focus"]
+            prompts = [f"A cute photo of a {food}, high quality, highly detailed, elegant, sharp focus"]
         else:
-            model_path = f'../../../../../../work3/s226536/saved_models/flowers/{subject_driven_technique}-{number_of_samples}/{flower}'
+            model_path = f'../../../../../../work3/s226536/saved_models/foods/{subject_driven_technique}-{number_of_samples}/{food}'
             placeholder_token = "<funny-ret>"
             prompts = [f"A cute photo of a {placeholder_token}, high quality, highly detailed, elegant, sharp focus"]
         
-        keys = ["flower"]
+        keys = ["food"]
 
         # Check if model exists
         if os.path.exists(model_path) or model_path == "runwayml/stable-diffusion-v1-5":
-            print(f"-------------------------------------\nGenerating {images_to_generate} images for flower {flower}...\n")
+            print(f"-------------------------------------\nGenerating {images_to_generate} images for food {food}...\n")
             start_time = time.time()
 
             # Images generation loop
             for i in range(round(images_to_generate/5)):
                 
-                # Get samples of the flower to generate images for in ControlNet
-                flower_samples = os.listdir(f"{path_to_dataset}/train/{flower}")
+                # Get samples of the food to generate images for in ControlNet
+                food_samples = os.listdir(f"{path_to_dataset}/train/{food}")
                 remove_extension = lambda file_name: file_name.replace(".jpg", "")
-                flower_samples = list(map(remove_extension, flower_samples))
+                food_samples = list(map(remove_extension, food_samples))
                 
                 # Generate images using the selected technique
-                generate_images(model_path, prompts, keys, subject_driven_technique, flower_samples, flower, path_to_dataset)
+                generate_images(model_path, prompts, keys, subject_driven_technique, food_samples, food, path_to_dataset)
 
                 # Rename generated images
                 current_time = datetime.now().strftime("%H:%M:%S")
                 generated_images_path = "/zhome/d1/6/191852/MSc-thesis/data/generated_images"
                 for i, filename in enumerate(os.listdir(generated_images_path)):
                     file_path = os.path.join(generated_images_path, filename)
-                    os.rename(file_path, generated_images_path + "/" + flower + "_" + subject_driven_technique + "_" + str(i) + "_" + str(current_time) + ".jpg")
+                    os.rename(file_path, generated_images_path + "/" + food + "_" + subject_driven_technique + "_" + str(i) + "_" + str(current_time) + ".jpg")
 
                 # Move generated images to the corresponding folder and create annotations
-                dst = f'{path_to_dataset}/train/{flower}'
+                dst = f'{path_to_dataset}/train/{food}'
                 for i, filename in enumerate(os.listdir(generated_images_path)):
                     src = os.path.join(generated_images_path, filename)
                     # Check if file is not empty - NSFW images are empty

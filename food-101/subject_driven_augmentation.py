@@ -38,15 +38,20 @@ if __name__ == "__main__":
 
 
     # Create folder for saved models
-    saved_models_path = f"../../../../../../work3/s226536/saved_models/flowers/{subject_driven_technique}-{number_of_samples}"
+    saved_models_path = f"../../../../../../work3/s226536/saved_models/foods/{subject_driven_technique}-{number_of_samples}"
     os.makedirs(saved_models_path, exist_ok=True)
 
-    flowers_to_generate = [str(i) for i in range(1, 103)]
+    # Get the list of classes
+    classes_file_path = f"{path_to_dataset}/classes.txt"
+    with open(classes_file_path, "r") as file:
+        classes = file.readlines()
 
-    # Data augmentation generation for the selected flowers
-    for flower in flowers_to_generate:
+    foods_to_generate = [i.strip() for i in classes]
 
-        print(f"-------------------------------------\nStarted subject-driven fine tunning for flower {flower}...\n")
+    # Data augmentation generation for the selected foods
+    for food in foods_to_generate:
+
+        print(f"-------------------------------------\nStarted subject-driven fine tunning for food {food}...\n")
         start_time = time.time()
         
         # Define destination for subject-driven generation algorithm
@@ -56,9 +61,9 @@ if __name__ == "__main__":
         delete_files(dst)
 
         # Copy selected random samples to dst to use them in the subject-driven generation. Samples already shuffled by prepare_dataset.py 
-        path_to_flower = f'{path_to_dataset}/train/{flower}'
-        for sample_image in random.sample(os.listdir(path_to_flower), number_of_samples):
-            src = f'{path_to_flower}/{sample_image}'
+        path_to_food = f'{path_to_dataset}/train/{food}'
+        for sample_image in random.sample(os.listdir(path_to_food), number_of_samples):
+            src = f'{path_to_food}/{sample_image}'
             shutil.copy(src, dst)
 
         print(f"Executing subject-driven technique...\n")
@@ -69,7 +74,7 @@ if __name__ == "__main__":
                 --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
                 --train_data_dir="/zhome/d1/6/191852/MSc-thesis/experiments/03-oxford-iiit-pet/dataset" \
                 --learnable_property="object" \
-                --placeholder_token="<funny-ret>" --initializer_token="flower" \
+                --placeholder_token="<funny-ret>" --initializer_token="food" \
                 --resolution=512 \
                 --train_batch_size=1 \
                 --gradient_accumulation_steps=4 \
@@ -95,7 +100,7 @@ if __name__ == "__main__":
                 ')
         
         # Move saved_model folder to scratch space and create new saved_model folder
-        shutil.move("/zhome/d1/6/191852/saved_model", saved_models_path + f"/{flower}")
+        shutil.move("/zhome/d1/6/191852/saved_model", saved_models_path + f"/{food}")
         os.mkdir("/zhome/d1/6/191852/saved_model")
 
         # Time elapsed

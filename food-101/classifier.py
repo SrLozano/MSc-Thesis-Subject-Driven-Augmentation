@@ -1,4 +1,4 @@
-# This file contains the code to train and evaluate a classifier for the Oxford-Flowers-102 dataset
+# This file contains the code to train and evaluate a classifier for the food-101 dataset
 
 # Import dependencies
 import os
@@ -18,7 +18,7 @@ from torchvision import datasets, models
 from torchvision.transforms import ToTensor, transforms, AutoAugmentPolicy
 
 
-class FlowersModel(nn.Module):
+class foodsModel(nn.Module):
     """
     This class defines the model. In this case, ResNet34 - Feauture extraction is used
     """
@@ -197,7 +197,10 @@ def create_confusion_matrix(dataloader, model):
             y_pred += pred.argmax(1).cpu().detach().numpy().tolist()
     
     # Show statistics
-    target_names = [str(i) for i in range(1, 103)]
+    classes_file_path = f"{path_to_dataset}/classes.txt"
+    with open(classes_file_path, "r") as file:
+        classes = file.readlines()
+    target_names = [i.strip() for i in classes]
     print(classification_report(y_true, y_pred, target_names=target_names))
     print(f'Test accuracy: {accuracy_score(y_true, y_pred)}')
 
@@ -225,7 +228,7 @@ if __name__ == "__main__":
     DATA_DIR = data["DATA_DIR"]
 
     verbose = False
-    num_classes = 102
+    num_classes = 101
     freeze_layers = True
     
 
@@ -287,7 +290,7 @@ if __name__ == "__main__":
     print(f"Using {device} device")
 
     # Initialize the model for this run
-    model = FlowersModel(num_classes).to(device)
+    model = foodsModel(num_classes).to(device)
 
     # Print model if verbose
     if verbose: print(model)

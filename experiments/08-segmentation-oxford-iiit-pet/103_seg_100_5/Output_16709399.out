@@ -1,0 +1,44 @@
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 1.107548 [16/3844]
+Training loss: 0.299381 
+Validation loss: 0.256772
+
+Epoch 2
+-------------------------------
+Training loss: 0.266557 [16/3844]
+Training loss: 0.259382 
+Validation loss: 0.237840
+
+Epoch 3
+-------------------------------
+Training loss: 0.289464 [16/3844]
+Training loss: 0.243660 
+Validation loss: 0.242302
+
+Epoch 4
+-------------------------------
+Training loss: 0.239276 [16/3844]
+Training loss: 0.237480 
+Validation loss: 0.232054
+
+Epoch 5
+-------------------------------
+Training loss: 0.169819 [16/3844]
+Training loss: 0.230696 
+Validation loss: 0.238620
+
+Epoch 6
+-------------------------------
+Training loss: 0.169234 [16/3844]
+Training loss: 0.225762 
+Validation loss: 0.230861
+
+Early stopping
+Jaccard score: 0.855541389001979
+Done!
+
+Elapsed time: 488.47243452072144 seconds
+
+Current time: 11:40:18

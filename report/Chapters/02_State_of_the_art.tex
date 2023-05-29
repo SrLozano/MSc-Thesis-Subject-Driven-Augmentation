@@ -15,7 +15,7 @@ All the research described above explodes and becomes popular with the general p
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{Pictures/DallE2.png} 
-    \caption{Sample of generated images by DALL-E 2 \cite{ramesh2022hierarchical}}
+    \caption{\textbf{Sample of generated images by DALL-E 2}. The images are of a quality and level of detail that are suitable for use in real-life scenarios. \cite{ramesh2022hierarchical}}
     \label{fig:DallE2}
 \end{figure}
 
@@ -34,7 +34,7 @@ Diffusion models, on the other hand, achieve high-quality image synthesis result
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/GansvsDM} 
-    \caption{Overview of GANs and diffusion models}
+    \caption{\textbf{Overview of GANs and diffusion models}. In GANs, a generative and a discriminative network compete with each other in a process that improves both at the same time. Diffusion models, on the other hand, are based on a Markov chain that adds noise and then learns how to remove it.}
     \label{fig:GansvsDM}
 \end{figure}
 
@@ -55,7 +55,7 @@ Figure \ref{fig:MarkovchainDP} shows the diffusion process described so far.
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/MarkovchainDP} 
-    \caption{Markov chain of the diffusion process \cite{ho2020denoising}}
+    \caption{\textbf{Markov chain of the diffusion process} \cite{ho2020denoising}.}
     \label{fig:MarkovchainDP}
 \end{figure}
 
@@ -70,7 +70,7 @@ The neural network that the authors of DDPM propose aims to \textbf{predict the 
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/ReverseDP.png} 
-    \caption{Reverse diffusion learning schema}
+    \caption{\textbf{Reverse diffusion learning schema}. The network is in charge of predicting the noise. Afterwards, it is eliminated from the image.}
     \label{fig:ReverseDP}
 \end{figure}
 
@@ -91,14 +91,14 @@ The proposed cosine noise schedule can be seen in figure \ref{fig:CosineSC}. Whe
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{Pictures/cosineSC.png} 
-    \caption{Cosine and linear schedules comparison \cite{nichol2021improved}}
+    \caption{\textbf{Cosine and linear schedules comparison }\cite{nichol2021improved}. The cosine schedule is designed to be linear in the central region and have little change at the beginning and end.}
     \label{fig:CosineSC}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/cosineEX.png} 
-    \caption{Cosine (bottom) and linear (top) schedules comparison on an image \cite{nichol2021improved}}
+    \caption{\textbf{Cosine (bottom) and linear (top) schedules comparison on an image} \cite{nichol2021improved}. Cosine schedule allows a more controlled addition of noise. Thus, it avoids that last steps are practically pure noise.}
     \label{fig:CosineEX}
 \end{figure}
 
@@ -119,7 +119,7 @@ Probabilistic diffusion models have enabled the generation of high-quality image
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/LDMDiagram.png} 
-    \caption{Latent diffusion architecture \cite{rombach2022high}}
+    \caption{\textbf{Latent diffusion architecture} \cite{rombach2022high}. First, a representation of the image in the latent space is obtained. Then, Gaussian noise is added to the diffusion process. For the inverse process, a U-Net network is used. Meanwhile, the encoder $\tau_\theta$ maps the conditionings. Ultimately, the result of the latent space is returned to the pixel space.}
     \label{fig:LDMDiagram}
 \end{figure}
 
@@ -134,7 +134,7 @@ Stable Diffusion is a latent diffusion model that follows the architecture devel
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{Pictures/SDdiagram.png} 
-    \caption{Stable Diffusion main components}
+    \caption{\textbf{Stable Diffusion main components}. The text encoder produces the encoding of the description. The latent space diffuser applies the diffusion process into the latent space to remove the noise. Finally, the autoencoder decoder generates the final image in the pixel state.}
     \label{fig:SDdiagram}
 \end{figure}
 
@@ -147,7 +147,7 @@ Stable Diffusion is a latent diffusion model that follows the architecture devel
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{Pictures/DProcess.png} 
-    \caption{Diffusion steps \cite{wikiStableDiffusion}}
+    \caption{\textbf{Diffusion steps} \cite{wikiStableDiffusion}. The diffusion process is applied into the latent space to remove the noise.}
     \label{fig:DProcess}
 \end{figure}
 
@@ -190,7 +190,7 @@ The attributes that can be found in LAION-5B are described in table \ref{table:T
 \textbf{pwatermark} & Probability that the image presents a watermark. The value is   obtained by a custom model trained by LAION. Value between 0 and 1 \\ \hline
 \textbf{punsafe} & Probability that the image is NSFW. As some of the content   acquired from the web may not be suitable for all audiences, LAION employs a   custom model to assess its adequateness. Value between 0 and 1 \\ \hline
 \end{tabular}
-\caption{LAION-5B’s attributes}
+\caption{\textbf{LAION-5B’s attributes}}
 \label{table:TableLaionAttributes}
 \end{table}
 
@@ -205,7 +205,7 @@ Some statistics of the subsets computed by the LAION team can be found in table 
 \textit{LAION2B-MULTI} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1299M\\    \\ -   \textgreater{}512x512: 480M\\    \\ -   \textgreater{}1024x1024: 57M\end{tabular} & 3.3\% & 5.6\% & 52 \\ \hline
 \textit{LAION1B-NOLANG} & \begin{tabular}[c]{@{}l@{}}- \textgreater{}256x256:   1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 3\% & 4\% & 46 \\ \hline
 \end{tabular}
-\caption{Statistics summary for LAION-5B}
+\caption{\textbf{Statistics summary for LAION-5B}}
 \label{table:TableLaionStatistics}
 \end{table}
 
@@ -231,7 +231,68 @@ Summing up, the creation of LAION-5B relies on multiple AI models that help gath
 
 \section{Subject-driven generation techniques}
 
+Text-to-image models have enabled the generation of high-quality, realistic images through a textual description of the desired image, as discussed in sections \ref{Dprobabilistic}, \ref{Ldiffusion}, \ref{SD}. If we take, for example, Stable Diffusion and want to create an image of a specific subject or object, we will not be able to obtain the specific details that characterise it. The reason is that even if we perform multiple iterations on a prompt with a very detailed description of what we want to generate, the variability of the model will prevent us from reconstructing its key visual characteristics. Consequently, a new problem arises, \textit{\textbf{subject-driven generation}}. It consists of reconstructing a subject in different contexts while being able to maintain its characteristics and details. Figure \ref{fig:subjectD} depicts the subject-driven generation problem. The target is to create images of a specific subject in different contexts.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Pictures/subjectD.png} 
+    \caption{\textbf{Subject-driven generation problem} \cite{ruiz2022dreambooth}. The target is to create images of a specific subject in different contexts.}
+    \label{fig:subjectD}
+\end{figure}
+
+On the other hand, in deep learning, it has been shown that the way forward is not to train models from scratch for each task. On the contrary, the way forward for research in recent years is to use transfer learning techniques to exploit the capabilities of the gigantic models already created and, in this way, to be environmentally responsible and avoid having to handle colossal datasets as training data \cite{zhuang2020comprehensive}.
+
+For these reasons, the community is exploring the \textit{subject-driven generation} problem in depth. Among the proposed solutions, two stand out, Textual inversion \cite{gal2022image} and Dreambooth \cite{ruiz2023dreambooth}.
+
+\subsection{Textual inversion}
+
+When introducing new concepts into a large model, many problems must be faced. On the one hand, retraining is too costly, but on the other hand fine-tuning leads to forgetting previously available concepts. The authors of Textual inversion propose to solve these problems by \textbf{finding an embedding token} for a new token while keeping the rest of the components intact. The idea works because, in text-to-image models, the given textual description is converted into a set of tokens. Subsequently, each token is replaced by its embedding vector, which is passed to the final model. Therefore, the approach behind Textual inversion is to find the embedding vectors that allow new concepts to be represented. The approach is thus potent as it keeps the model intact, thus maintaining its ability to generalise and understand textual descriptions. 
+
+In the text encoders of text-to-image models, each word or sub-word in the input is associated with a unique embedding vector. This is where textual-inversion comes in. The method takes a placeholder string \textit{S∗} to represent the concept to be learned and replaces the associated embedding vector with the new one. In this way, the concept is represented and associated with the placeholder \textit{S∗}. Thus, \textit{S∗} can be used as any word in the textual description given as input. For example, a good example would be "a picture of \textit{S∗} starring in Breaking Bad". Image \ref{fig:textualI} shows how the Textual inversion process fits into the operation of the text encoder.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Pictures/textualI.png} 
+    \caption{\textbf{Outline of the text-embedding and inversion process} \cite{gal2022image}. The input containing the placeholder \textit{S∗} is converted to tokens and, subsequently, to embedding vectors. Finally, the embedding vectors condition the generation through the conditioning code $c_{\theta }(y)$.}
+    \label{fig:textualI}
+\end{figure}
+
+\subsection{Dreambooth}
+
+The Dreambooth approach consists of taking a few images of the subject to be generated together with the name of the corresponding class and returning the fine-tuned model with a unique identifier referring to the subject. This approach presents two significant problems related to overfitting and forgetting how to generate images of other subjects of the same class. To solve this, the authors propose using a \textbf{class-specific prior preservation loss}. This loss function is based on supervising the model with its own generated images.
+
+Furthermore, the fine-tuning process involves two steps. Initially, it is performed on the section dedicated to the low-resolution model, where the loss function is applied to avoid language drift and overfitting. Subsequently, fine-tuning is performed on the super-resolution section with examples in high and low resolution to maintain the subject's small details. An overview of the process can is shown in figure \ref{fig:dreamboothS}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Pictures/dreamboothS.png} 
+    \caption{\textbf{Fine-tuning process for Dreambooth} \cite{ruiz2022dreambooth}. Two main steps are distinguished. First, fine-tuning is performed on the low-resolution section, where the class-specific prior preservation loss is applied. On the other hand, fine-tuning the high-resolution section with pairs of high- and low-resolution images makes it possible to keep the subject detail.}
+    \label{fig:dreamboothS}
+\end{figure}
+
 \section{Conditional control}
+
+Text-based image creation models are highly flexible because the text input is highly flexible. In addition, areas of study such as subject-driven generation have further extended the possibilities of these models. However, there are still significant shortcomings in the control of the generated image, for instance, in the control of the anatomy of people or the arrangement of objects in a scene. These weaknesses are why ControlNet \cite{zhang2023adding} was created with the aim of controlling large text-to-image models to learn specific input conditions. 
+
+ControlNet is a neural network architecture. This structure works by creating two copies of the weights of a text-to-image model. One copy will be "\textit{trainable}" and the other "\textit{locked}". The first one is trained to learn conditional control for specific tasks. In contrast, the second remains intact to maintain the network's capabilities. These two copies are then connected through a type of convolution layer called "\textit{zero convolution}". This layer is a 1x1 convolution layer with its weights initialised to zero in order not to introduce noise in the deep features and thus allow the training to be fast. 
+
+The proposed architecture thus modifies the input conditions of the different blocks of layers comprising a neural network. Figure \ref{fig:controlNetD} shows how the structure of the neural network blocks is changed to condition the neural network. Thus, with the addition of the deep features of the network with the desired condition, the "trainable" copy can be trained in order to subsequently be added with the deep features derived from the locked copy. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Pictures/controlNetD.png} 
+    \caption{\textbf{ControlNet architecture} \cite{zhang2023adding}. The deep feature \textit{x} gets added with the condition \textit{c} to get passed to the \textit{trainable} copy. Meanwhile, the output of the \textit{locked} copy after getting \textit{x} as input is added to the output of the trainable copy to produce the deep feature \textit{y} already conditioned.}
+    \label{fig:controlNetD}
+\end{figure}
+
+The ControlNet authors provide a list of trained networks with different conditioning modes. Some of the most useful are Canny edges, segmentation maps, depth maps or scribbles. Image \ref{fig:controlNetE} shows some of these conditioning examples.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Pictures/controlNetE.png} 
+    \caption{Control of Stable Diffusion with ControlNet trained on Canny edge, Openpose, Hough lines and Openpifpaf pose \cite{zhang2023adding}.}
+    \label{fig:controlNetE}
+\end{figure}
 
 \section{Data augmentation}
 
@@ -248,7 +309,7 @@ On the other hand, the scientific community has also explored techniques to crea
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{Pictures/copy-paste.png} 
-    \caption{\textbf{Simple Copy-Paste augmentation}. This technique generates new training images by copying objects from one image into the background of another. Moreover, standard scale jittering (SSJ) and large scale jittering (LSJ) are used to randomly resize and crop images \cite{ghiasi2021simple}}
+    \caption{\textbf{Simple Copy-Paste augmentation} \cite{ghiasi2021simple}. This technique generates new training images by copying objects from one image into the background of another. Moreover, standard scale jittering (SSJ) and large scale jittering (LSJ) are used to randomly resize and crop images.}
     \label{fig:copy-paste}
 \end{figure}
 

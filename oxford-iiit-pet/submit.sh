@@ -34,10 +34,10 @@
 #python prepare_dataset.py
 
 
-#python subject_driven_augmentation.py
+python subject_driven_augmentation.py
 
 
-#python create_pictures.py
+python create_pictures.py
 
 
 python classifier.py

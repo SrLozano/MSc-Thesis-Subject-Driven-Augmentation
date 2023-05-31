@@ -155,7 +155,7 @@ if __name__ == "__main__":
         "AutoAugment": [0.8835, 0.8671, 0.8361, 0.6908, 0.4855],
         "RandAugment": [0.8884, 0.8731, 0.8524, 0.7523, 0.5487],
         "Stable diffusion prompt": [0.8764, 0.8541, 0.8225, 0.7838, 0.7359],
-        "Dreambooth": [0.8568, 0.8415, 0.8105, 0.7419, 0.7240],
+        "Dreambooth": [0.8568, 0.8415, 0.8105, 0.7653, 0.7240],
         "Textual inversion": [0.8824, 0.8688, 0.8219, 0.7872, 0.7430]
     } 
 
@@ -178,11 +178,11 @@ if __name__ == "__main__":
 
 
     # Define data for the experiment 05-all-generated
-    generated_images = [1000, 200, 100, 10, 5]
+    generated_images = [1000, 400, 200, 100, 10, 5]
 
     experiment_005_results = {
-        "Stable diffusion prompt": [0.6864, 0.6908, 0.6548, 0.5868, 0.4589],
-        "Dreambooth": [0.7016, 0.6837, 0.6799, 0.5808, 0.4725]
+        "Stable diffusion prompt": [0.6864, 0.7000, 0.6908, 0.6548, 0.5868, 0.4589],
+        "Dreambooth": [0.7016, 0.6929, 0.6837, 0.6799, 0.5808, 0.4725]
     } 
 
     make_experiment_005_plot(generated_images, experiment_005_results, "Accuracy Vs number of images generated", "Images generated - (log scale)", "Accuracy", "experiment_005")

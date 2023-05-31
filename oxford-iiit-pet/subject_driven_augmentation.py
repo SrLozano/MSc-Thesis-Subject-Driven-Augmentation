@@ -29,7 +29,7 @@ if __name__ == "__main__":
     #breeds_to_generate = ['newfoundland', 'Persian', 'pomeranian', 'pug', 'Ragdoll', 'Russian_Blue', 'saint_bernard', 'samoyed', 'scottish_terrier', 'shiba_inu', 'Siamese', 'Sphynx', 'staffordshire_bull_terrier', 'wheaten_terrier', 'yorkshire_terrier']
 
     # Data augmentation generation for the selected breeds
-    for breed in breeds_to_generate[15:]:
+    for breed in breeds_to_generate:
 
         print(f"-------------------------------------\nStarted subject-driven fine tunning for breed {breed}...\n")
         start_time = time.time()

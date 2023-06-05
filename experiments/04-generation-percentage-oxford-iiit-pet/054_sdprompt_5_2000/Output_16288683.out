@@ -400,5 +400,3 @@ Staffordshire bull terr       0.54      0.67      0.59        45
                accuracy                           0.70      1837
               macro avg       0.74      0.70      0.68      1837
            weighted avg       0.75      0.70      0.68      1837
-
-Test accuracy: 0.6989657049537289

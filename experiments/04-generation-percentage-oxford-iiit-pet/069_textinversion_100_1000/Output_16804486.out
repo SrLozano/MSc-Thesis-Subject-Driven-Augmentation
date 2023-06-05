@@ -1,0 +1,1169 @@
+Not using data augmentation
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 4.207933  [16/39344]
+Training loss: 3.479970  [1616/39344]
+Training loss: 3.013025  [3216/39344]
+Training loss: 2.769829  [4816/39344]
+Training loss: 2.603362  [6416/39344]
+Training loss: 2.189895  [8016/39344]
+Training loss: 2.069289  [9616/39344]
+Training loss: 1.969193  [11216/39344]
+Training loss: 1.775497  [12816/39344]
+Training loss: 1.688599  [14416/39344]
+Training loss: 1.628506  [16016/39344]
+Training loss: 1.492810  [17616/39344]
+Training loss: 1.380704  [19216/39344]
+Training loss: 1.198472  [20816/39344]
+Training loss: 1.296681  [22416/39344]
+Training loss: 0.917121  [24016/39344]
+Training loss: 1.559152  [25616/39344]
+Training loss: 1.106364  [27216/39344]
+Training loss: 1.181481  [28816/39344]
+Training loss: 0.959115  [30416/39344]
+Training loss: 0.658013  [32016/39344]
+Training loss: 0.956549  [33616/39344]
+Training loss: 0.990377  [35216/39344]
+Training loss: 0.860876  [36816/39344]
+Training loss: 0.778503  [38416/39344]
+Training accuracy: 92.19 %
+Validation loss: 1.311588
+Validation accuracy: 70.25% 
+
+Epoch 2
+-------------------------------
+Training loss: 0.680127  [16/39344]
+Training loss: 1.088162  [1616/39344]
+Training loss: 0.729865  [3216/39344]
+Training loss: 0.586340  [4816/39344]
+Training loss: 0.511143  [6416/39344]
+Training loss: 0.577004  [8016/39344]
+Training loss: 0.383589  [9616/39344]
+Training loss: 0.385852  [11216/39344]
+Training loss: 0.644061  [12816/39344]
+Training loss: 0.598341  [14416/39344]
+Training loss: 0.325232  [16016/39344]
+Training loss: 0.817007  [17616/39344]
+Training loss: 0.327267  [19216/39344]
+Training loss: 0.789868  [20816/39344]
+Training loss: 0.598027  [22416/39344]
+Training loss: 0.621694  [24016/39344]
+Training loss: 0.822534  [25616/39344]
+Training loss: 0.324567  [27216/39344]
+Training loss: 0.713055  [28816/39344]
+Training loss: 0.457421  [30416/39344]
+Training loss: 0.562865  [32016/39344]
+Training loss: 0.429517  [33616/39344]
+Training loss: 0.281280  [35216/39344]
+Training loss: 0.392542  [36816/39344]
+Training loss: 0.426992  [38416/39344]
+Training accuracy: 93.95 %
+Validation loss: 0.989463
+Validation accuracy: 73.20% 
+
+Epoch 3
+-------------------------------
+Training loss: 0.306446  [16/39344]
+Training loss: 0.321837  [1616/39344]
+Training loss: 0.584364  [3216/39344]
+Training loss: 0.430056  [4816/39344]
+Training loss: 0.264393  [6416/39344]
+Training loss: 0.496118  [8016/39344]
+Training loss: 0.289872  [9616/39344]
+Training loss: 0.292810  [11216/39344]
+Training loss: 0.529546  [12816/39344]
+Training loss: 0.419871  [14416/39344]
+Training loss: 0.521756  [16016/39344]
+Training loss: 0.311816  [17616/39344]
+Training loss: 0.296669  [19216/39344]
+Training loss: 0.269871  [20816/39344]
+Training loss: 0.231313  [22416/39344]
+Training loss: 0.552581  [24016/39344]
+Training loss: 0.332041  [25616/39344]
+Training loss: 0.306189  [27216/39344]
+Training loss: 0.421055  [28816/39344]
+Training loss: 0.359429  [30416/39344]
+Training loss: 0.341283  [32016/39344]
+Training loss: 0.326886  [33616/39344]
+Training loss: 0.154992  [35216/39344]
+Training loss: 0.468956  [36816/39344]
+Training loss: 0.422411  [38416/39344]
+Training accuracy: 94.64 %
+Validation loss: 0.855933
+Validation accuracy: 75.38% 
+
+Epoch 4
+-------------------------------
+Training loss: 0.638948  [16/39344]
+Training loss: 0.468646  [1616/39344]
+Training loss: 0.323289  [3216/39344]
+Training loss: 0.415447  [4816/39344]
+Training loss: 0.302142  [6416/39344]
+Training loss: 0.375505  [8016/39344]
+Training loss: 0.589632  [9616/39344]
+Training loss: 0.608256  [11216/39344]
+Training loss: 0.229445  [12816/39344]
+Training loss: 0.122097  [14416/39344]
+Training loss: 0.181531  [16016/39344]
+Training loss: 0.641815  [17616/39344]
+Training loss: 0.393424  [19216/39344]
+Training loss: 0.434802  [20816/39344]
+Training loss: 0.385554  [22416/39344]
+Training loss: 0.209470  [24016/39344]
+Training loss: 0.423048  [25616/39344]
+Training loss: 0.386800  [27216/39344]
+Training loss: 0.322123  [28816/39344]
+Training loss: 0.255076  [30416/39344]
+Training loss: 0.127419  [32016/39344]
+Training loss: 0.214149  [33616/39344]
+Training loss: 0.321412  [35216/39344]
+Training loss: 0.240002  [36816/39344]
+Training loss: 0.301635  [38416/39344]
+Training accuracy: 94.97 %
+Validation loss: 0.780551
+Validation accuracy: 76.58% 
+
+Epoch 5
+-------------------------------
+Training loss: 0.172655  [16/39344]
+Training loss: 0.280527  [1616/39344]
+Training loss: 0.101019  [3216/39344]
+Training loss: 0.149635  [4816/39344]
+Training loss: 0.155216  [6416/39344]
+Training loss: 0.140701  [8016/39344]
+Training loss: 0.148226  [9616/39344]
+Training loss: 0.085563  [11216/39344]
+Training loss: 0.302724  [12816/39344]
+Training loss: 0.138694  [14416/39344]
+Training loss: 0.294624  [16016/39344]
+Training loss: 0.173433  [17616/39344]
+Training loss: 0.218725  [19216/39344]
+Training loss: 0.203090  [20816/39344]
+Training loss: 0.280054  [22416/39344]
+Training loss: 0.240162  [24016/39344]
+Training loss: 0.177172  [25616/39344]
+Training loss: 0.118973  [27216/39344]
+Training loss: 0.156581  [28816/39344]
+Training loss: 0.147952  [30416/39344]
+Training loss: 0.178651  [32016/39344]
+Training loss: 0.468970  [33616/39344]
+Training loss: 0.125832  [35216/39344]
+Training loss: 0.262747  [36816/39344]
+Training loss: 0.201394  [38416/39344]
+Training accuracy: 95.23 %
+Validation loss: 0.760644
+Validation accuracy: 76.75% 
+
+Epoch 6
+-------------------------------
+Training loss: 0.221387  [16/39344]
+Training loss: 0.137092  [1616/39344]
+Training loss: 0.222342  [3216/39344]
+Training loss: 0.146821  [4816/39344]
+Training loss: 0.209772  [6416/39344]
+Training loss: 0.158472  [8016/39344]
+Training loss: 0.152552  [9616/39344]
+Training loss: 0.235131  [11216/39344]
+Training loss: 0.186373  [12816/39344]
+Training loss: 0.290669  [14416/39344]
+Training loss: 0.282716  [16016/39344]
+Training loss: 0.184198  [17616/39344]
+Training loss: 0.453919  [19216/39344]
+Training loss: 0.187411  [20816/39344]
+Training loss: 0.083964  [22416/39344]
+Training loss: 0.286167  [24016/39344]
+Training loss: 0.106834  [25616/39344]
+Training loss: 0.227561  [27216/39344]
+Training loss: 0.167643  [28816/39344]
+Training loss: 0.156391  [30416/39344]
+Training loss: 0.176961  [32016/39344]
+Training loss: 0.317878  [33616/39344]
+Training loss: 0.165884  [35216/39344]
+Training loss: 0.115968  [36816/39344]
+Training loss: 0.499701  [38416/39344]
+Training accuracy: 95.66 %
+Validation loss: 0.698841
+Validation accuracy: 78.71% 
+
+Epoch 7
+-------------------------------
+Training loss: 0.523107  [16/39344]
+Training loss: 0.255080  [1616/39344]
+Training loss: 0.190554  [3216/39344]
+Training loss: 0.223013  [4816/39344]
+Training loss: 0.074896  [6416/39344]
+Training loss: 0.209523  [8016/39344]
+Training loss: 0.095011  [9616/39344]
+Training loss: 0.198099  [11216/39344]
+Training loss: 0.239095  [12816/39344]
+Training loss: 0.161235  [14416/39344]
+Training loss: 0.103911  [16016/39344]
+Training loss: 0.362066  [17616/39344]
+Training loss: 0.131531  [19216/39344]
+Training loss: 0.142501  [20816/39344]
+Training loss: 0.326460  [22416/39344]
+Training loss: 0.106650  [24016/39344]
+Training loss: 0.119642  [25616/39344]
+Training loss: 0.249088  [27216/39344]
+Training loss: 0.203484  [28816/39344]
+Training loss: 0.230044  [30416/39344]
+Training loss: 0.182088  [32016/39344]
+Training loss: 0.405526  [33616/39344]
+Training loss: 0.219567  [35216/39344]
+Training loss: 0.149767  [36816/39344]
+Training loss: 0.104105  [38416/39344]
+Training accuracy: 95.78 %
+Validation loss: 0.682528
+Validation accuracy: 78.77% 
+
+Epoch 8
+-------------------------------
+Training loss: 0.585930  [16/39344]
+Training loss: 0.157259  [1616/39344]
+Training loss: 0.793445  [3216/39344]
+Training loss: 0.182752  [4816/39344]
+Training loss: 0.119669  [6416/39344]
+Training loss: 0.693118  [8016/39344]
+Training loss: 0.153003  [9616/39344]
+Training loss: 0.243209  [11216/39344]
+Training loss: 0.103222  [12816/39344]
+Training loss: 0.251078  [14416/39344]
+Training loss: 0.123056  [16016/39344]
+Training loss: 0.101614  [17616/39344]
+Training loss: 0.229565  [19216/39344]
+Training loss: 0.116091  [20816/39344]
+Training loss: 0.159878  [22416/39344]
+Training loss: 0.228496  [24016/39344]
+Training loss: 0.163309  [25616/39344]
+Training loss: 0.170906  [27216/39344]
+Training loss: 0.188525  [28816/39344]
+Training loss: 0.152833  [30416/39344]
+Training loss: 0.131064  [32016/39344]
+Training loss: 0.408642  [33616/39344]
+Training loss: 0.148211  [35216/39344]
+Training loss: 0.286368  [36816/39344]
+Training loss: 0.310066  [38416/39344]
+Training accuracy: 95.88 %
+Validation loss: 0.656199
+Validation accuracy: 79.80% 
+
+Epoch 9
+-------------------------------
+Training loss: 0.160198  [16/39344]
+Training loss: 0.344979  [1616/39344]
+Training loss: 0.224229  [3216/39344]
+Training loss: 0.446542  [4816/39344]
+Training loss: 0.202160  [6416/39344]
+Training loss: 0.189988  [8016/39344]
+Training loss: 0.486250  [9616/39344]
+Training loss: 0.068077  [11216/39344]
+Training loss: 0.266800  [12816/39344]
+Training loss: 0.043936  [14416/39344]
+Training loss: 0.352060  [16016/39344]
+Training loss: 0.125731  [17616/39344]
+Training loss: 0.169156  [19216/39344]
+Training loss: 0.148304  [20816/39344]
+Training loss: 0.074759  [22416/39344]
+Training loss: 0.077048  [24016/39344]
+Training loss: 0.663198  [25616/39344]
+Training loss: 0.119222  [27216/39344]
+Training loss: 0.184557  [28816/39344]
+Training loss: 0.225381  [30416/39344]
+Training loss: 0.162251  [32016/39344]
+Training loss: 0.220052  [33616/39344]
+Training loss: 0.147734  [35216/39344]
+Training loss: 0.334137  [36816/39344]
+Training loss: 0.268428  [38416/39344]
+Training accuracy: 96.05 %
+Validation loss: 0.639902
+Validation accuracy: 80.02% 
+
+Epoch 10
+-------------------------------
+Training loss: 0.190761  [16/39344]
+Training loss: 0.106186  [1616/39344]
+Training loss: 0.059929  [3216/39344]
+Training loss: 0.039929  [4816/39344]
+Training loss: 0.174555  [6416/39344]
+Training loss: 0.204245  [8016/39344]
+Training loss: 0.160485  [9616/39344]
+Training loss: 0.176986  [11216/39344]
+Training loss: 0.280963  [12816/39344]
+Training loss: 0.285759  [14416/39344]
+Training loss: 0.173185  [16016/39344]
+Training loss: 0.260983  [17616/39344]
+Training loss: 0.125538  [19216/39344]
+Training loss: 0.132390  [20816/39344]
+Training loss: 0.322420  [22416/39344]
+Training loss: 0.251707  [24016/39344]
+Training loss: 0.137151  [25616/39344]
+Training loss: 0.234095  [27216/39344]
+Training loss: 0.143708  [28816/39344]
+Training loss: 0.179301  [30416/39344]
+Training loss: 0.270887  [32016/39344]
+Training loss: 0.380189  [33616/39344]
+Training loss: 0.125752  [35216/39344]
+Training loss: 0.158691  [36816/39344]
+Training loss: 0.263877  [38416/39344]
+Training accuracy: 96.07 %
+Validation loss: 0.633830
+Validation accuracy: 80.19% 
+
+Epoch 11
+-------------------------------
+Training loss: 0.242973  [16/39344]
+Training loss: 0.158690  [1616/39344]
+Training loss: 0.115639  [3216/39344]
+Training loss: 0.115668  [4816/39344]
+Training loss: 0.116657  [6416/39344]
+Training loss: 0.212982  [8016/39344]
+Training loss: 0.164926  [9616/39344]
+Training loss: 0.288827  [11216/39344]
+Training loss: 0.220181  [12816/39344]
+Training loss: 0.141294  [14416/39344]
+Training loss: 0.055593  [16016/39344]
+Training loss: 0.158028  [17616/39344]
+Training loss: 0.046981  [19216/39344]
+Training loss: 0.308576  [20816/39344]
+Training loss: 0.095798  [22416/39344]
+Training loss: 0.328123  [24016/39344]
+Training loss: 0.111205  [25616/39344]
+Training loss: 0.284917  [27216/39344]
+Training loss: 0.063428  [28816/39344]
+Training loss: 0.555618  [30416/39344]
+Training loss: 0.133183  [32016/39344]
+Training loss: 0.059475  [33616/39344]
+Training loss: 0.685324  [35216/39344]
+Training loss: 0.119183  [36816/39344]
+Training loss: 0.294247  [38416/39344]
+Training accuracy: 96.29 %
+Validation loss: 0.637252
+Validation accuracy: 80.57% 
+
+Epoch 12
+-------------------------------
+Training loss: 0.050504  [16/39344]
+Training loss: 0.115620  [1616/39344]
+Training loss: 0.125797  [3216/39344]
+Training loss: 0.356598  [4816/39344]
+Training loss: 0.077401  [6416/39344]
+Training loss: 0.080544  [8016/39344]
+Training loss: 0.311356  [9616/39344]
+Training loss: 0.371861  [11216/39344]
+Training loss: 0.115063  [12816/39344]
+Training loss: 0.136239  [14416/39344]
+Training loss: 0.350305  [16016/39344]
+Training loss: 0.140406  [17616/39344]
+Training loss: 0.366651  [19216/39344]
+Training loss: 0.309052  [20816/39344]
+Training loss: 0.141242  [22416/39344]
+Training loss: 0.151868  [24016/39344]
+Training loss: 0.363032  [25616/39344]
+Training loss: 0.365922  [27216/39344]
+Training loss: 0.086459  [28816/39344]
+Training loss: 0.349316  [30416/39344]
+Training loss: 0.149288  [32016/39344]
+Training loss: 0.513185  [33616/39344]
+Training loss: 0.052103  [35216/39344]
+Training loss: 0.602542  [36816/39344]
+Training loss: 0.081346  [38416/39344]
+Training accuracy: 96.29 %
+Validation loss: 0.595127
+Validation accuracy: 81.60% 
+
+Epoch 13
+-------------------------------
+Training loss: 0.108296  [16/39344]
+Training loss: 0.080371  [1616/39344]
+Training loss: 0.100376  [3216/39344]
+Training loss: 0.516483  [4816/39344]
+Training loss: 0.237458  [6416/39344]
+Training loss: 0.033322  [8016/39344]
+Training loss: 0.136306  [9616/39344]
+Training loss: 0.148863  [11216/39344]
+Training loss: 0.074429  [12816/39344]
+Training loss: 0.302662  [14416/39344]
+Training loss: 0.205400  [16016/39344]
+Training loss: 0.289190  [17616/39344]
+Training loss: 0.151321  [19216/39344]
+Training loss: 0.206933  [20816/39344]
+Training loss: 0.111325  [22416/39344]
+Training loss: 0.043112  [24016/39344]
+Training loss: 0.058791  [25616/39344]
+Training loss: 0.128949  [27216/39344]
+Training loss: 0.151488  [28816/39344]
+Training loss: 0.151057  [30416/39344]
+Training loss: 0.079066  [32016/39344]
+Training loss: 0.082034  [33616/39344]
+Training loss: 0.094094  [35216/39344]
+Training loss: 0.037335  [36816/39344]
+Training loss: 0.292179  [38416/39344]
+Training accuracy: 96.48 %
+Validation loss: 0.594500
+Validation accuracy: 81.39% 
+
+Epoch 14
+-------------------------------
+Training loss: 0.244945  [16/39344]
+Training loss: 0.212217  [1616/39344]
+Training loss: 0.035730  [3216/39344]
+Training loss: 0.122461  [4816/39344]
+Training loss: 0.498924  [6416/39344]
+Training loss: 0.090448  [8016/39344]
+Training loss: 0.093607  [9616/39344]
+Training loss: 0.121275  [11216/39344]
+Training loss: 0.033169  [12816/39344]
+Training loss: 0.057750  [14416/39344]
+Training loss: 0.135894  [16016/39344]
+Training loss: 0.303527  [17616/39344]
+Training loss: 0.038766  [19216/39344]
+Training loss: 0.456195  [20816/39344]
+Training loss: 0.036613  [22416/39344]
+Training loss: 0.205813  [24016/39344]
+Training loss: 0.296732  [25616/39344]
+Training loss: 0.057321  [27216/39344]
+Training loss: 0.094794  [28816/39344]
+Training loss: 0.267130  [30416/39344]
+Training loss: 0.196757  [32016/39344]
+Training loss: 0.137912  [33616/39344]
+Training loss: 0.364771  [35216/39344]
+Training loss: 0.133983  [36816/39344]
+Training loss: 0.056925  [38416/39344]
+Training accuracy: 96.48 %
+Validation loss: 0.593855
+Validation accuracy: 81.39% 
+
+Epoch 15
+-------------------------------
+Training loss: 0.161530  [16/39344]
+Training loss: 0.075248  [1616/39344]
+Training loss: 0.172723  [3216/39344]
+Training loss: 0.388375  [4816/39344]
+Training loss: 0.056268  [6416/39344]
+Training loss: 0.172674  [8016/39344]
+Training loss: 0.278425  [9616/39344]
+Training loss: 0.142895  [11216/39344]
+Training loss: 0.298854  [12816/39344]
+Training loss: 0.080880  [14416/39344]
+Training loss: 0.055620  [16016/39344]
+Training loss: 0.222627  [17616/39344]
+Training loss: 0.146093  [19216/39344]
+Training loss: 0.228794  [20816/39344]
+Training loss: 0.146265  [22416/39344]
+Training loss: 0.116611  [24016/39344]
+Training loss: 0.108534  [25616/39344]
+Training loss: 0.081107  [27216/39344]
+Training loss: 0.100300  [28816/39344]
+Training loss: 0.159693  [30416/39344]
+Training loss: 0.069124  [32016/39344]
+Training loss: 0.181117  [33616/39344]
+Training loss: 0.227917  [35216/39344]
+Training loss: 0.232394  [36816/39344]
+Training loss: 0.400053  [38416/39344]
+Training accuracy: 96.47 %
+Validation loss: 0.581494
+Validation accuracy: 81.82% 
+
+Epoch 16
+-------------------------------
+Training loss: 0.336044  [16/39344]
+Training loss: 0.119470  [1616/39344]
+Training loss: 0.260813  [3216/39344]
+Training loss: 0.071657  [4816/39344]
+Training loss: 0.159196  [6416/39344]
+Training loss: 0.059414  [8016/39344]
+Training loss: 0.173477  [9616/39344]
+Training loss: 0.104989  [11216/39344]
+Training loss: 0.101531  [12816/39344]
+Training loss: 0.091983  [14416/39344]
+Training loss: 0.143444  [16016/39344]
+Training loss: 0.038596  [17616/39344]
+Training loss: 0.058811  [19216/39344]
+Training loss: 0.111206  [20816/39344]
+Training loss: 0.120068  [22416/39344]
+Training loss: 0.291114  [24016/39344]
+Training loss: 0.051891  [25616/39344]
+Training loss: 0.116755  [27216/39344]
+Training loss: 0.073953  [28816/39344]
+Training loss: 0.084473  [30416/39344]
+Training loss: 0.173946  [32016/39344]
+Training loss: 0.144763  [33616/39344]
+Training loss: 0.239901  [35216/39344]
+Training loss: 0.108264  [36816/39344]
+Training loss: 0.154103  [38416/39344]
+Training accuracy: 96.58 %
+Validation loss: 0.571797
+Validation accuracy: 81.71% 
+
+Epoch 17
+-------------------------------
+Training loss: 0.421837  [16/39344]
+Training loss: 0.063036  [1616/39344]
+Training loss: 0.199239  [3216/39344]
+Training loss: 0.090959  [4816/39344]
+Training loss: 0.248908  [6416/39344]
+Training loss: 0.040026  [8016/39344]
+Training loss: 0.202631  [9616/39344]
+Training loss: 0.291003  [11216/39344]
+Training loss: 0.034193  [12816/39344]
+Training loss: 0.241362  [14416/39344]
+Training loss: 0.117264  [16016/39344]
+Training loss: 0.056345  [17616/39344]
+Training loss: 0.160135  [19216/39344]
+Training loss: 0.071319  [20816/39344]
+Training loss: 0.078429  [22416/39344]
+Training loss: 0.210090  [24016/39344]
+Training loss: 0.356954  [25616/39344]
+Training loss: 0.150830  [27216/39344]
+Training loss: 0.176760  [28816/39344]
+Training loss: 0.108782  [30416/39344]
+Training loss: 0.208488  [32016/39344]
+Training loss: 0.106392  [33616/39344]
+Training loss: 0.170105  [35216/39344]
+Training loss: 0.051097  [36816/39344]
+Training loss: 0.232823  [38416/39344]
+Training accuracy: 96.51 %
+Validation loss: 0.573010
+Validation accuracy: 81.99% 
+
+Epoch 18
+-------------------------------
+Training loss: 0.244800  [16/39344]
+Training loss: 0.058663  [1616/39344]
+Training loss: 0.075928  [3216/39344]
+Training loss: 0.031332  [4816/39344]
+Training loss: 0.161578  [6416/39344]
+Training loss: 0.081468  [8016/39344]
+Training loss: 0.174037  [9616/39344]
+Training loss: 0.188934  [11216/39344]
+Training loss: 0.188048  [12816/39344]
+Training loss: 0.051817  [14416/39344]
+Training loss: 0.098822  [16016/39344]
+Training loss: 0.065734  [17616/39344]
+Training loss: 0.218603  [19216/39344]
+Training loss: 0.173629  [20816/39344]
+Training loss: 0.436322  [22416/39344]
+Training loss: 0.097989  [24016/39344]
+Training loss: 0.093656  [25616/39344]
+Training loss: 0.080634  [27216/39344]
+Training loss: 0.205512  [28816/39344]
+Training loss: 0.051057  [30416/39344]
+Training loss: 0.340903  [32016/39344]
+Training loss: 0.117629  [33616/39344]
+Training loss: 0.032297  [35216/39344]
+Training loss: 0.089478  [36816/39344]
+Training loss: 0.027374  [38416/39344]
+Training accuracy: 96.78 %
+Validation loss: 0.573741
+Validation accuracy: 81.82% 
+
+Epoch 19
+-------------------------------
+Training loss: 0.062735  [16/39344]
+Training loss: 0.401093  [1616/39344]
+Training loss: 0.283806  [3216/39344]
+Training loss: 0.167131  [4816/39344]
+Training loss: 0.033010  [6416/39344]
+Training loss: 0.159039  [8016/39344]
+Training loss: 0.157365  [9616/39344]
+Training loss: 0.091436  [11216/39344]
+Training loss: 0.026703  [12816/39344]
+Training loss: 0.102865  [14416/39344]
+Training loss: 0.066117  [16016/39344]
+Training loss: 0.255688  [17616/39344]
+Training loss: 0.045188  [19216/39344]
+Training loss: 0.037718  [20816/39344]
+Training loss: 0.058925  [22416/39344]
+Training loss: 0.029123  [24016/39344]
+Training loss: 0.097255  [25616/39344]
+Training loss: 0.056668  [27216/39344]
+Training loss: 0.519043  [28816/39344]
+Training loss: 0.207239  [30416/39344]
+Training loss: 0.055950  [32016/39344]
+Training loss: 0.035541  [33616/39344]
+Training loss: 0.200837  [35216/39344]
+Training loss: 0.094997  [36816/39344]
+Training loss: 0.249879  [38416/39344]
+Training accuracy: 96.67 %
+Validation loss: 0.549085
+Validation accuracy: 82.70% 
+
+Epoch 20
+-------------------------------
+Training loss: 0.130385  [16/39344]
+Training loss: 0.017248  [1616/39344]
+Training loss: 0.042635  [3216/39344]
+Training loss: 0.071081  [4816/39344]
+Training loss: 0.101487  [6416/39344]
+Training loss: 0.134833  [8016/39344]
+Training loss: 0.105721  [9616/39344]
+Training loss: 0.097156  [11216/39344]
+Training loss: 0.115831  [12816/39344]
+Training loss: 0.114906  [14416/39344]
+Training loss: 0.344089  [16016/39344]
+Training loss: 0.142180  [17616/39344]
+Training loss: 0.160710  [19216/39344]
+Training loss: 0.055594  [20816/39344]
+Training loss: 0.090575  [22416/39344]
+Training loss: 0.083495  [24016/39344]
+Training loss: 0.365624  [25616/39344]
+Training loss: 0.020350  [27216/39344]
+Training loss: 0.089838  [28816/39344]
+Training loss: 0.344743  [30416/39344]
+Training loss: 0.342604  [32016/39344]
+Training loss: 0.089405  [33616/39344]
+Training loss: 0.105545  [35216/39344]
+Training loss: 0.354108  [36816/39344]
+Training loss: 0.054078  [38416/39344]
+Training accuracy: 96.74 %
+Validation loss: 0.569852
+Validation accuracy: 82.26% 
+
+Epoch 21
+-------------------------------
+Training loss: 0.306734  [16/39344]
+Training loss: 0.125477  [1616/39344]
+Training loss: 0.172305  [3216/39344]
+Training loss: 0.048762  [4816/39344]
+Training loss: 0.150334  [6416/39344]
+Training loss: 0.028818  [8016/39344]
+Training loss: 0.031032  [9616/39344]
+Training loss: 0.337545  [11216/39344]
+Training loss: 0.189809  [12816/39344]
+Training loss: 0.489333  [14416/39344]
+Training loss: 0.197681  [16016/39344]
+Training loss: 0.078157  [17616/39344]
+Training loss: 0.046307  [19216/39344]
+Training loss: 0.424267  [20816/39344]
+Training loss: 0.042275  [22416/39344]
+Training loss: 0.170868  [24016/39344]
+Training loss: 0.012517  [25616/39344]
+Training loss: 0.049739  [27216/39344]
+Training loss: 0.041445  [28816/39344]
+Training loss: 0.108933  [30416/39344]
+Training loss: 0.182867  [32016/39344]
+Training loss: 0.032476  [33616/39344]
+Training loss: 0.221825  [35216/39344]
+Training loss: 0.089730  [36816/39344]
+Training loss: 0.205039  [38416/39344]
+Training accuracy: 96.76 %
+Validation loss: 0.537380
+Validation accuracy: 83.08% 
+
+Epoch 22
+-------------------------------
+Training loss: 0.251076  [16/39344]
+Training loss: 0.323611  [1616/39344]
+Training loss: 0.276387  [3216/39344]
+Training loss: 0.125394  [4816/39344]
+Training loss: 0.192211  [6416/39344]
+Training loss: 0.235828  [8016/39344]
+Training loss: 0.061934  [9616/39344]
+Training loss: 0.187814  [11216/39344]
+Training loss: 0.058847  [12816/39344]
+Training loss: 0.601050  [14416/39344]
+Training loss: 0.047213  [16016/39344]
+Training loss: 0.099327  [17616/39344]
+Training loss: 0.014026  [19216/39344]
+Training loss: 0.018793  [20816/39344]
+Training loss: 0.085333  [22416/39344]
+Training loss: 0.257281  [24016/39344]
+Training loss: 0.401031  [25616/39344]
+Training loss: 0.267316  [27216/39344]
+Training loss: 0.116837  [28816/39344]
+Training loss: 0.030528  [30416/39344]
+Training loss: 0.077151  [32016/39344]
+Training loss: 0.032349  [33616/39344]
+Training loss: 0.034529  [35216/39344]
+Training loss: 0.179779  [36816/39344]
+Training loss: 0.039783  [38416/39344]
+Training accuracy: 96.87 %
+Validation loss: 0.538956
+Validation accuracy: 83.41% 
+
+Epoch 23
+-------------------------------
+Training loss: 0.080144  [16/39344]
+Training loss: 0.086018  [1616/39344]
+Training loss: 0.048394  [3216/39344]
+Training loss: 0.255017  [4816/39344]
+Training loss: 0.055033  [6416/39344]
+Training loss: 0.039978  [8016/39344]
+Training loss: 0.061964  [9616/39344]
+Training loss: 0.064115  [11216/39344]
+Training loss: 0.061041  [12816/39344]
+Training loss: 0.076008  [14416/39344]
+Training loss: 0.046346  [16016/39344]
+Training loss: 0.056870  [17616/39344]
+Training loss: 0.118081  [19216/39344]
+Training loss: 0.113579  [20816/39344]
+Training loss: 0.096074  [22416/39344]
+Training loss: 0.031057  [24016/39344]
+Training loss: 0.022751  [25616/39344]
+Training loss: 0.032914  [27216/39344]
+Training loss: 0.079677  [28816/39344]
+Training loss: 0.164294  [30416/39344]
+Training loss: 0.094372  [32016/39344]
+Training loss: 0.070147  [33616/39344]
+Training loss: 0.059920  [35216/39344]
+Training loss: 0.317886  [36816/39344]
+Training loss: 0.045288  [38416/39344]
+Training accuracy: 96.84 %
+Validation loss: 0.546633
+Validation accuracy: 82.97% 
+
+Epoch 24
+-------------------------------
+Training loss: 0.047686  [16/39344]
+Training loss: 0.062462  [1616/39344]
+Training loss: 0.179262  [3216/39344]
+Training loss: 0.075724  [4816/39344]
+Training loss: 0.057323  [6416/39344]
+Training loss: 0.143478  [8016/39344]
+Training loss: 0.118803  [9616/39344]
+Training loss: 0.098395  [11216/39344]
+Training loss: 0.138806  [12816/39344]
+Training loss: 0.040001  [14416/39344]
+Training loss: 0.104951  [16016/39344]
+Training loss: 0.052661  [17616/39344]
+Training loss: 0.212450  [19216/39344]
+Training loss: 0.052629  [20816/39344]
+Training loss: 0.059959  [22416/39344]
+Training loss: 0.274085  [24016/39344]
+Training loss: 0.142042  [25616/39344]
+Training loss: 0.223360  [27216/39344]
+Training loss: 0.410535  [28816/39344]
+Training loss: 0.023144  [30416/39344]
+Training loss: 0.015313  [32016/39344]
+Training loss: 0.037419  [33616/39344]
+Training loss: 0.114441  [35216/39344]
+Training loss: 0.364237  [36816/39344]
+Training loss: 0.036738  [38416/39344]
+Training accuracy: 96.85 %
+Validation loss: 0.535976
+Validation accuracy: 83.08% 
+
+Epoch 25
+-------------------------------
+Training loss: 0.167433  [16/39344]
+Training loss: 0.134932  [1616/39344]
+Training loss: 0.192795  [3216/39344]
+Training loss: 0.136817  [4816/39344]
+Training loss: 0.150531  [6416/39344]
+Training loss: 0.261150  [8016/39344]
+Training loss: 0.141196  [9616/39344]
+Training loss: 0.073797  [11216/39344]
+Training loss: 0.065518  [12816/39344]
+Training loss: 0.025906  [14416/39344]
+Training loss: 0.064412  [16016/39344]
+Training loss: 0.112882  [17616/39344]
+Training loss: 0.240973  [19216/39344]
+Training loss: 0.034908  [20816/39344]
+Training loss: 0.062666  [22416/39344]
+Training loss: 0.019343  [24016/39344]
+Training loss: 0.181957  [25616/39344]
+Training loss: 0.092511  [27216/39344]
+Training loss: 0.048112  [28816/39344]
+Training loss: 0.091623  [30416/39344]
+Training loss: 0.097539  [32016/39344]
+Training loss: 0.065058  [33616/39344]
+Training loss: 0.020729  [35216/39344]
+Training loss: 0.007479  [36816/39344]
+Training loss: 0.018570  [38416/39344]
+Training accuracy: 96.94 %
+Validation loss: 0.528095
+Validation accuracy: 83.57% 
+
+Epoch 26
+-------------------------------
+Training loss: 0.022105  [16/39344]
+Training loss: 0.081631  [1616/39344]
+Training loss: 0.187951  [3216/39344]
+Training loss: 0.025025  [4816/39344]
+Training loss: 0.087612  [6416/39344]
+Training loss: 0.133666  [8016/39344]
+Training loss: 0.249492  [9616/39344]
+Training loss: 0.254253  [11216/39344]
+Training loss: 0.060243  [12816/39344]
+Training loss: 0.070573  [14416/39344]
+Training loss: 0.052922  [16016/39344]
+Training loss: 0.195352  [17616/39344]
+Training loss: 0.213416  [19216/39344]
+Training loss: 0.197893  [20816/39344]
+Training loss: 0.174219  [22416/39344]
+Training loss: 0.108586  [24016/39344]
+Training loss: 0.105114  [25616/39344]
+Training loss: 0.075227  [27216/39344]
+Training loss: 0.559370  [28816/39344]
+Training loss: 0.164291  [30416/39344]
+Training loss: 0.020665  [32016/39344]
+Training loss: 0.094145  [33616/39344]
+Training loss: 0.034018  [35216/39344]
+Training loss: 0.238342  [36816/39344]
+Training loss: 0.293908  [38416/39344]
+Training accuracy: 96.96 %
+Validation loss: 0.540706
+Validation accuracy: 83.08% 
+
+Epoch 27
+-------------------------------
+Training loss: 0.033681  [16/39344]
+Training loss: 0.104101  [1616/39344]
+Training loss: 0.068501  [3216/39344]
+Training loss: 0.087679  [4816/39344]
+Training loss: 0.055354  [6416/39344]
+Training loss: 0.048488  [8016/39344]
+Training loss: 0.355719  [9616/39344]
+Training loss: 0.084002  [11216/39344]
+Training loss: 0.125415  [12816/39344]
+Training loss: 0.074259  [14416/39344]
+Training loss: 0.125549  [16016/39344]
+Training loss: 0.592157  [17616/39344]
+Training loss: 0.173289  [19216/39344]
+Training loss: 0.191098  [20816/39344]
+Training loss: 0.371756  [22416/39344]
+Training loss: 0.048747  [24016/39344]
+Training loss: 0.236015  [25616/39344]
+Training loss: 0.153161  [27216/39344]
+Training loss: 0.255656  [28816/39344]
+Training loss: 0.217511  [30416/39344]
+Training loss: 0.031653  [32016/39344]
+Training loss: 0.177206  [33616/39344]
+Training loss: 0.032518  [35216/39344]
+Training loss: 0.057129  [36816/39344]
+Training loss: 0.064682  [38416/39344]
+Training accuracy: 97.01 %
+Validation loss: 0.538179
+Validation accuracy: 83.57% 
+
+Epoch 28
+-------------------------------
+Training loss: 0.156423  [16/39344]
+Training loss: 0.067613  [1616/39344]
+Training loss: 0.037978  [3216/39344]
+Training loss: 0.302227  [4816/39344]
+Training loss: 0.113562  [6416/39344]
+Training loss: 0.037885  [8016/39344]
+Training loss: 0.111560  [9616/39344]
+Training loss: 0.328353  [11216/39344]
+Training loss: 0.049000  [12816/39344]
+Training loss: 0.125736  [14416/39344]
+Training loss: 0.104410  [16016/39344]
+Training loss: 0.223616  [17616/39344]
+Training loss: 0.227336  [19216/39344]
+Training loss: 0.065526  [20816/39344]
+Training loss: 0.052939  [22416/39344]
+Training loss: 0.291614  [24016/39344]
+Training loss: 0.194046  [25616/39344]
+Training loss: 0.074415  [27216/39344]
+Training loss: 0.268801  [28816/39344]
+Training loss: 0.057298  [30416/39344]
+Training loss: 0.055358  [32016/39344]
+Training loss: 0.303628  [33616/39344]
+Training loss: 0.092167  [35216/39344]
+Training loss: 0.272997  [36816/39344]
+Training loss: 0.028330  [38416/39344]
+Training accuracy: 96.94 %
+Validation loss: 0.536089
+Validation accuracy: 83.46% 
+
+Epoch 29
+-------------------------------
+Training loss: 0.322128  [16/39344]
+Training loss: 0.045180  [1616/39344]
+Training loss: 0.043116  [3216/39344]
+Training loss: 0.017191  [4816/39344]
+Training loss: 0.268514  [6416/39344]
+Training loss: 0.112752  [8016/39344]
+Training loss: 0.049498  [9616/39344]
+Training loss: 0.169385  [11216/39344]
+Training loss: 0.187330  [12816/39344]
+Training loss: 0.138934  [14416/39344]
+Training loss: 0.104044  [16016/39344]
+Training loss: 0.136229  [17616/39344]
+Training loss: 0.359779  [19216/39344]
+Training loss: 0.060433  [20816/39344]
+Training loss: 0.109553  [22416/39344]
+Training loss: 0.178774  [24016/39344]
+Training loss: 0.059222  [25616/39344]
+Training loss: 0.224199  [27216/39344]
+Training loss: 0.045483  [28816/39344]
+Training loss: 0.040930  [30416/39344]
+Training loss: 0.037559  [32016/39344]
+Training loss: 0.029700  [33616/39344]
+Training loss: 0.056175  [35216/39344]
+Training loss: 0.100658  [36816/39344]
+Training loss: 0.011643  [38416/39344]
+Training accuracy: 97.02 %
+Validation loss: 0.526963
+Validation accuracy: 83.73% 
+
+Epoch 30
+-------------------------------
+Training loss: 0.029318  [16/39344]
+Training loss: 0.013771  [1616/39344]
+Training loss: 0.075355  [3216/39344]
+Training loss: 0.062447  [4816/39344]
+Training loss: 0.082539  [6416/39344]
+Training loss: 0.129917  [8016/39344]
+Training loss: 0.091578  [9616/39344]
+Training loss: 0.025705  [11216/39344]
+Training loss: 0.062746  [12816/39344]
+Training loss: 0.148558  [14416/39344]
+Training loss: 0.033491  [16016/39344]
+Training loss: 0.016549  [17616/39344]
+Training loss: 0.136849  [19216/39344]
+Training loss: 0.041853  [20816/39344]
+Training loss: 0.120093  [22416/39344]
+Training loss: 0.381080  [24016/39344]
+Training loss: 0.036772  [25616/39344]
+Training loss: 0.171683  [27216/39344]
+Training loss: 0.058551  [28816/39344]
+Training loss: 0.052686  [30416/39344]
+Training loss: 0.067065  [32016/39344]
+Training loss: 0.051350  [33616/39344]
+Training loss: 0.101673  [35216/39344]
+Training loss: 0.190222  [36816/39344]
+Training loss: 0.438862  [38416/39344]
+Training accuracy: 97.16 %
+Validation loss: 0.524562
+Validation accuracy: 83.24% 
+
+Epoch 31
+-------------------------------
+Training loss: 0.049805  [16/39344]
+Training loss: 0.026837  [1616/39344]
+Training loss: 0.045474  [3216/39344]
+Training loss: 0.090535  [4816/39344]
+Training loss: 0.109833  [6416/39344]
+Training loss: 0.040103  [8016/39344]
+Training loss: 0.045118  [9616/39344]
+Training loss: 0.039344  [11216/39344]
+Training loss: 0.149132  [12816/39344]
+Training loss: 0.148540  [14416/39344]
+Training loss: 0.030391  [16016/39344]
+Training loss: 0.106996  [17616/39344]
+Training loss: 0.073039  [19216/39344]
+Training loss: 0.060324  [20816/39344]
+Training loss: 0.012620  [22416/39344]
+Training loss: 0.069102  [24016/39344]
+Training loss: 0.018622  [25616/39344]
+Training loss: 0.021772  [27216/39344]
+Training loss: 0.156511  [28816/39344]
+Training loss: 0.016070  [30416/39344]
+Training loss: 0.014915  [32016/39344]
+Training loss: 0.151385  [33616/39344]
+Training loss: 0.031008  [35216/39344]
+Training loss: 0.090952  [36816/39344]
+Training loss: 0.048700  [38416/39344]
+Training accuracy: 97.21 %
+Validation loss: 0.513469
+Validation accuracy: 84.22% 
+
+Epoch 32
+-------------------------------
+Training loss: 0.080069  [16/39344]
+Training loss: 0.175180  [1616/39344]
+Training loss: 0.135955  [3216/39344]
+Training loss: 0.081231  [4816/39344]
+Training loss: 0.015077  [6416/39344]
+Training loss: 0.121886  [8016/39344]
+Training loss: 0.037555  [9616/39344]
+Training loss: 0.012299  [11216/39344]
+Training loss: 0.125343  [12816/39344]
+Training loss: 0.121926  [14416/39344]
+Training loss: 0.015785  [16016/39344]
+Training loss: 0.019524  [17616/39344]
+Training loss: 0.016843  [19216/39344]
+Training loss: 0.035184  [20816/39344]
+Training loss: 0.173531  [22416/39344]
+Training loss: 0.131507  [24016/39344]
+Training loss: 0.031847  [25616/39344]
+Training loss: 0.156422  [27216/39344]
+Training loss: 0.045822  [28816/39344]
+Training loss: 0.067014  [30416/39344]
+Training loss: 0.038346  [32016/39344]
+Training loss: 0.104011  [33616/39344]
+Training loss: 0.116341  [35216/39344]
+Training loss: 0.159212  [36816/39344]
+Training loss: 0.214191  [38416/39344]
+Training accuracy: 96.97 %
+Validation loss: 0.508162
+Validation accuracy: 84.06% 
+
+Epoch 33
+-------------------------------
+Training loss: 0.090140  [16/39344]
+Training loss: 0.067818  [1616/39344]
+Training loss: 0.319469  [3216/39344]
+Training loss: 0.134015  [4816/39344]
+Training loss: 0.138737  [6416/39344]
+Training loss: 0.074325  [8016/39344]
+Training loss: 0.051542  [9616/39344]
+Training loss: 0.108336  [11216/39344]
+Training loss: 0.036068  [12816/39344]
+Training loss: 0.031986  [14416/39344]
+Training loss: 0.025407  [16016/39344]
+Training loss: 0.052057  [17616/39344]
+Training loss: 0.152680  [19216/39344]
+Training loss: 0.034179  [20816/39344]
+Training loss: 0.059424  [22416/39344]
+Training loss: 0.049614  [24016/39344]
+Training loss: 0.150156  [25616/39344]
+Training loss: 0.050773  [27216/39344]
+Training loss: 0.037985  [28816/39344]
+Training loss: 0.014710  [30416/39344]
+Training loss: 0.066216  [32016/39344]
+Training loss: 0.043915  [33616/39344]
+Training loss: 0.248797  [35216/39344]
+Training loss: 0.121730  [36816/39344]
+Training loss: 0.073820  [38416/39344]
+Training accuracy: 97.09 %
+Validation loss: 0.529283
+Validation accuracy: 83.68% 
+
+Epoch 34
+-------------------------------
+Training loss: 0.049662  [16/39344]
+Training loss: 0.204367  [1616/39344]
+Training loss: 0.137371  [3216/39344]
+Training loss: 0.082437  [4816/39344]
+Training loss: 0.317662  [6416/39344]
+Training loss: 0.275881  [8016/39344]
+Training loss: 0.066835  [9616/39344]
+Training loss: 0.369245  [11216/39344]
+Training loss: 0.104467  [12816/39344]
+Training loss: 0.055830  [14416/39344]
+Training loss: 0.106190  [16016/39344]
+Training loss: 0.163573  [17616/39344]
+Training loss: 0.019656  [19216/39344]
+Training loss: 0.343574  [20816/39344]
+Training loss: 0.050559  [22416/39344]
+Training loss: 0.329763  [24016/39344]
+Training loss: 0.034951  [25616/39344]
+Training loss: 0.107139  [27216/39344]
+Training loss: 0.036097  [28816/39344]
+Training loss: 0.137873  [30416/39344]
+Training loss: 0.167384  [32016/39344]
+Training loss: 0.019516  [33616/39344]
+Training loss: 0.045372  [35216/39344]
+Training loss: 0.092711  [36816/39344]
+Training loss: 0.069960  [38416/39344]
+Training accuracy: 97.14 %
+Validation loss: 0.512309
+Validation accuracy: 84.17% 
+
+Epoch 35
+-------------------------------
+Training loss: 0.182425  [16/39344]
+Training loss: 0.052778  [1616/39344]
+Training loss: 0.047628  [3216/39344]
+Training loss: 0.236181  [4816/39344]
+Training loss: 0.237638  [6416/39344]
+Training loss: 0.191001  [8016/39344]
+Training loss: 0.120700  [9616/39344]
+Training loss: 0.089895  [11216/39344]
+Training loss: 0.239325  [12816/39344]
+Training loss: 0.220107  [14416/39344]
+Training loss: 0.088448  [16016/39344]
+Training loss: 0.125517  [17616/39344]
+Training loss: 0.083044  [19216/39344]
+Training loss: 0.033412  [20816/39344]
+Training loss: 0.184332  [22416/39344]
+Training loss: 0.050813  [24016/39344]
+Training loss: 0.023884  [25616/39344]
+Training loss: 0.153696  [27216/39344]
+Training loss: 0.025714  [28816/39344]
+Training loss: 0.203457  [30416/39344]
+Training loss: 0.286934  [32016/39344]
+Training loss: 0.069135  [33616/39344]
+Training loss: 0.027446  [35216/39344]
+Training loss: 0.081138  [36816/39344]
+Training loss: 0.012394  [38416/39344]
+Training accuracy: 97.19 %
+Validation loss: 0.521371
+Validation accuracy: 83.90% 
+
+Epoch 36
+-------------------------------
+Training loss: 0.093051  [16/39344]
+Training loss: 0.086307  [1616/39344]
+Training loss: 0.215496  [3216/39344]
+Training loss: 0.212621  [4816/39344]
+Training loss: 0.056764  [6416/39344]
+Training loss: 0.050303  [8016/39344]
+Training loss: 0.067965  [9616/39344]
+Training loss: 0.034565  [11216/39344]
+Training loss: 0.138927  [12816/39344]
+Training loss: 0.043318  [14416/39344]
+Training loss: 0.047752  [16016/39344]
+Training loss: 0.044311  [17616/39344]
+Training loss: 0.461697  [19216/39344]
+Training loss: 0.385062  [20816/39344]
+Training loss: 0.050039  [22416/39344]
+Training loss: 0.114365  [24016/39344]
+Training loss: 0.088365  [25616/39344]
+Training loss: 0.040595  [27216/39344]
+Training loss: 0.056434  [28816/39344]
+Training loss: 0.035960  [30416/39344]
+Training loss: 0.022322  [32016/39344]
+Training loss: 0.149775  [33616/39344]
+Training loss: 0.276658  [35216/39344]
+Training loss: 0.145793  [36816/39344]
+Training loss: 0.215548  [38416/39344]
+Training accuracy: 97.33 %
+Validation loss: 0.527399
+Validation accuracy: 83.57% 
+
+Early stopping
+Done!
+
+Elapsed time: 48198.67645955086 seconds
+
+Current time: 00:06:17
+                         precision    recall  f1-score   support
+
+             Abyssinian       0.82      0.67      0.74        49
+       American Bulldog       0.83      0.76      0.79        50
+  American pitbull terr       0.76      0.56      0.64        50
+           Basset hound       0.87      0.90      0.88        50
+                 Beagle       0.86      0.84      0.85        50
+                 Bengal       0.62      0.90      0.74        50
+                 Birman       0.73      0.76      0.75        50
+                 Bombay       0.75      0.86      0.80        44
+                  Boxer       0.81      0.84      0.82        50
+      British Shorthair       0.68      0.76      0.72        50
+              Chihuahua       0.95      0.84      0.89        50
+           Egyptian Mau       0.88      0.78      0.83        49
+ English cocker spaniel       0.98      0.88      0.93        50
+         English setter       0.89      0.80      0.84        50
+     German shorthaired       0.70      1.00      0.83        50
+         Great pyrenees       0.89      0.94      0.91        50
+               Havanese       0.81      0.88      0.85        50
+          Japanese chin       1.00      0.92      0.96        50
+               Keeshond       0.98      1.00      0.99        50
+             Leonberger       0.94      0.94      0.94        50
+             Maine Coon       0.84      0.62      0.71        50
+     Miniature pinscher       0.96      0.88      0.92        50
+           Newfoundland       0.92      0.92      0.92        50
+                Persian       0.84      0.76      0.80        50
+             Pomeranian       0.98      0.86      0.91        50
+                    Pug       1.00      0.90      0.95        50
+                Ragdoll       0.68      0.64      0.66        50
+           Russian blue       0.60      0.58      0.59        50
+          Saint bernard       0.92      0.94      0.93        50
+                Samoyed       0.88      1.00      0.93        50
+       Scottish terrier       0.86      0.96      0.91        50
+              Shiba inu       0.92      0.96      0.94        50
+                Siamese       0.83      0.86      0.84        50
+                 Sphynx       0.96      0.86      0.91        50
+Staffordshire bull terr       0.56      0.71      0.63        45
+        Wheaten terrier       0.92      0.94      0.93        50
+      Yorkshire terrier       0.93      0.84      0.88        50
+
+               accuracy                           0.84      1837
+              macro avg       0.85      0.84      0.84      1837
+           weighted avg       0.85      0.84      0.84      1837
+
+Test accuracy: 0.8399564507348939

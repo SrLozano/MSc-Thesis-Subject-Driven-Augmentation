@@ -80,6 +80,10 @@ if __name__ == "__main__":
     train_lines = lines[:int(len(lines)*0.8)]
     val_lines = lines[int(len(lines)*0.8):]
 
+    print(len(train_lines))
+    print(len(val_lines))
+    print(len(test_lines))
+
     # Get the list of classes
     classes_file_path = f"{DATA_DIR}/food-101/food-101/meta/classes.txt"
     with open(classes_file_path, "r") as file:

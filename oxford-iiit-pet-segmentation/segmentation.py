@@ -386,7 +386,7 @@ if __name__ == "__main__":
     images_id = list(map(lambda x: x[:-4], images_id)) # Remove file extension with lambda function
     visualize_segmentation_maps(images_id, DATA_DIR)
 
-
+    
     # Initialize the model for this run
     model = DeepLabV3PetsSegmentation(num_classes=3).to(device)
 

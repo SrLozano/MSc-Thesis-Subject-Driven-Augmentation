@@ -6,7 +6,7 @@
     "data_augmentation": "no",
     "subject_driven_technique": "dreambooth",
     "number_of_samples": 5,
-    "images_to_generate": 5,
+    "images_to_generate": 0,
     "path_to_dataset": "../../../../../../work3/s226536/datasets/food-101",
     "DATA_DIR": "../../../../../../work3/s226536/datasets"
 }

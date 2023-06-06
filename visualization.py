@@ -39,7 +39,8 @@ def make_experiment_003_plot(x, dict_y, title, xlabel, ylabel, filename):
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.xticks(x)
+    plt.xscale('log')
+    plt.xticks(x, labels=x)
     plt.legend(dict_y.keys(), loc='lower right')
 
     # Save and close the plot
@@ -159,7 +160,7 @@ if __name__ == "__main__":
         "Textual inversion": [0.8824, 0.8688, 0.8219, 0.7872, 0.7430]
     } 
 
-    make_experiment_003_plot(percentage_of_data, experiment_003_results, "Accuracy of subject-driven augmentations Vs percentage of data used", "Percentage of data", "Accuracy", "experiment_003")
+    make_experiment_003_plot(percentage_of_data, experiment_003_results, "Accuracy of augmentations Vs percentage of data used", "Percentage of data - (log scale)", "Accuracy", "experiment_003")
 
 
     # Define data for the experiment 04-generation-percentage-oxford-iiit-pet
@@ -167,14 +168,14 @@ if __name__ == "__main__":
 
     experiment_004_results = {
         "100% - Stable diffusion prompt": [[0.8829, 0.8845, 0.8764, 0.8726, 0.8573, 0.8328], [0.05, 0.1, 0.5, 1, 2, 10]],
-        "100% - Textual inversion": [[0.8796, 0.8802, 0.8824, 0.8853, 0.8644], [0.05, 0.1, 0.5, 1, 2]],
+        "100% - Textual inversion": [[0.8796, 0.8802, 0.8824, 0.8764, 0.8644, 0.8399], [0.05, 0.1, 0.5, 1, 2, 10]],
         "100% - Dreambooth": [[0.8807, 0.8709, 0.8568, 0.8535, 0.8454, 0.8013], [0.05, 0.1, 0.5, 1, 2, 10]],
-        "5% - Stable diffusion prompt": [[0.7419, 0.7425, 0.7359, 0.6989, 0.7185, 0.7191], [1, 2, 10, 20, 40, 80]],
+        "5% - Stable diffusion prompt": [[0.7419, 0.7425, 0.7359, 0.7169, 0.7185, 0.7191], [1, 2, 10, 20, 40, 80]],
         "5% - Textual inversion": [[0.6924, 0.7223, 0.7430, 0.7278, 0.7408, 0.7240], [1, 2, 10, 20, 40, 80]],
         "5% - Dreambooth": [[0.6712, 0.7082, 0.7240, 0.7065, 0.7169, 0.7120], [1, 2, 10, 20, 40, 80]]
     } 
 
-    make_experiment_004_plot(percentage_of_data_004, experiment_004_results, "Accuracy of subject-driven augmentations Vs percentage of data generated", "Percentage of generated data - (log scale)", "Accuracy", "experiment_004", 0.60)
+    make_experiment_004_plot(percentage_of_data_004, experiment_004_results, "Accuracy of subject-driven augmentations Vs percentage of generated data ", "Percentage of generated data - (log scale)", "Accuracy", "experiment_004", 0.60)
 
 
     # Define data for the experiment 05-all-generated
@@ -182,10 +183,11 @@ if __name__ == "__main__":
 
     experiment_005_results = {
         "Stable diffusion prompt": [0.6864, 0.7000, 0.6908, 0.6548, 0.5868, 0.4589],
+        "Textual inversion": [0.7191, 0.7201, 0.7120, 0.7065, 0.6200, 0.5318],
         "Dreambooth": [0.7016, 0.6929, 0.6837, 0.6799, 0.5808, 0.4725]
     } 
 
-    make_experiment_005_plot(generated_images, experiment_005_results, "Accuracy Vs number of images generated", "Images generated - (log scale)", "Accuracy", "experiment_005")
+    make_experiment_005_plot(generated_images, experiment_005_results, "Accuracy Vs number of generated images", "Generated images - (log scale)", "Accuracy", "experiment_005")
 
 
     # Define data for the experiment 006-controlnet
@@ -197,7 +199,7 @@ if __name__ == "__main__":
         "5% - ControlNet": [[0.7022, 0.7653, 0.7702], [1, 10, 20]]
     } 
 
-    make_experiment_006_plot(percentage_of_data_006, experiment_006_results, "Accuracy of ControlNet Vs percentage of data generated", "Percentage of generated data - (log scale)", "Accuracy", "experiment_006", 0.60)
+    make_experiment_006_plot(percentage_of_data_006, experiment_006_results, "Accuracy of ControlNet Vs percentage of generated data", "Percentage of generated data - (log scale)", "Accuracy", "experiment_006", 0.60)
 
 
     # Define data for the experiment 008-segmentation
@@ -208,4 +210,4 @@ if __name__ == "__main__":
         "5%": [[0.8223, 0.8344, 0.832], [1, 10, 20]]
     } 
 
-    make_experiment_008_plot(percentage_of_data_008, experiment_008_results, "Jaccard score Vs percentage of data generated", "Percentage of generated data - (log scale)", "Jaccard score", "experiment_008", 0.81)
+    make_experiment_008_plot(percentage_of_data_008, experiment_008_results, "Jaccard score Vs percentage of generated data", "Percentage of generated data - (log scale)", "Jaccard score", "experiment_008", 0.81)

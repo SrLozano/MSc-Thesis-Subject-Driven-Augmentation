@@ -178,9 +178,9 @@ The attributes that can be found in LAION-5B are described in table \ref{table:T
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{table}[ht]
 \centering
-\begin{tabular}{|p{0.25\linewidth} | p{0.65\linewidth}|}
+\begin{tabular}{|p{0.25\linewidth} | p{0.69\linewidth}|}
 \hline
-\rowcolor[HTML]{9B9B9B} 
+\rowcolor[HTML]{AEAAAA} 
 {\textbf{Attribute}} & {\textbf{Description}} \\ \hline
 \textbf{id} & Image identifier \\ \hline
 \textbf{URL} & URL from where the image was obtained \\ \hline
@@ -197,13 +197,14 @@ The attributes that can be found in LAION-5B are described in table \ref{table:T
 Some statistics of the subsets computed by the LAION team can be found in table \ref{table:TableLaionStatistics} \cite{schuhmann2022laion}.
 
 \begin{table}[ht]
-\begin{tabular}{|l|l|l|l|l|}
+\centering
+\begin{tabular}{|l|p{0.24\linewidth}|l|l|p{0.25\linewidth}|}
 \hline
-\rowcolor[HTML]{9B9B9B} 
+\rowcolor[HTML]{AEAAAA} 
 \textbf{Subset} & \textbf{Dimensions} & \textbf{NSFW} & \textbf{Watermark} & \textbf{Average text length} \\ \hline
-\textit{LAION2B-EN} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 2.9\% & 6.1\% & 67 \\ \hline
-\textit{LAION2B-MULTI} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1299M\\    \\ -   \textgreater{}512x512: 480M\\    \\ -   \textgreater{}1024x1024: 57M\end{tabular} & 3.3\% & 5.6\% & 52 \\ \hline
-\textit{LAION1B-NOLANG} & \begin{tabular}[c]{@{}l@{}}- \textgreater{}256x256:   1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 3\% & 4\% & 46 \\ \hline
+\textit{2B-EN} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 2.9\% & 6.1\% & 67 \\ \hline
+\textit{2B-MULTI} & \begin{tabular}[c]{@{}l@{}}-   \textgreater{}256x256: 1299M\\    \\ -   \textgreater{}512x512: 480M\\    \\ -   \textgreater{}1024x1024: 57M\end{tabular} & 3.3\% & 5.6\% & 52 \\ \hline
+\textit{1B-NOLANG} & \begin{tabular}[c]{@{}l@{}}- \textgreater{}256x256:   1324M\\    \\ -   \textgreater{}512x512: 488M\\    \\ -   \textgreater{}1024x1024: 76M\end{tabular} & 3\% & 4\% & 46 \\ \hline
 \end{tabular}
 \caption{\textbf{Statistics summary for LAION-5B}}
 \label{table:TableLaionStatistics}

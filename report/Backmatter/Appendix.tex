@@ -1,1 +1,69 @@
-\chapter{Title}
+\chapter{Hardware specifications} \label{APHardware}
+
+An NVIDIA A100 graphics card with the following characteristics shown in table \ref{table:TableHardware} has been used to develop this work.
+
+\vspace{25pt}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|>{\columncolor[HTML]{BFBFBF}}l |l|}
+\hline
+\textbf{Name} & \cellcolor[HTML]{FFFFFF}Tesla A100-PCIE \\ \hline
+\textbf{Year} & 2020 \\ \hline
+\textbf{Architecture} & GA100   (Ampere) \\ \hline
+\textbf{CUDA capability} & 8.0 \\ \hline
+\textbf{CUDA cores} & 6912 \\ \hline
+\textbf{Clock MHz} & 1410 \\ \hline
+\textbf{Memory GiB} & 39.59 \\ \hline
+\textbf{SP peak GFlops} & 19492 \\ \hline
+\textbf{DP peak GFlops} & 9746 \\ \hline
+\textbf{Peak GB/s} & 1555 \\ \hline
+\end{tabular}
+\caption{\textbf{Specifications of the NVIDIA A100 GPUs used in this work} \cite{HPCDTU}}
+\label{table:TableHardware}
+\end{table}
+
+\chapter{Software enviroment} \label{APSoftware}
+
+The software tools used throughout the development of this work are shown in table \ref{APSoftware}.
+
+\vspace{25pt}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\rowcolor[HTML]{BFBFBF} 
+\textbf{Tool} & \textbf{Version} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Python & 3.8.13 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+PyTorch & 2.0.1 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Torchvision & 0.15.2 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Hugging Face Diffusers & 0.16.1 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+xFormers & 0.0.19 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Transformers & 4.28.1 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Numpy & 1.24.2 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Scipy & 1.10.0 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Scikit-learn & 1.2.2 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Pandas & 1.5.3 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+OpenCV & 4.7.0.72 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Pillow & 9.4.0 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Seaborn & 0.12.2 \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+Matplotlib & 3.7.1 \\ \hline
+\end{tabular}
+\caption{\textbf{Versions of the software tools used in the project}}
+\label{table:TableHSoftware}
+\end{table}

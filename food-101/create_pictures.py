@@ -10,7 +10,6 @@ import torch
 import random
 import shutil
 import numpy as np
-import pipeline_utils 
 import torchvision.transforms as transforms
 
 from PIL import Image
@@ -87,6 +86,25 @@ def generate_images(model_path, prompts, keys, subject_driven_technique, food_sa
                 save_images(images, keys[i], "inference")
 
 
+def delete_files(dst, verbose=False):
+    """
+    This function deletes all files in a directory.
+    :param dst: The directory to delete all files from.
+    :param verbose: Indicates whether to print the information about the deleted files.
+    """
+    if len(os.listdir(dst)) > 0:
+        for filename in os.listdir(dst):
+            file_path = os.path.join(dst, filename)
+            try:
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                else:
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                if verbose:
+                    print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+
 if __name__ == "__main__":
     
     # Read parameters from config file
@@ -149,7 +167,7 @@ if __name__ == "__main__":
                         shutil.copy(src, dst)
 
                 # Delete all files in generated_images_path
-                pipeline_utils.delete_files(generated_images_path)
+                delete_files(generated_images_path)
 
 
             # Time elapsed

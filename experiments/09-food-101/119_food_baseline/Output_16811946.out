@@ -1,0 +1,564 @@
+60600
+15150
+25250
+Not using data augmentation
+Using cuda device
+Epoch 1
+-------------------------------
+Training loss: 4.711671  [16/3072]
+Training loss: 4.672138  [1616/3072]
+Training accuracy: 1.33 %
+Validation loss: 4.694010
+Validation accuracy: 1.37% 
+
+Epoch 2
+-------------------------------
+Training loss: 4.781600  [16/3072]
+Training loss: 4.470218  [1616/3072]
+Training accuracy: 1.99 %
+Validation loss: 4.624020
+Validation accuracy: 1.91% 
+
+Epoch 3
+-------------------------------
+Training loss: 4.670195  [16/3072]
+Training loss: 4.552617  [1616/3072]
+Training accuracy: 3.06 %
+Validation loss: 4.571612
+Validation accuracy: 2.44% 
+
+Epoch 4
+-------------------------------
+Training loss: 4.386727  [16/3072]
+Training loss: 4.582014  [1616/3072]
+Training accuracy: 4.17 %
+Validation loss: 4.524855
+Validation accuracy: 3.47% 
+
+Epoch 5
+-------------------------------
+Training loss: 4.563762  [16/3072]
+Training loss: 4.403133  [1616/3072]
+Training accuracy: 5.40 %
+Validation loss: 4.479641
+Validation accuracy: 4.33% 
+
+Epoch 6
+-------------------------------
+Training loss: 4.486761  [16/3072]
+Training loss: 4.464911  [1616/3072]
+Training accuracy: 7.19 %
+Validation loss: 4.434448
+Validation accuracy: 5.49% 
+
+Epoch 7
+-------------------------------
+Training loss: 4.527847  [16/3072]
+Training loss: 4.312428  [1616/3072]
+Training accuracy: 8.53 %
+Validation loss: 4.393325
+Validation accuracy: 6.53% 
+
+Epoch 8
+-------------------------------
+Training loss: 4.232833  [16/3072]
+Training loss: 4.319810  [1616/3072]
+Training accuracy: 9.83 %
+Validation loss: 4.349568
+Validation accuracy: 7.94% 
+
+Epoch 9
+-------------------------------
+Training loss: 4.021798  [16/3072]
+Training loss: 4.025079  [1616/3072]
+Training accuracy: 11.59 %
+Validation loss: 4.305741
+Validation accuracy: 9.12% 
+
+Epoch 10
+-------------------------------
+Training loss: 4.163909  [16/3072]
+Training loss: 4.020809  [1616/3072]
+Training accuracy: 13.25 %
+Validation loss: 4.265297
+Validation accuracy: 10.34% 
+
+Epoch 11
+-------------------------------
+Training loss: 4.119620  [16/3072]
+Training loss: 4.256967  [1616/3072]
+Training accuracy: 15.72 %
+Validation loss: 4.223663
+Validation accuracy: 11.46% 
+
+Epoch 12
+-------------------------------
+Training loss: 4.275606  [16/3072]
+Training loss: 4.167197  [1616/3072]
+Training accuracy: 16.67 %
+Validation loss: 4.181289
+Validation accuracy: 12.76% 
+
+Epoch 13
+-------------------------------
+Training loss: 4.047145  [16/3072]
+Training loss: 4.120209  [1616/3072]
+Training accuracy: 18.39 %
+Validation loss: 4.148898
+Validation accuracy: 13.69% 
+
+Epoch 14
+-------------------------------
+Training loss: 3.932992  [16/3072]
+Training loss: 4.043530  [1616/3072]
+Training accuracy: 19.60 %
+Validation loss: 4.102859
+Validation accuracy: 14.90% 
+
+Epoch 15
+-------------------------------
+Training loss: 3.805010  [16/3072]
+Training loss: 3.996343  [1616/3072]
+Training accuracy: 21.88 %
+Validation loss: 4.064833
+Validation accuracy: 15.76% 
+
+Epoch 16
+-------------------------------
+Training loss: 4.061444  [16/3072]
+Training loss: 3.934750  [1616/3072]
+Training accuracy: 23.44 %
+Validation loss: 4.038127
+Validation accuracy: 16.58% 
+
+Epoch 17
+-------------------------------
+Training loss: 3.920209  [16/3072]
+Training loss: 3.548010  [1616/3072]
+Training accuracy: 24.74 %
+Validation loss: 4.002604
+Validation accuracy: 17.41% 
+
+Epoch 18
+-------------------------------
+Training loss: 3.967613  [16/3072]
+Training loss: 3.979589  [1616/3072]
+Training accuracy: 26.04 %
+Validation loss: 3.971076
+Validation accuracy: 18.24% 
+
+Epoch 19
+-------------------------------
+Training loss: 3.752986  [16/3072]
+Training loss: 4.064503  [1616/3072]
+Training accuracy: 27.57 %
+Validation loss: 3.929799
+Validation accuracy: 19.29% 
+
+Epoch 20
+-------------------------------
+Training loss: 3.805249  [16/3072]
+Training loss: 4.037570  [1616/3072]
+Training accuracy: 28.26 %
+Validation loss: 3.903543
+Validation accuracy: 19.99% 
+
+Epoch 21
+-------------------------------
+Training loss: 3.621879  [16/3072]
+Training loss: 3.757336  [1616/3072]
+Training accuracy: 29.36 %
+Validation loss: 3.859910
+Validation accuracy: 20.80% 
+
+Epoch 22
+-------------------------------
+Training loss: 3.600262  [16/3072]
+Training loss: 3.719073  [1616/3072]
+Training accuracy: 30.89 %
+Validation loss: 3.835847
+Validation accuracy: 21.43% 
+
+Epoch 23
+-------------------------------
+Training loss: 3.517173  [16/3072]
+Training loss: 3.492714  [1616/3072]
+Training accuracy: 32.23 %
+Validation loss: 3.815626
+Validation accuracy: 22.04% 
+
+Epoch 24
+-------------------------------
+Training loss: 3.773955  [16/3072]
+Training loss: 3.653239  [1616/3072]
+Training accuracy: 33.98 %
+Validation loss: 3.771675
+Validation accuracy: 22.59% 
+
+Epoch 25
+-------------------------------
+Training loss: 3.170428  [16/3072]
+Training loss: 3.546179  [1616/3072]
+Training accuracy: 34.86 %
+Validation loss: 3.746128
+Validation accuracy: 23.01% 
+
+Epoch 26
+-------------------------------
+Training loss: 3.325766  [16/3072]
+Training loss: 3.616248  [1616/3072]
+Training accuracy: 34.21 %
+Validation loss: 3.719930
+Validation accuracy: 23.68% 
+
+Epoch 27
+-------------------------------
+Training loss: 3.094830  [16/3072]
+Training loss: 3.462352  [1616/3072]
+Training accuracy: 36.30 %
+Validation loss: 3.701844
+Validation accuracy: 24.36% 
+
+Epoch 28
+-------------------------------
+Training loss: 3.480101  [16/3072]
+Training loss: 3.502403  [1616/3072]
+Training accuracy: 37.17 %
+Validation loss: 3.665747
+Validation accuracy: 24.72% 
+
+Epoch 29
+-------------------------------
+Training loss: 3.271924  [16/3072]
+Training loss: 3.977655  [1616/3072]
+Training accuracy: 38.22 %
+Validation loss: 3.625656
+Validation accuracy: 25.66% 
+
+Epoch 30
+-------------------------------
+Training loss: 3.240699  [16/3072]
+Training loss: 3.121438  [1616/3072]
+Training accuracy: 38.48 %
+Validation loss: 3.607321
+Validation accuracy: 25.85% 
+
+Epoch 31
+-------------------------------
+Training loss: 3.225496  [16/3072]
+Training loss: 3.211122  [1616/3072]
+Training accuracy: 39.58 %
+Validation loss: 3.595860
+Validation accuracy: 26.00% 
+
+Epoch 32
+-------------------------------
+Training loss: 3.113104  [16/3072]
+Training loss: 3.274651  [1616/3072]
+Training accuracy: 40.89 %
+Validation loss: 3.571316
+Validation accuracy: 26.55% 
+
+Epoch 33
+-------------------------------
+Training loss: 3.339847  [16/3072]
+Training loss: 2.922932  [1616/3072]
+Training accuracy: 40.69 %
+Validation loss: 3.541528
+Validation accuracy: 27.19% 
+
+Epoch 34
+-------------------------------
+Training loss: 3.491352  [16/3072]
+Training loss: 3.534811  [1616/3072]
+Training accuracy: 42.71 %
+Validation loss: 3.526475
+Validation accuracy: 27.44% 
+
+Epoch 35
+-------------------------------
+Training loss: 3.391124  [16/3072]
+Training loss: 3.081848  [1616/3072]
+Training accuracy: 43.36 %
+Validation loss: 3.506380
+Validation accuracy: 27.51% 
+
+Epoch 36
+-------------------------------
+Training loss: 3.435605  [16/3072]
+Training loss: 3.655537  [1616/3072]
+Training accuracy: 44.34 %
+Validation loss: 3.481009
+Validation accuracy: 27.93% 
+
+Epoch 37
+-------------------------------
+Training loss: 3.263685  [16/3072]
+Training loss: 2.883999  [1616/3072]
+Training accuracy: 43.85 %
+Validation loss: 3.456583
+Validation accuracy: 28.46% 
+
+Epoch 38
+-------------------------------
+Training loss: 3.059606  [16/3072]
+Training loss: 3.227258  [1616/3072]
+Training accuracy: 44.63 %
+Validation loss: 3.432093
+Validation accuracy: 28.67% 
+
+Epoch 39
+-------------------------------
+Training loss: 2.923607  [16/3072]
+Training loss: 2.983964  [1616/3072]
+Training accuracy: 45.67 %
+Validation loss: 3.415366
+Validation accuracy: 29.21% 
+
+Epoch 40
+-------------------------------
+Training loss: 3.080388  [16/3072]
+Training loss: 3.196669  [1616/3072]
+Training accuracy: 45.80 %
+Validation loss: 3.393501
+Validation accuracy: 29.62% 
+
+Epoch 41
+-------------------------------
+Training loss: 3.377076  [16/3072]
+Training loss: 3.061163  [1616/3072]
+Training accuracy: 47.20 %
+Validation loss: 3.397069
+Validation accuracy: 29.19% 
+
+Epoch 42
+-------------------------------
+Training loss: 2.894583  [16/3072]
+Training loss: 2.779467  [1616/3072]
+Training accuracy: 47.07 %
+Validation loss: 3.352812
+Validation accuracy: 29.87% 
+
+Epoch 43
+-------------------------------
+Training loss: 2.831839  [16/3072]
+Training loss: 2.898194  [1616/3072]
+Training accuracy: 47.66 %
+Validation loss: 3.349188
+Validation accuracy: 29.97% 
+
+Epoch 44
+-------------------------------
+Training loss: 2.778147  [16/3072]
+Training loss: 3.117887  [1616/3072]
+Training accuracy: 48.14 %
+Validation loss: 3.332093
+Validation accuracy: 29.96% 
+
+Epoch 45
+-------------------------------
+Training loss: 3.024806  [16/3072]
+Training loss: 3.054042  [1616/3072]
+Training accuracy: 48.99 %
+Validation loss: 3.320209
+Validation accuracy: 30.44% 
+
+Epoch 46
+-------------------------------
+Training loss: 2.742901  [16/3072]
+Training loss: 3.047219  [1616/3072]
+Training accuracy: 48.89 %
+Validation loss: 3.279825
+Validation accuracy: 31.21% 
+
+Epoch 47
+-------------------------------
+Training loss: 2.522481  [16/3072]
+Training loss: 2.832508  [1616/3072]
+Training accuracy: 51.07 %
+Validation loss: 3.271631
+Validation accuracy: 31.11% 
+
+Epoch 48
+-------------------------------
+Training loss: 2.892544  [16/3072]
+Training loss: 2.693836  [1616/3072]
+Training accuracy: 49.90 %
+Validation loss: 3.264849
+Validation accuracy: 31.12% 
+
+Epoch 49
+-------------------------------
+Training loss: 2.885597  [16/3072]
+Training loss: 2.825254  [1616/3072]
+Training accuracy: 50.68 %
+Validation loss: 3.248715
+Validation accuracy: 31.37% 
+
+Epoch 50
+-------------------------------
+Training loss: 3.218103  [16/3072]
+Training loss: 3.002703  [1616/3072]
+Training accuracy: 50.91 %
+Validation loss: 3.230153
+Validation accuracy: 31.62% 
+
+Epoch 51
+-------------------------------
+Training loss: 2.892329  [16/3072]
+Training loss: 2.900709  [1616/3072]
+Training accuracy: 51.20 %
+Validation loss: 3.210918
+Validation accuracy: 31.91% 
+
+Epoch 52
+-------------------------------
+Training loss: 2.515296  [16/3072]
+Training loss: 2.977710  [1616/3072]
+Training accuracy: 51.11 %
+Validation loss: 3.198510
+Validation accuracy: 32.24% 
+
+Epoch 53
+-------------------------------
+Training loss: 2.646615  [16/3072]
+Training loss: 3.366509  [1616/3072]
+Training accuracy: 52.08 %
+Validation loss: 3.185228
+Validation accuracy: 32.25% 
+
+Epoch 54
+-------------------------------
+Training loss: 2.765335  [16/3072]
+Training loss: 2.671216  [1616/3072]
+Training accuracy: 52.28 %
+Validation loss: 3.172050
+Validation accuracy: 32.27% 
+
+Epoch 55
+-------------------------------
+Training loss: 2.825758  [16/3072]
+Training loss: 2.783947  [1616/3072]
+Training accuracy: 53.65 %
+Validation loss: 3.169138
+Validation accuracy: 32.75% 
+
+Done!
+
+Elapsed time: 6252.503265142441 seconds
+
+Current time: 01:09:43
+                         precision    recall  f1-score   support
+
+              apple_pie       0.08      0.01      0.02       250
+         baby_back_ribs       0.38      0.35      0.36       250
+                baklava       0.33      0.21      0.26       250
+         beef_carpaccio       0.33      0.30      0.31       250
+           beef_tartare       0.25      0.10      0.15       250
+             beet_salad       0.22      0.20      0.21       250
+               beignets       0.40      0.59      0.48       250
+               bibimbap       0.38      0.59      0.46       250
+          bread_pudding       0.16      0.05      0.08       250
+      breakfast_burrito       0.26      0.25      0.26       250
+             bruschetta       0.21      0.19      0.20       250
+           caesar_salad       0.26      0.12      0.17       250
+                cannoli       0.26      0.13      0.18       250
+          caprese_salad       0.25      0.25      0.25       250
+            carrot_cake       0.28      0.44      0.34       250
+                ceviche       0.16      0.06      0.08       250
+             cheesecake       0.29      0.30      0.29       250
+           cheese_plate       0.16      0.14      0.15       250
+          chicken_curry       0.16      0.02      0.03       250
+     chicken_quesadilla       0.28      0.33      0.30       250
+          chicken_wings       0.32      0.51      0.40       250
+         chocolate_cake       0.24      0.32      0.27       250
+       chocolate_mousse       0.24      0.34      0.28       250
+                churros       0.50      0.39      0.44       250
+           clam_chowder       0.45      0.49      0.47       250
+          club_sandwich       0.37      0.31      0.34       250
+             crab_cakes       0.16      0.17      0.17       250
+           creme_brulee       0.38      0.62      0.47       250
+          croque_madame       0.41      0.27      0.32       250
+              cup_cakes       0.37      0.51      0.43       250
+           deviled_eggs       0.38      0.55      0.45       250
+                 donuts       0.45      0.41      0.43       250
+              dumplings       0.69      0.76      0.72       250
+                edamame       0.60      0.92      0.72       250
+          eggs_benedict       0.42      0.44      0.43       250
+              escargots       0.46      0.53      0.49       250
+                falafel       0.32      0.31      0.31       250
+           filet_mignon       0.18      0.11      0.14       250
+         fish_and_chips       0.38      0.30      0.34       250
+              foie_gras       0.18      0.16      0.17       250
+           french_fries       0.42      0.72      0.53       250
+      french_onion_soup       0.39      0.52      0.45       250
+           french_toast       0.28      0.08      0.13       250
+         fried_calamari       0.44      0.35      0.39       250
+             fried_rice       0.36      0.39      0.37       250
+          frozen_yogurt       0.45      0.71      0.55       250
+           garlic_bread       0.34      0.25      0.29       250
+                gnocchi       0.25      0.26      0.25       250
+            greek_salad       0.28      0.39      0.32       250
+grilled_cheese_sandwich       0.17      0.25      0.20       250
+         grilled_salmon       0.17      0.18      0.18       250
+              guacamole       0.46      0.62      0.53       250
+                  gyoza       0.38      0.41      0.39       250
+              hamburger       0.34      0.54      0.42       250
+      hot_and_sour_soup       0.48      0.77      0.59       250
+                hot_dog       0.44      0.54      0.48       250
+       huevos_rancheros       0.14      0.07      0.09       250
+                 hummus       0.14      0.03      0.05       250
+              ice_cream       0.30      0.14      0.19       250
+                lasagna       0.20      0.22      0.21       250
+         lobster_bisque       0.36      0.68      0.47       250
+  lobster_roll_sandwich       0.31      0.33      0.32       250
+    macaroni_and_cheese       0.27      0.31      0.29       250
+               macarons       0.47      0.80      0.59       250
+              miso_soup       0.50      0.67      0.57       250
+                mussels       0.53      0.74      0.62       250
+                 nachos       0.16      0.14      0.15       250
+               omelette       0.24      0.09      0.13       250
+            onion_rings       0.48      0.67      0.56       250
+                oysters       0.53      0.68      0.60       250
+               pad_thai       0.41      0.54      0.47       250
+                 paella       0.26      0.19      0.22       250
+               pancakes       0.32      0.26      0.29       250
+            panna_cotta       0.23      0.31      0.26       250
+            peking_duck       0.31      0.11      0.16       250
+                    pho       0.44      0.64      0.53       250
+                  pizza       0.40      0.71      0.51       250
+              pork_chop       0.15      0.18      0.16       250
+                poutine       0.46      0.52      0.49       250
+              prime_rib       0.39      0.21      0.27       250
+   pulled_pork_sandwich       0.31      0.12      0.18       250
+                  ramen       0.31      0.28      0.29       250
+                ravioli       0.19      0.12      0.14       250
+        red_velvet_cake       0.45      0.60      0.51       250
+                risotto       0.30      0.23      0.26       250
+                 samosa       0.33      0.34      0.33       250
+                sashimi       0.50      0.64      0.56       250
+               scallops       0.14      0.10      0.12       250
+          seaweed_salad       0.32      0.53      0.40       250
+       shrimp_and_grits       0.21      0.14      0.16       250
+    spaghetti_bolognese       0.48      0.54      0.51       250
+    spaghetti_carbonara       0.64      0.78      0.71       250
+           spring_rolls       0.43      0.32      0.37       250
+                  steak       0.19      0.08      0.11       250
+   strawberry_shortcake       0.33      0.33      0.33       250
+                  sushi       0.26      0.26      0.26       250
+                  tacos       0.31      0.14      0.20       250
+               takoyaki       0.30      0.20      0.24       250
+               tiramisu       0.33      0.14      0.20       250
+           tuna_tartare       0.10      0.06      0.07       250
+                waffles       0.60      0.28      0.38       250
+
+               accuracy                           0.35     25250
+              macro avg       0.33      0.35      0.33     25250
+           weighted avg       0.33      0.35      0.33     25250
+
+Test accuracy: 0.3518415841584158
+The metadata of the previous execution is...
+{'training_images_percentage': 0.05, 'epochs': 55, 'learning_rate': 0.001, 'batch_size': 16, 'data_augmentation': 'no', 'subject_driven_technique': 'dreambooth', 'number_of_samples': 5, 'images_to_generate': 0, 'path_to_dataset': '../../../../../../work3/s226536/datasets/food-101', 'DATA_DIR': '../../../../../../work3/s226536/datasets'}
+
+Preparing next execution...
+Finished preparing next execution...

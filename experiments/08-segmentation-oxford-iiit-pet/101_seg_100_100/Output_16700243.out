@@ -35,7 +35,7 @@ Training loss: 0.290233
 Validation loss: 0.237180
 
 Early stopping
-Jaccard score: 0.8562582032256986
+Jaccard score: 0.8535443623534975
 Done!
 
 Elapsed time: 1489.669811964035 seconds

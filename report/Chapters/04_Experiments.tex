@@ -227,9 +227,7 @@ In summary, the \textit{02-different-subjects} experiment leaves no doubt that i
 
 \subsection{Experiment 03-training-percentage} \label{sec: exp-03}
 
-Experiment 3 evaluates the entire subject-driven augmentation pipeline and compares it to other data augmentation techniques in a real task. This includes comparisons with the baseline, classical techniques and automated policies (AutoAugment and RandAugment). For subject-driven techniques, it includes Dreambooth, Textual inversion and Stable Diffusion prompt. In addition, the experiment examines the impact of varying the size of the real dataset. For this purpose, the percentage of data indicates how many images have been used. We consider 100\% the use of the complete Oxford-IIIT Pet training set. On the other hand, the number of synthetic images is kept fixed at 50.
-
-Unlike the \textit{01-number-of-images} and \textit{02-different-subjects} experiments, we have a more rigorous evaluation method in this case. We use the accuracy of the trained model in the classification task and establish a baseline that does not employ any data augmentation technique. Figure X shows a plot of the results. 
+Experiment 3 evaluates the entire subject-driven augmentation pipeline and compares it to other data augmentation techniques in a real task. This includes comparisons with the baseline, classical techniques and automated policies (AutoAugment and RandAugment). For subject-driven techniques, it includes Dreambooth, Textual inversion and Stable Diffusion prompt. In addition, the experiment examines the impact of varying the size of the real dataset. For this purpose, the percentage of data indicates how many images have been used. We consider 100\% the use of the complete Oxford-IIIT Pet training set. On the other hand, the number of synthetic images is kept fixed at 50. Unlike the \textit{01-number-of-images} and \textit{02-different-subjects} experiments, we have a more rigorous evaluation method in this case. We use the accuracy of the trained model in the classification task and establish a baseline that does not employ any data augmentation technique. Figure X shows a plot of the results. Meanwhile, Appendices X, X and X show the synthetic images obtained by the subject-driven techniques.
 
 \begin{figure}
     \centering
@@ -248,9 +246,9 @@ In summary, the data clearly show that subject-driven augmentation techniques ar
 
 Experiment number 4 takes experiment \textit{03-training-percentage} and varies the percentage of images generated while leaving the size of the actual training set fixed. We consider two different scenarios. In the first one, we take 100\% of the Oxford-IIIT Pet training set and in the second one, only 5\%. Figure \ref{fig:exp4} shows a plot of the results. 
 
-\begin{figure}
+\begin{figure}[th]
     \centering
-    \includegraphics[width=0.93\textwidth]{Pictures/experiment_004.pdf}
+    \includegraphics[width=0.95\textwidth]{Pictures/experiment_004.pdf}
     \caption{\textbf{Experiment 04-generation-percentage}. The experiment involves manipulating the proportion of generated data (measured on a logarithmic scale). Our findings indicate that in large datasets, the techniques do not yield a substantial improvement in system performance. However, in smaller ones, they do demonstrate an increase.}
     \label{fig:exp4}
 \end{figure}
@@ -263,11 +261,39 @@ In summary, when there are enough training images, subject-driven augmentation t
 
 \subsection{Experiment 05-all-generated} \label{sec: exp-05}
 
+Experiment 5 studies how necessary real images are in the training of computer vision models. For this purpose, we take Textual inversion, Dreambooth and Stable Diffusion prompt and use them to generate synthetic images to train the classification model for Oxford-IIIT Pet. The idea is to know to what extent the information contained in the synthetic images is faithful to reality and allows, without the help of real images, to obtain competitive results. It is crucial to note that, although useful, the results should be taken cautiously in the case of Textual inversion and Dreambooth since these techniques use a few real images to personalise the text-to-image model. In contrast, Stable Diffusion prompt does not use any image from the dataset, and therefore its results are more faithful to the idea of the experiment. The data collected are shown in Figure \ref{fig:exp5}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Pictures/experiment_005.pdf}
+    \caption{\textbf{Experiment 05-all-generated}. The experiment uses only synthetic images to train the classification model. The number of synthetic images per class is measured on a logarithmic scale. Our findings indicate that there is still a gap between models trained with synthetic images and those trained with real ones.}
+    \label{fig:exp5}
+\end{figure}
+
+The results indicate that, although decent results can be obtained, the synthetic images are not faithful enough to reality to obtain competitive results. Thus, we observe that the best-performing case, Textual inversion with 400 images per class, only obtains an accuracy of 0.72, which is 18.04\% worse than the baseline using the full real dataset. On the other hand, if we compare this result with using only 5 real images per class, we are looking at a performance improvement of 15.44\%. This result indicates that the synthetic images contain valid and usable information about reality. However, this information is still far from being indistinguishable from the information provided by real images.
+
+The data also show that the more images are added, the better. However, a reduction in the trend can be seen from 100 images per class, reaching a maximum of around 400-1000 images per class. On the other hand, Textual inversion obtains the best values and, therefore, its images contain features that are more faithful to the real images and more usable by the associated classification model.
+
+In summary, we show that synthetic images contain usable information in computer vision tasks. However, these images contain less information than real images. Thus, we show that there is still a gap between models trained with synthetic images and those trained with real images. Moreover, by including the Stable Diffusion prompt approach, we endow the present experiment with rigour since it does not personalise the text-to-image model and, therefore, does not use any real information about the dataset used.
+
 \subsection{Experiment 06-controlnet} \label{sec: exp-06}
 
+Experiment 6 examines whether it is possible to improve the quality of synthetic images by adding conditional control. It takes the Stable Diffusion prompt approach and uses ControlNet pre-trained with Canny edge detections. The tests consist of 3 cases where the number of real images is taken as 100\%, 50\% and 5\% while varying the percentage of synthetic images. The collected data are shown in Figure \ref{fig:exp6}. A sample of the synthetic images achieved by this technique is shown in Appendix X.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Pictures/experiment_006.pdf}
+    \caption{\textbf{Experiment 06-controlnet}. The experiment uses conditional control. The number of synthetic images per class is measured on a logarithmic scale. Our findings show that conditional control can improve the fidelity of synthetic images when small sets of real images are considered.}
+    \label{fig:exp6}
+\end{figure}
+
+The results indicate that for the cases with 100\% and 50\% real images, the accuracy does not improve with respect to the baseline when conditional control is used. On the other hand, with 5\% real images and 2000\% synthetic images, the accuracy is 0.77. This improvement represents an increase of 23.47\% over the baseline. Thus, this increase surpasses the best obtained so far, 19.11\% in the case of Textual inversion, with 5\% real images and 1000\% synthetic.
+
+In summary, our findings show that conditional control can improve the fidelity of synthetic images. Thus, when used in a task associated with a small training set, we observe performance improvements of up to 23.47\%.
 
 \subsection{Experiment 07-combinations} \label{sec: exp-07}
 
+Experiment 7 investigates the feasibility of integrating subject-driven approaches with classical data augmentation techniques. Consequently, we merge the most favourable subject-driven configurations with the top-performing classical technique, RandAugment. The conducted tests and their corresponding results are presented in Table \ref{table:TableExp07}. The column \textit{Variation} denotes the percentage difference in test accuracy before and after the inclusion of RandAugment.
 
 \begin{table}[ht]
 \centering
@@ -287,14 +313,26 @@ Textual inversion + RandAugment & 5\% & 1000\% & -1,83\% \\ \hline
 Stable Diffusion prompt + RandAugment & 5\% & 200\% & 1,83\% \\ \hline
 ControlNet + RandAugment & 5\% & 2000\% & -7,23\% \\ \hline
 \end{tabular}
-\caption{\textbf{Exp 07}}
+\caption{\textbf{Experiment 07-combinations}. The \textit{Variation} column indicates the percentage variation of the test accuracy before and after adding RandAugment. Our findings show that combining subject-driven augmentation with classical techniques does not improve the results.}
 \label{table:TableExp07}
 \end{table}
 
+The findings unequivocally demonstrate that integrating subject-driven augmentation with classical techniques does not yield improvements in the results. In 75\% of instances, the results exhibited deterioration upon the inclusion of RandAugment. Moreover, among the remaining 25\% of cases that exhibited improvement, the majority experienced less than 1\% marginal enhancements, rendering them statistically insignificant. The observed detrimental effect of combining these techniques might be attributed to the introduction of excessive data variability that surpasses the model's capacity for generalisation.
+
 \subsection{Experiment 08-segmentation} \label{sec: exp-08}
 
+Experiment 8 investigates the feasibility of employing subject-driven augmentation in a segmentation task. Specifically, we utilise the Stable Diffusion prompt approach, incorporating conditional control mechanisms based on segmentation maps. This experiment bears similarity to the 06-controlnet experiment, with the distinction lying in the task being changed from classification to segmentation and the replacement of Canny edge annotations with segmentation maps as the control element. The Jaccard score is selected as the reference metric for evaluating the performance of this task. Additionally, we consider two scenarios: one utilising 100\% of the Oxford-IIIT Pet training set and another utilising only 5\%. Figure \ref{fig:exp8} depicts a graphical representation of the data gathered from the conducted tests.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Pictures/experiment_008.pdf}
+    \caption{\textbf{Experiment 08-segmentation}. This experiment translates the subject-driven augmentation approach to a segmentation task. The
+number of synthetic images per class is measured on a logarithmic scale. Our findings show that despite weak improvements, subject-driven augmentation techniques are a valid approach in segmentation tasks.}
+    \label{fig:exp8}
+\end{figure}
+
+The findings from the experiment indicate that the data augmentation approach based on synthetic imaging has no significant effect on the performance of the associated model. When utilising 100\% of the real training set, the observed improvements are minimal, ranging from 0.42\% to 0.66\% compared to the baseline. These results, although consistent, possess limited strength and should not be given substantial consideration. Furthermore, increasing the number of synthetic images demonstrates a downward trend, indicating that it does not positively affect the overall outcome. Conversely, when only 5\% of the real data is used, more substantial improvements are observed, with an enhancement of 0.86\% compared to the baseline. However, these improvements remain modest and should be approached with caution. Additionally, a peak is observed when the synthetic image proportion reaches 1000\%, suggesting that further increasing the amount of synthetic data does not yield additional enhancements.
+
+In summary, the results of our study suggest the possibility of enhancing the performance of segmentation models through the integration of synthetic images. However, these improvements are not statistically significant and should be interpreted carefully due to potential stochastic factors. Nevertheless, our findings highlight the relevance of subject-driven augmentation techniques in domains beyond classification.
+
 \subsection{Experiment 09-food-101} \label{sec: exp-09}
-
-
-
-LOS APENDICES CON LAS IMAGEN GENERADAS. ESO NO LO HE PUESTO Y TENDRIA QUE HABER EMPEZADO A DECIRLO EN EL 03.

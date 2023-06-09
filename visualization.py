@@ -44,7 +44,7 @@ def make_experiment_003_plot(x, dict_y, title, xlabel, ylabel, filename):
     plt.legend(dict_y.keys(), loc='lower right')
 
     # Save and close the plot
-    plt.savefig(f"{filename}.pdf")
+    plt.savefig(f"figures/{filename}.pdf")
     plt.close()
 
 # Utility for plotting the results of the experiment 004
@@ -69,7 +69,7 @@ def make_experiment_004_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
     plt.text(0.05, 0.6238+0.002, f'5% - Baseline', color='darkgray', fontsize=9)
 
     # Save and close the plot
-    plt.savefig(f"{filename}.pdf")
+    plt.savefig(f"figures/{filename}.pdf")
     plt.close()
 
 # Utility for plotting the results of the experiment 005
@@ -88,7 +88,7 @@ def make_experiment_005_plot(x, dict_y, title, xlabel, ylabel, filename):
     plt.legend(dict_y.keys(), loc='lower right')
 
     # Save and close the plot
-    plt.savefig(f"{filename}.pdf")
+    plt.savefig(f"figures/{filename}.pdf")
     plt.close()
 
 # Utility for plotting the results of the experiment 006
@@ -115,7 +115,7 @@ def make_experiment_006_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
     plt.text(0.05, 0.6238+0.002, f'5% - Baseline', color='darkgray', fontsize=9)
 
     # Save and close the plot
-    plt.savefig(f"{filename}.pdf")
+    plt.savefig(f"figures/{filename}.pdf")
     plt.close()
 
 
@@ -141,7 +141,7 @@ def make_experiment_008_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
     plt.text(0.05, 0.8273+0.0008, f'5% - Baseline', color='darkgray', fontsize=9)
 
     # Save and close the plot
-    plt.savefig(f"{filename}.pdf")
+    plt.savefig(f"figures/{filename}.pdf")
     plt.close()
 
 

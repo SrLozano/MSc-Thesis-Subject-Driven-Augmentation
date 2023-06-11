@@ -19,7 +19,7 @@ All the research described above explodes and becomes popular with the general p
     \label{fig:DallE2}
 \end{figure}
 
-The generated images, as shown in figure \ref{fig:DallE2}, are of high enough quality to be used in real-world projects. Hence, \textbf{research has shifted} from concentrating solely on the quality aspect \textbf{to trying to increase control} over the final result. Therefore, in late 2022 and early 2023, some of the most influential publications in the field of generative AI seek to facilitate the manipulation of generated images through subject-based generation (\textit{\textit{An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion}} \cite{gal2022image} and \textit{DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation} \cite{ruiz2022dreambooth}) or conditional guidance (Adding Conditional Control to Text-to-Image Diffusion Models \cite{zhang2023adding}).
+The generated images, as shown in figure \ref{fig:DallE2}, are of high enough quality to be used in real-world projects. Hence, \textbf{research has shifted} from concentrating solely on the quality aspect \textbf{to trying to increase control} over the final result. Therefore, in late 2022 and early 2023, some of the most influential publications in the field of generative AI seek to facilitate the manipulation of generated images through subject-based generation (\textit{\textit{An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion}} \cite{gal2022image} and \textit{DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation} \cite{ruiz2023dreambooth}) or conditional guidance (Adding Conditional Control to Text-to-Image Diffusion Models \cite{zhang2023adding}).
 
 \section{Diffusion probabilistic models} \label{Dprobabilistic}
 
@@ -237,7 +237,7 @@ Text-to-image models have enabled the generation of high-quality, realistic imag
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{Pictures/subjectD.png} 
-    \caption{\textbf{Subject-driven generation problem} \cite{ruiz2022dreambooth}. The target is to create images of a specific subject in different contexts.}
+    \caption{\textbf{Subject-driven generation problem} \cite{ruiz2023dreambooth}. The target is to create images of a specific subject in different contexts.}
     \label{fig:subjectD}
 \end{figure}
 
@@ -267,7 +267,7 @@ Furthermore, the fine-tuning process involves two steps. Initially, it is perfor
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{Pictures/dreamboothS.png} 
-    \caption{\textbf{Fine-tuning process for Dreambooth} \cite{ruiz2022dreambooth}. Two main steps are distinguished. First, fine-tuning is performed on the low-resolution section, where the class-specific prior preservation loss is applied. On the other hand, fine-tuning the high-resolution section with pairs of high- and low-resolution images makes it possible to keep the subject detail.}
+    \caption{\textbf{Fine-tuning process for Dreambooth} \cite{ruiz2023dreambooth}. Two main steps are distinguished. First, fine-tuning is performed on the low-resolution section, where the class-specific prior preservation loss is applied. On the other hand, fine-tuning the high-resolution section with pairs of high- and low-resolution images makes it possible to keep the subject detail.}
     \label{fig:dreamboothS}
 \end{figure}
 

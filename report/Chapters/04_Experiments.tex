@@ -8,7 +8,7 @@ Our results support the hypothesis that subject-driven augmentation is a competi
 
 The first step in testing the capabilities of subject-driven augmentation is to know the limitations of the selected subject-driven techniques. If we consider Dreambooth and Textual inversion, we will realise that their main input element is images of a specific subject. Two fundamental questions arise at this point. Firstly, how many images are to be used? Secondly, is it feasible to apply Dreambooth and Textual inversion to different subjects of the same class?
 
-For this reason, we initially set up the experiment \textbf{01-number-of-images}. In this experiment, we want to test the effect of the number of images used in applying subject-driven generation techniques on the quality of the images generated. Dreambooth and Textual inversion authors propose using between 3 and 5 images \cite{ruiz2022dreambooth, gal2022image}. However, since the proposed pipeline will push these techniques to their limits by selecting images of subjects that do not necessarily have to be the same, it is interesting to see how flexible they are. Therefore, the \textit{01-number-of-images} experiment proposes to test 1, 2, 3 and 5 images. These tests allow the flexibility of Dreambooth and Textual inversion to be tested to establish an appropriate number of images.
+For this reason, we initially set up the experiment \textbf{01-number-of-images}. In this experiment, we want to test the effect of the number of images used in applying subject-driven generation techniques on the quality of the images generated. Dreambooth and Textual inversion authors propose using between 3 and 5 images \cite{ruiz2023dreambooth, gal2022image}. However, since the proposed pipeline will push these techniques to their limits by selecting images of subjects that do not necessarily have to be the same, it is interesting to see how flexible they are. Therefore, the \textit{01-number-of-images} experiment proposes to test 1, 2, 3 and 5 images. These tests allow the flexibility of Dreambooth and Textual inversion to be tested to establish an appropriate number of images.
 
 On the other hand, the question remains whether it is feasible to push these methods to the limit with images of subjects that, although of the same class, are different. Thus, we define the experiment \textbf{02-different-subjects}. It aims to test how flexible Dreambooth and Textual inversion are when provided with several images of different subjects sharing the same class. To do so, we take the domain of dog breeds and employ subject-driven generation methods on sets of images that mix dog breeds. Furthermore, we perform the experiment incrementally to maximise the information we can extract from the performance of Dreambooth and Textual inversion. Initially, we take dogs with a common breed, and successively, we introduce dogs of increasingly different breeds. Specifically, we start with a Golden Retriever and successively add subjects of the following breeds: German Shepherd, Siberian Husky, Bulldog and Welsh Corgi.
 
@@ -213,7 +213,30 @@ In summary, the \textit{02-different-subjects} experiment leaves no doubt that i
 
 \subsection{Comparative analysis of subject-driven and classical data augmentation} \label{sec: exp-03}
 
-Experiment \textit{03-training-percentage} evaluates the entire subject-driven augmentation pipeline and compares it to other data augmentation techniques in a real task. This includes comparisons with the baseline, classical techniques and automated policies (AutoAugment and RandAugment). For subject-driven techniques, it includes Dreambooth, Textual inversion and Stable Diffusion prompt. In addition, the experiment examines the impact of varying the size of the real dataset. For this purpose, the percentage of data indicates how many images have been used. We consider 100\% the use of the complete Oxford-IIIT Pet training set. On the other hand, the number of synthetic images is kept fixed at 50. Unlike the \textit{01-number-of-images} and \textit{02-different-subjects} experiments, we have a more rigorous evaluation method in this case. We use the accuracy of the trained model in the classification task and establish a baseline that does not employ any data augmentation technique. Figure X shows a plot of the results. Meanwhile, Appendices X, X and X show the synthetic images obtained by the subject-driven techniques.
+Experiment \textit{03-training-percentage} evaluates the entire subject-driven augmentation pipeline and compares it to other data augmentation techniques in a real task. This includes comparisons with the no-augmentation baseline, classical techniques and automated policies (AutoAugment and RandAugment). For subject-driven techniques, it includes Dreambooth, Textual inversion and Stable Diffusion prompt. In addition, the experiment examines the impact of varying the size of the real dataset. For this purpose, the percentage of data indicates how many images have been used. We consider 100\% the use of the complete Oxford-IIIT Pet training set. On the other hand, the number of synthetic images is kept fixed at 50. Unlike the \textit{01-number-of-images} and \textit{02-different-subjects} experiments, we have a more rigorous evaluation method in this case. We use the accuracy of the trained model in the classification task and establish a baseline that does not employ any data augmentation technique. Figure \ref{fig:exp3} shows a plot of the results. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/dreambooth-img.png} 
+    \caption{\textbf{Synthetic images generated using Dreambooth for the Oxford-IIIT Pet domain}. The quality of these images is remarkably high, with some being potentially indistinguishable from authentic images. Nevertheless, some have slight anatomical flaws and artefacts.}
+    \label{fig:exp3-images-dream}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/textual-inversion-img.png} 
+    \caption{\textbf{Synthetic images generated using Textual inversion for the Oxford-IIIT Pet domain}. Although some images are particularly good, overall, there are more anatomical flaws and artefacts than with Dreambooth or Stable Diffusion prompt.}
+    \label{fig:exp3-images-text}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/stable_diffusion_prompt-img.png} 
+    \caption{\textbf{Synthetic images generated using Stable Diffusion prompt for the Oxford-IIIT Pet domain}. The quality of these images is remarkably high, with some being potentially indistinguishable from authentic images. Nevertheless, some have slight anatomical flaws and artefacts.}
+    \label{fig:exp3-images-sd}
+\end{figure}
+
+Figures X, X and X show a random selection of synthetic images obtained by the subject-driven techniques. When evaluating the images generated, it is not easy to give a proper verdict without objective metrics. However, the images generated by Dreambooth and Stable Diffusion prompt are of very high quality. Although they indeed have flaws, in general terms, they seem adequate and faithful to reality. Especially in the case of the Stable Diffusion prompt, since it is a very present domain in the text-to-image model, the results are particularly good. This is likely not the case for other, less common domains. Finally, the images produced by Textual inversion show, in general terms, more defects, especially anatomical ones.
 
 \begin{figure}
     \centering

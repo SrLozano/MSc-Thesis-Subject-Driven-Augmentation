@@ -4,7 +4,7 @@
     "learning_rate": 1e-3,
     "batch_size": 16,
     "data_augmentation": "no",
-    "subject_driven_technique": "stable-diffusion-prompt",
+    "subject_driven_technique": "controlNet",
     "number_of_samples": 5,
     "images_to_generate": 10,
     "path_to_dataset": "../../../../../../work3/s226536/datasets/food-101",

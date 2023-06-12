@@ -31,7 +31,7 @@ def save_images(images, id, technique="inference", verbose=False):
 
 # Utility for plotting the results of the experiment 003
 def make_experiment_003_plot(x, dict_y, title, xlabel, ylabel, filename):
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(8, 8))
 
     # Plot the data iterating over the dictionary
     for key, y in dict_y.items():
@@ -49,7 +49,7 @@ def make_experiment_003_plot(x, dict_y, title, xlabel, ylabel, filename):
 
 # Utility for plotting the results of the experiment 004
 def make_experiment_004_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=False):
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(9, 7))
 
     # Plot the data iterating over the dictionary
     for key, y in dict_y.items():
@@ -64,9 +64,9 @@ def make_experiment_004_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
 
     # Create horizontal lines for the baseline
     plt.axhline(y=0.8786, color='lightgray', linestyle='dotted')
-    plt.text(30, 0.8786+0.002, f'100% - Baseline', color='darkgray', fontsize=9)
+    plt.text(7, 0.8786+0.002, f'100% - No-augmentation baseline', color='darkgray', fontsize=9)
     plt.axhline(y=0.6238, color='silver', linestyle='dotted')
-    plt.text(0.05, 0.6238+0.002, f'5% - Baseline', color='darkgray', fontsize=9)
+    plt.text(0.05, 0.6238+0.002, f'5% - No-augmentation baseline', color='darkgray', fontsize=9)
 
     # Save and close the plot
     plt.savefig(f"figures/{filename}.pdf")
@@ -87,13 +87,19 @@ def make_experiment_005_plot(x, dict_y, title, xlabel, ylabel, filename):
     plt.xticks(x)
     plt.legend(dict_y.keys(), loc='lower right')
 
+    # Create horizontal lines for the baseline
+    plt.axhline(y=0.6238, color='lightgray', linestyle='dotted')
+    plt.text(300, 0.6238+0.002, f'5 real images - baseline', color='darkgray', fontsize=9)
+    plt.axhline(y=0.8786, color='lightgray', linestyle='dotted')
+    plt.text(250, 0.8786+0.002, f'100 real images - baseline', color='darkgray', fontsize=9)
+
     # Save and close the plot
     plt.savefig(f"figures/{filename}.pdf")
     plt.close()
 
 # Utility for plotting the results of the experiment 006
 def make_experiment_006_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=False):
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(8, 7))
 
     # Plot the data iterating over the dictionary
     for key, y in dict_y.items():
@@ -108,11 +114,11 @@ def make_experiment_006_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
 
     # Create horizontal lines for the baseline
     plt.axhline(y=0.8786, color='lightgray', linestyle='dotted')
-    plt.text(8, 0.8786+0.002, f'100% - Baseline', color='darkgray', fontsize=9)
+    plt.text(2, 0.8786+0.002, f'100% - No-augmentation baseline', color='darkgray', fontsize=9)
     plt.axhline(y=0.8693, color='lightgray', linestyle='dotted')
-    plt.text(0.05, 0.8693+0.002, f'50% - Baseline', color='darkgray', fontsize=9)
+    plt.text(2.85, 0.8693+0.002, f'50% - No-augmentation baseline', color='darkgray', fontsize=9)
     plt.axhline(y=0.6238, color='silver', linestyle='dotted')
-    plt.text(0.05, 0.6238+0.002, f'5% - Baseline', color='darkgray', fontsize=9)
+    plt.text(0.05, 0.6238+0.002, f'5% - No-augmentation baseline', color='darkgray', fontsize=9)
 
     # Save and close the plot
     plt.savefig(f"figures/{filename}.pdf")
@@ -121,7 +127,7 @@ def make_experiment_006_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
 
 # Utility for plotting the results of the experiment 006
 def make_experiment_008_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=False):
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(7, 5))
 
     # Plot the data iterating over the dictionary
     for key, y in dict_y.items():
@@ -136,9 +142,9 @@ def make_experiment_008_plot(x, dict_y, title, xlabel, ylabel, filename, ylim=Fa
 
     # Create horizontal lines for the baseline
     plt.axhline(y=0.8499, color='lightgray', linestyle='dotted')
-    plt.text(8, 0.8499+0.0008, f'100% - Baseline', color='darkgray', fontsize=9)
+    plt.text(1.85, 0.8499+0.0005, f'100% - No-augmentation baseline', color='darkgray', fontsize=9)
     plt.axhline(y=0.8273, color='silver', linestyle='dotted')
-    plt.text(0.05, 0.8273+0.0008, f'5% - Baseline', color='darkgray', fontsize=9)
+    plt.text(0.05, 0.8273+0.0005, f'5% - No-augmentation baseline', color='darkgray', fontsize=9)
 
     # Save and close the plot
     plt.savefig(f"figures/{filename}.pdf")
@@ -151,7 +157,7 @@ if __name__ == "__main__":
     percentage_of_data = [1, 0.5, 0.25, 0.1, 0.05]
 
     experiment_003_results = {
-        "Baseline": [0.8786, 0.8693, 0.8617, 0.7615, 0.6238],
+        "No-augmentation baseline": [0.8786, 0.8693, 0.8617, 0.7615, 0.6238],
         "Custom data augmentation": [0.8873, 0.8568, 0.8437, 0.7316, 0.5231],
         "AutoAugment": [0.8835, 0.8671, 0.8361, 0.6908, 0.4855],
         "RandAugment": [0.8884, 0.8731, 0.8524, 0.7523, 0.5487],
@@ -195,8 +201,10 @@ if __name__ == "__main__":
 
     experiment_006_results = {
         "100% - ControlNet": [[0.8911, 0.8786, 0.8818], [0.05, 0.5, 1]],
+        "100% - Textual inversion": [[0.8796, 0.8824, 0.8764], [0.05, 0.5, 1]],
         "50% - ControlNet": [[0.8677, 0.8622, 0.86], [0.1, 1, 2]],
-        "5% - ControlNet": [[0.7022, 0.7653, 0.7702], [1, 10, 20]]
+        "5% - ControlNet": [[0.7022, 0.7653, 0.7702], [1, 10, 20]],
+        "5% - Textual inversion": [[0.6924, 0.7223, 0.7430, 0.7278], [1, 2, 10, 20]]
     } 
 
     make_experiment_006_plot(percentage_of_data_006, experiment_006_results, "Accuracy of ControlNet Vs percentage of generated data", "Percentage of generated data - (log scale)", "Accuracy", "experiment_006", 0.60)

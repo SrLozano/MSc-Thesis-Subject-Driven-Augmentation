@@ -16,21 +16,20 @@ This section provides an overview of some  synthetic images generated in the the
 
 **Synthetic images generated using Dreambooth for the Oxford-IIIT Pet domain**
 
-![Dreambooth](MSc-thesis/figures/dreambooth-img.png)
+![Dreambooth](figures/dreambooth-img.png)
 
 **Synthetic images generated using Textual inversion for the Oxford-IIIT Pet domain**
 
-![Textual](MSc-thesis/figures/textual-inversion-img.png)
+![Textual](figures/textual-inversion-img.png)
 
 **Synthetic images generated using Stable Diffusion prompt for the Oxford- IIIT Pet domain**
 
-![SDPrompt](MSc-thesis/figures/stable_diffusion_prompt-img.png)
+![SDPrompt](figures/stable_diffusion_prompt-img.png)
 
 **Synthetic images generated using ControlNet for the Oxford-IIIT Pet domain**
 
-![ControlNet](MSc-thesis/figures/controlnet-img.png)
-              MSc-thesis/figures/controlnet-img.png
+![ControlNet](figures/controlnet-img.png)
 
 **Synthetic images generated for the food101 domain**
 
-![Food101](MSc-thesis/figures/synthetic-food101.png)
+![Food101](figures/synthetic-food101.png)
